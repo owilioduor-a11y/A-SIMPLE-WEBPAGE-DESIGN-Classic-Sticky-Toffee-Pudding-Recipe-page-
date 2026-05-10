@@ -3,7 +3,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classic Dinner Resort | Fine Dining & Signature Recipes</title>
+    <title>Classic Dinner Resort | Modern British Fine Dining in London</title>
+    <meta name="description" content="Experience award-winning modern British cuisine at Classic Dinner Resort. Sustainable farm-to-table fine dining by Chef Owili in the heart of Mayfair, London.">
+    <meta name="keywords" content="fine dining London, modern British cuisine, sustainable restaurant, Chef Owili, Mayfair restaurants, farm-to-table">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://classicdinnerresort.com/">
+    <meta property="og:title" content="Classic Dinner Resort | Modern British Fine Dining">
+    <meta property="og:description" content="Award-winning sustainable fine dining in Mayfair. Join Chef Owili for an unforgettable culinary journey.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=1200">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Classic Dinner Resort | Modern British Fine Dining">
+    <meta property="twitter:description" content="Award-winning sustainable fine dining in Mayfair. Join Chef Owili for an unforgettable culinary journey.">
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,123 +28,176 @@
     <header>
         <nav>
             <div class="logo">Classic Dinner Resort</div>
-            <ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="nav-list">
                 <li><a href="#story">Our Story</a></li>
-                <li><a href="#menu">Signature Dish</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#reservations">Reservations</a></li>
                 <li><a href="#accolades">Accolades</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <a href="#" class="cta-button">Book a Table</a>
+            <a href="#reservations" class="cta-button">Book a Table</a>
         </nav>
     </header>
 
     <main>
         <section id="hero">
             <div class="hero-content">
+                <span class="subtitle">Exquisite Fine Dining</span>
                 <h1>Elevated Culinary Art</h1>
-                <p>Experience the finest traditions of dessert craftmanship, led by Chef Owili.</p>
-                <a href="#menu" class="secondary-button">Explore the Recipe</a>
+                <p class="hero-description">Experience the finest traditions of culinary craftsmanship, led by the visionary Chef Owili.</p>
+                <div class="hero-btns">
+                    <a href="#reservations" class="cta-button">Book a Table</a>
+                    <a href="#menu" class="secondary-button">View Menu</a>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span></span>
             </div>
         </section>
 
-        <section id="story">
+        <section id="story" class="reveal">
             <div class="container">
                 <div class="story-grid">
                     <div class="story-image">
-                        <img src="https://cdn.freecodecamp.org/curriculum/labs/recipe.jpg" alt="Chef Owili preparing a dish">
+                        <img src="https://images.unsplash.com/photo-1583394838336-cdc97773c3e0?auto=format&fit=crop&q=80&w=1200" alt="Chef Owili preparing a dish">
                     </div>
                     <div class="story-text">
-                        <h2>Our Story</h2>
-                        <p>At Classic Dinner Resort, we believe that every meal should be a masterpiece. Chef Owili, our visionary lead, has spent decades perfecting the balance of texture and taste. His philosophy is simple: use only the finest ingredients to create unforgettable memories.</p>
-                        <p>Born from a passion for traditional British desserts, our resort has become a sanctuary for those who appreciate the finer things in life.</p>
+                        <span class="subtitle">Our Philosophy</span>
+                        <h2>The Art of Sustainable Dining</h2>
+                        <p>At Classic Dinner Resort, we redefine <strong>modern British cuisine</strong> through a lens of <strong>farm-to-table excellence</strong>. Chef Owili, our visionary lead, has spent decades perfecting the balance of texture and taste, ensuring every plate reflects our commitment to <strong>sustainable sourcing</strong> and seasonal purity.</p>
+                        <p>As a premier destination for <strong>fine dining in London</strong>, our resort has become a sanctuary for those who appreciate the finer things in life. We partner with local artisans and ethical farmers to bring the freshest ingredients from the British countryside directly to your table.</p>
+                        <p>Our culinary philosophy is rooted in heritage and precision. Every dish tells a story of craftsmanship, from our signature aged Wagyu to our world-renowned traditional desserts, creating an unforgettable sensory journey for every guest.</p>
+                        <a href="#menu" class="secondary-button story-cta">Discover Our Menu</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="menu">
+        <section id="menu" class="reveal">
             <div class="container">
                 <div class="section-title">
-                    <span class="subtitle">Signature Dish</span>
-                    <h2>Classic Sticky Toffee Pudding</h2>
-                    <p>A rich, dark sponge cake made with finely chopped dates, covered in a luscious, buttery toffee sauce.</p>
+                    <span class="subtitle">Culinary Selection</span>
+                    <h2>The Menu</h2>
+                    <p>A curated journey through seasonal flavors and artisanal techniques.</p>
                 </div>
 
-                <div class="recipe-grid">
-                    <div class="ingredients">
-                        <h3>Ingredients</h3>
-                        <div class="ingredient-category">
-                            <h4>For the Pudding</h4>
-                            <ul>
-                                <li>1 ¾ cups (225g) Medjool dates, pitted and chopped</li>
-                                <li>¾ cup (180ml) boiling water</li>
-                                <li>1 tsp baking soda</li>
-                                <li>¾ cup (175g) unsalted butter, softened</li>
-                                <li>¾ cup (150g) dark brown sugar</li>
-                                <li>2 large eggs</li>
-                                <li>1 tsp vanilla extract</li>
-                                <li>1 ¾ cups (225g) all-purpose flour</li>
-                                <li>1 ½ tsp baking powder</li>
-                            </ul>
+                <div class="menu-categories">
+                    <div class="menu-category">
+                        <h3>Starters</h3>
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="item-name">Truffle Arancini</span>
+                                <span class="item-price">$24</span>
+                            </div>
+                            <p class="item-desc">Wild mushroom, black truffle, aged parmesan, saffron aioli.</p>
                         </div>
-                        <div class="ingredient-category">
-                            <h4>For the Toffee Sauce</h4>
-                            <ul>
-                                <li>1 cup (200g) dark brown sugar</li>
-                                <li>½ cup (115g) unsalted butter</li>
-                                <li>1 cup (240ml) heavy cream</li>
-                                <li>½ tsp sea salt</li>
-                            </ul>
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="item-name">Hokkaido Scallops</span>
+                                <span class="item-price">$28</span>
+                            </div>
+                            <p class="item-desc">Pan-seared, cauliflower silk, chorizo crumble, lemon verbena oil.</p>
                         </div>
                     </div>
 
-                    <div class="instructions">
-                        <h3>Method of Preparation</h3>
-                        <ol>
-                            <li>
-                                <strong>Prepare the Dates:</strong> Place the chopped dates in a bowl and pour the boiling water over them. Stir in the baking soda and let them sit for 10 minutes to soften. Mash slightly with a fork.
-                            </li>
-                            <li>
-                                <strong>Cream Butter and Sugar:</strong> In a large bowl, cream the butter and dark brown sugar until light and fluffy, then beat in the eggs and vanilla.
-                            </li>
-                            <li>
-                                <strong>Combine:</strong> Fold in the flour and baking powder, then stir in the date mixture (including the liquid) to create the batter.
-                            </li>
-                            <li>
-                                <strong>Bake:</strong> Pour the thin batter into a greased baking dish and bake at 350°F (175°C) for 30–35 minutes.
-                            </li>
-                            <li>
-                                <strong>Make the Sauce:</strong> While the cake bakes, combine brown sugar, butter, and cream in a saucepan and simmer until thickened and glossy.
-                            </li>
-                            <li>
-                                <strong>The "Sticky" Finish:</strong> Poke holes in the warm pudding and pour half of the warm toffee sauce over the top to soak in.
-                            </li>
-                            <li>
-                                <strong>Serve:</strong> Serve warm with the remaining sauce drizzled over each portion, topped with vanilla ice cream or heavy cream.
-                            </li>
-                        </ol>
+                    <div class="menu-category">
+                        <h3>Main Courses</h3>
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="item-name">Wagyu Beef Tenderloin</span>
+                                <span class="item-price">$65</span>
+                            </div>
+                            <p class="item-desc">Grade A5 Wagyu, smoked potato purée, bone marrow jus, seasonal greens.</p>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="item-name">Miso-Glazed Chilean Sea Bass</span>
+                                <span class="item-price">$48</span>
+                            </div>
+                            <p class="item-desc">Forbidden rice, bok choy, ginger-lemongrass dashi.</p>
+                        </div>
+                    </div>
+
+                    <div class="menu-category">
+                        <h3>Desserts</h3>
+                        <div class="menu-item active">
+                            <div class="menu-item-header">
+                                <span class="item-name">Classic Sticky Toffee Pudding</span>
+                                <span class="item-price">$18</span>
+                            </div>
+                            <p class="item-desc">Our signature dark sponge cake, Medjool dates, luscious buttery toffee sauce, vanilla bean gelato.</p>
+                            <a href="recipe.html" class="recipe-link">View Recipe Details</a>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="item-name">Dark Chocolate Soufflé</span>
+                                <span class="item-price">$20</span>
+                            </div>
+                            <p class="item-desc">70% Valrhona chocolate, Grand Marnier crème anglaise.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="recipe-gallery">
-                    <figure>
-                        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQKUe5aPf8c_nwsKyFn87YCrGLrlZnWVAa_abwlPoqU6kCFl0JDUVI35_tV7y6i" alt="Classic Sticky Toffee Pudding">
-                        <figcaption>Classic Sticky Toffee Pudding</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTHRyXQB2NEmTLitEGXDUd8Q9xBiWZ4bu5BqGo7wh_oy5uSS8h-Ygu6-eCdhM1e" alt="Modernised Sticky Toffee Pudding">
-                        <figcaption>Modernised Presentation</figcaption>
-                    </figure>
-                    <figure>
-                        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSu89-m1vf4dP5crcNndgCZEJLNn8Nkh8CddVBOFc03gduvxu9NjEXtcKHU2kwH" alt="Traditional Sticky Toffee Pudding">
-                        <figcaption>Traditional Heritage</figcaption>
-                    </figure>
+                <div class="menu-footer">
+                    <p>Please inform your server of any allergies or dietary requirements.</p>
                 </div>
             </div>
         </section>
 
-        <section id="accolades">
+        <section id="reservations" class="reveal">
             <div class="container">
+                <div class="reservation-box">
+                    <div class="reservation-text">
+                        <span class="subtitle">Reservations</span>
+                        <h2>Secure Your Table</h2>
+                        <p>Join us for an unforgettable dining experience. We recommend booking at least two weeks in advance for weekend dinners.</p>
+                    </div>
+                    <form class="reservation-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" id="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="guests">Guests</label>
+                                <select id="guests">
+                                    <option value="1">1 Person</option>
+                                    <option value="2" selected>2 People</option>
+                                    <option value="3">3 People</option>
+                                    <option value="4">4 People</option>
+                                    <option value="5+">5+ People</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="time">Time</label>
+                                <select id="time">
+                                    <option>5:00 PM</option>
+                                    <option>6:00 PM</option>
+                                    <option>7:00 PM</option>
+                                    <option>8:00 PM</option>
+                                    <option>9:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="cta-button full-width">Check Availability</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="accolades" class="reveal">
+            <div class="container">
+                <div class="section-title">
+                    <span class="subtitle">Recognition</span>
+                    <h2>Awards & Praise</h2>
+                </div>
                 <div class="accolades-grid">
                     <div class="accolade-item">
                         <p class="quote">"The most indulgent Sticky Toffee Pudding in the region."</p>
@@ -151,17 +219,71 @@
     <footer id="contact">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">Classic Dinner Resort</div>
-                <div class="footer-info">
-                    <p>123 Luxury Lane, Culinary City</p>
-                    <p>Open Daily: 5:00 PM - 11:00 PM</p>
-                    <p><a href="mailto:classicdinnerresort@gmail.com">classicdinnerresort@gmail.com</a></p>
+                <div class="footer-brand">
+                    <div class="footer-logo">Classic Dinner Resort</div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Follow us on Instagram">Instagram</a>
+                        <a href="#" aria-label="Follow us on Facebook">Facebook</a>
+                    </div>
                 </div>
+                <div class="footer-info">
+                    <div class="footer-column">
+                        <h4>Location</h4>
+                        <p>123 Luxury Lane, Mayfair</p>
+                        <p>London, W1J 7JZ</p>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Hours</h4>
+                        <p>Monday – Thursday: 5:00 PM – 11:00 PM</p>
+                        <p>Friday – Sunday: 12:00 PM – 12:00 AM</p>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contact</h4>
+                        <p><a href="tel:+442071234567">+44 20 7123 4567</a></p>
+                        <p><a href="mailto:concierge@classicdinnerresort.com">concierge@classicdinnerresort.com</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.123456789!2d-0.1478!3d51.5113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487605123456789%3A0x1234567890abcdef!2sMayfair%2C%20London!5e0!3m2!1sen!2suk!4v1620645678901!5m2!1sen!2suk"
+                    width="100%" height="200" style="border:0; filter: grayscale(100%) invert(90%); opacity: 0.6;" allowfullscreen="" loading="lazy"></iframe>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 Classic Dinner Resort. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+    <script>
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navList.classList.toggle('active');
+        });
+
+        document.querySelectorAll('#nav-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navList.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
