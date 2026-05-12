@@ -683,6 +683,9 @@ footer {
         height: 21px;
         cursor: pointer;
         z-index: 1001;
+        background: none;
+        border: none;
+        padding: 0;
     }
 
     .menu-toggle span {
