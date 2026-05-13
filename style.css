@@ -633,6 +633,18 @@ footer {
     letter-spacing: 1px;
 }
 
+/* Keyboard Accessibility */
+:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .reservation-box {
