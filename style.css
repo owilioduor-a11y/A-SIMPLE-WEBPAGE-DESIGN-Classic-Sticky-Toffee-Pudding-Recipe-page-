@@ -24,6 +24,11 @@ html {
     scroll-behavior: smooth;
 }
 
+:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
+}
+
 body {
     font-family: var(--sans-font);
     color: var(--text-light);
@@ -98,6 +103,10 @@ nav {
     font-weight: 800;
     letter-spacing: -0.5px;
     color: var(--white);
+}
+
+.menu-toggle {
+    display: none;
 }
 
 nav ul {
@@ -683,6 +692,9 @@ footer {
         height: 21px;
         cursor: pointer;
         z-index: 1001;
+        background: none;
+        border: none;
+        padding: 0;
     }
 
     .menu-toggle span {
