@@ -23,11 +23,11 @@
     <header>
         <nav>
             <div class="logo">Classic Dinner Resort</div>
-            <div class="menu-toggle" id="mobile-menu">
+            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
             <ul id="nav-list">
                 <li><a href="index.html#story">Our Story</a></li>
                 <li><a href="index.html#menu">Menu</a></li>
@@ -177,13 +177,15 @@
         const navList = document.getElementById('nav-list');
 
         mobileMenu.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
+            const isExpanded = mobileMenu.classList.toggle('active');
+            mobileMenu.setAttribute('aria-expanded', isExpanded);
             navList.classList.toggle('active');
         });
 
         document.querySelectorAll('#nav-list a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
+                mobileMenu.setAttribute('aria-expanded', 'false');
                 navList.classList.remove('active');
             });
         });
