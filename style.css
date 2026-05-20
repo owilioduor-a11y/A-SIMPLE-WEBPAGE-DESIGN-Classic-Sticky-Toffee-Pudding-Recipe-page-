@@ -22,6 +22,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
 }
 
 body {
@@ -98,6 +99,11 @@ nav {
     font-weight: 800;
     letter-spacing: -0.5px;
     color: var(--white);
+    text-decoration: none;
+}
+
+.menu-toggle {
+    display: none;
 }
 
 nav ul {
@@ -665,8 +671,16 @@ footer {
         padding: 0 25px;
     }
 
-    nav ul {
+    nav .cta-button {
         display: none;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    nav ul {
+        display: flex;
     }
 
     .hero-btns {
@@ -683,6 +697,9 @@ footer {
         height: 21px;
         cursor: pointer;
         z-index: 1001;
+        background: none;
+        border: none;
+        padding: 0;
     }
 
     .menu-toggle span {
@@ -706,10 +723,12 @@ footer {
         transition: var(--transition-smooth);
         border-left: 1px solid rgba(212, 175, 55, 0.1);
         z-index: 1000;
+        visibility: hidden;
     }
 
     nav ul.active {
         right: 0;
+        visibility: visible;
     }
 
     nav ul li {
