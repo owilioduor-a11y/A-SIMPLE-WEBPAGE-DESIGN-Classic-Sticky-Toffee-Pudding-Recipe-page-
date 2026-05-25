@@ -98,6 +98,12 @@ nav {
     font-weight: 800;
     letter-spacing: -0.5px;
     color: var(--white);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.menu-toggle {
+    display: none;
 }
 
 nav ul {
@@ -683,6 +689,13 @@ footer {
         height: 21px;
         cursor: pointer;
         z-index: 1001;
+        background: transparent;
+        border: none;
+        padding: 0;
+    }
+
+    header .cta-button {
+        display: none;
     }
 
     .menu-toggle span {
@@ -875,4 +888,14 @@ footer {
     .recipe-gallery {
         grid-template-columns: 1fr;
     }
+}
+
+/* Accessibility: Keyboard Focus States */
+:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
+}
+
+.logo:focus-visible {
+    outline-offset: 8px;
 }
