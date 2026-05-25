@@ -1,0 +1,3 @@
+## 2024-05-23 - Semantic Refactoring and Mobile Congestion
+**Learning:** Refactoring static `<div>` components to semantic elements (`<a>`, `<button>`) for accessibility requires explicit CSS resets (text-decoration, background, padding) to maintain "luxury" visual consistency. Additionally, header CTA buttons can congest mobile viewports (~375px), interfering with the logo and menu toggle; prioritize primary navigation by hiding non-essential header CTAs on small screens.
+**Action:** Always include a visual regression check and CSS reset block when converting `<div>` to semantic interactive elements. Use responsive `display: none` for secondary header actions on mobile to ensure a clean hit area for the menu toggle.
