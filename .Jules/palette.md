@@ -1,0 +1,3 @@
+## 2024-05-22 - Accessible Header Refactoring
+**Learning:** Transitioning from generic `<div>` elements to semantic `<button>` and `<a>` tags for navigation components significantly improves keyboard accessibility and screen reader support. Using `aria-expanded` and `aria-label` provides necessary state feedback that static HTML cannot. Additionally, fixed headers on single-page layouts require `scroll-padding-top` on the `<html>` element to ensure anchor link targets are not obscured by the header overlap.
+**Action:** Always use semantic elements for interactive components. For toggles, ensure ARIA states are programmatically updated. Implement `scroll-padding-top` by default in projects with fixed headers.
