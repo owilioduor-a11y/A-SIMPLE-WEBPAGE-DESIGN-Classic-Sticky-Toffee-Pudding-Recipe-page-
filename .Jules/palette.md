@@ -1,0 +1,3 @@
+## 2024-05-23 - Improving Navigation Accessibility and Scroll Behavior
+**Learning:** Fixed headers can obscure content when using anchor links. Implementing `scroll-padding-top` on the `<html>` element is a clean CSS-only solution that ensures the target element is positioned below the header after navigation. Additionally, refactoring static branding and menu controls to semantic HTML elements (`<a>`, `<button>`) with appropriate ARIA attributes significantly improves keyboard and screen reader accessibility.
+**Action:** Always include `scroll-padding-top` when implementing fixed headers with anchor links. Ensure branding logos are semantic links to the homepage and that interactive toggles are `<button>` elements with `aria-expanded` and `aria-controls`.
