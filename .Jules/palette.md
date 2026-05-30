@@ -1,0 +1,3 @@
+## 2025-05-14 - [Navigation Accessibility & Fixed Header Polish]
+**Learning:** In static sites with fixed headers, using `scroll-padding-top` on the `<html>` element is a cleaner, CSS-only solution for preventing anchor link targets from being obscured, compared to adding padding to every section. Additionally, when refactoring custom elements (like `div` toggles) to semantic `<button>` elements, explicit ARIA state management (e.g., `aria-expanded`) must be updated as string literals in JavaScript to ensure consistent screen reader announcements.
+**Action:** Always implement `scroll-padding-top` on the root element for projects with fixed headers and prioritize semantic `<button>` elements with programmatically updated ARIA states for all interactive toggles.
