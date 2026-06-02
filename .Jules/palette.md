@@ -1,0 +1,3 @@
+## 2024-11-20 - [Mobile Menu Accessibility]
+**Learning:** Refactoring static <div>-based toggles to semantic <button> elements with ARIA attributes (aria-expanded, aria-controls) significantly improves the experience for screen reader users. Using 'visibility: hidden' and 'opacity: 0' ensures that hidden menu items are not reachable via keyboard navigation (Tab key) when the menu is closed, which is a common but often overlooked accessibility issue in mobile navigation implementations.
+**Action:** Always use <button> for interactive toggles and ensure hidden content is explicitly removed from the accessibility tree and tab order.
