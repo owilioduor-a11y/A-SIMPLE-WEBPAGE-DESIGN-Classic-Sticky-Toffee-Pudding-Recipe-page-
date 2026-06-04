@@ -1,0 +1,3 @@
+## 2025-06-04 - Semantic Navigation in Static Sites
+**Learning:** In static frontend projects without a central layout engine, structural UX improvements (like refactoring logos to home links or mobile toggles to buttons) must be synchronized across all HTML files to ensure a consistent accessibility experience. Adding 'scroll-padding-top' to the global CSS is a critical companion fix for fixed headers to prevent anchor navigation from obscuring content.
+**Action:** Always audit both primary and secondary pages (e.g., recipe.html) when updating global navigation elements, and use high-contrast :focus-visible indicators to support keyboard users in luxury dark themes.
