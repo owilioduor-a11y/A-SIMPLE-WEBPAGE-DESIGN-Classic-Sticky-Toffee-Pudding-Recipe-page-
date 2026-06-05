@@ -1,0 +1,3 @@
+## 2024-05-23 - Improving Header Accessibility and Semantics
+**Learning:** Refactoring non-semantic `div` elements into semantic `<a>` and `<button>` tags significantly improves accessibility for keyboard and screen reader users without altering the visual design, provided appropriate CSS resets (background, border, padding) are applied. Adding a "Skip to content" link and `scroll-padding-top` further enhances the UX for sticky headers.
+**Action:** Always check for static branding `div`s and burger menu `div`s to refactor them into semantic elements with appropriate ARIA states. Add `scroll-padding-top` whenever a fixed header is used.
