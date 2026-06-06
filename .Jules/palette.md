@@ -1,0 +1,3 @@
+## 2024-05-15 - [Navigation & Accessibility]
+**Learning:** Fixed headers often obscure the target of internal anchor links, leading to a jarring user experience where section headings are hidden. Additionally, non-semantic mobile menu toggles (e.g., using `div`) are inaccessible to keyboard and screen reader users.
+**Action:** Implement `scroll-padding-top` on the `html` element to automatically handle header offsets for all anchor links. Always use semantic `<button>` elements for toggles, applying a CSS reset (background: none, border: none, padding: 0) to preserve custom designs while ensuring accessibility.
