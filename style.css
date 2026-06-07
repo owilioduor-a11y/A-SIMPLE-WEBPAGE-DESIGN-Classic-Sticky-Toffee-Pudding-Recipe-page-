@@ -633,6 +633,18 @@ footer {
     letter-spacing: 1px;
 }
 
+/* Global Focus Styles */
+:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
+    transition: outline-offset 0.2s ease;
+}
+
+.cta-button:focus-visible,
+.secondary-button:focus-visible {
+    outline-offset: 2px;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .reservation-box {
@@ -683,6 +695,14 @@ footer {
         height: 21px;
         cursor: pointer;
         z-index: 1001;
+        background: none;
+        border: none;
+        padding: 0;
+    }
+
+    .menu-toggle:focus-visible {
+        outline: 2px solid var(--primary-gold);
+        outline-offset: 5px;
     }
 
     .menu-toggle span {
