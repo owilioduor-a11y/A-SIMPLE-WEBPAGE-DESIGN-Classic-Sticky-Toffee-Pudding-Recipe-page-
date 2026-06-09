@@ -20,14 +20,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <header>
         <nav>
-            <div class="logo">Classic Dinner Resort</div>
-            <div class="menu-toggle" id="mobile-menu">
+            <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
+            <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
             <ul id="nav-list">
                 <li><a href="index.html#story">Our Story</a></li>
                 <li><a href="index.html#menu">Menu</a></li>
@@ -38,7 +39,7 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         <section class="recipe-detail-header reveal">
             <div class="container">
                 <span class="subtitle">Signature Dessert</span>
@@ -176,16 +177,18 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
 
-        mobileMenu.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            navList.classList.toggle('active');
-        });
+        const toggleMenu = (forceClose = false) => {
+            const isOpen = forceClose ? false : !mobileMenu.classList.contains('active');
+            mobileMenu.classList.toggle('active', isOpen);
+            navList.classList.toggle('active', isOpen);
+            mobileMenu.setAttribute('aria-expanded', isOpen);
+            mobileMenu.setAttribute('aria-label', isOpen ? 'Close Menu' : 'Open Menu');
+        };
+
+        mobileMenu.addEventListener('click', () => toggleMenu());
 
         document.querySelectorAll('#nav-list a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                navList.classList.remove('active');
-            });
+            link.addEventListener('click', () => toggleMenu(true));
         });
     </script>
 </body>
