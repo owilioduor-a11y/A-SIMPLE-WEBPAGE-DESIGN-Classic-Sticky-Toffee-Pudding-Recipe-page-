@@ -22,6 +22,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
 }
 
 body {
@@ -98,6 +99,8 @@ nav {
     font-weight: 800;
     letter-spacing: -0.5px;
     color: var(--white);
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 nav ul {
@@ -530,11 +533,13 @@ footer {
 }
 
 .footer-logo {
+    display: block;
     font-family: var(--serif-font);
     font-size: 2.2rem;
     font-weight: 800;
     color: var(--white);
     margin-bottom: 20px;
+    text-decoration: none;
 }
 
 .social-links {
@@ -634,6 +639,10 @@ footer {
 }
 
 /* Responsive Design */
+.menu-toggle {
+    display: none;
+}
+
 @media (max-width: 1024px) {
     .reservation-box {
         grid-template-columns: 1fr;
@@ -665,6 +674,7 @@ footer {
         padding: 0 25px;
     }
 
+
     nav ul {
         display: none;
     }
@@ -683,6 +693,9 @@ footer {
         height: 21px;
         cursor: pointer;
         z-index: 1001;
+        background: none;
+        border: none;
+        padding: 0;
     }
 
     .menu-toggle span {
