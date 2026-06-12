@@ -22,6 +22,12 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
 }
 
 body {
@@ -71,6 +77,10 @@ h3 {
     font-weight: 600;
 }
 
+.menu-toggle {
+    display: none;
+}
+
 /* Header & Navigation */
 header {
     background-color: rgba(10, 10, 10, 0.9);
@@ -98,6 +108,8 @@ nav {
     font-weight: 800;
     letter-spacing: -0.5px;
     color: var(--white);
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 nav ul {
@@ -683,6 +695,9 @@ footer {
         height: 21px;
         cursor: pointer;
         z-index: 1001;
+        background: none;
+        border: none;
+        padding: 0;
     }
 
     .menu-toggle span {

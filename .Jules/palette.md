@@ -1,0 +1,3 @@
+## 2024-05-23 - [Navigation Accessibility & Anchor Positioning]
+**Learning:** Fixed headers often obscure anchor link targets, which can be elegantly solved with `scroll-padding-top` on the `<html>` element. Additionally, using non-semantic `div` elements for interactive toggles creates significant keyboard accessibility barriers that are best resolved by refactoring to `<button>` with synchronized ARIA states.
+**Action:** Always apply `scroll-padding-top` equal to or slightly greater than the fixed header height. Ensure all interactive toggles use semantic `<button>` tags and a centralized JavaScript helper to synchronize `aria-expanded` and `aria-label` states.
