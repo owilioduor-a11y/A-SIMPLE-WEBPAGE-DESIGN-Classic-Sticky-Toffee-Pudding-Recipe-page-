@@ -9,3 +9,7 @@
 ## 2026-06-15 - Semantic Branding and Skip Links
 **Learning:** For users relying on keyboard navigation or screen readers, a "Skip to Content" link is essential for bypassing repetitive headers. Additionally, branding elements should always be semantic links (`<a>`) with descriptive `aria-label`s to ensure a consistent "Home" navigation path.
 **Action:** Include "Skip to Content" links as a standard accessibility baseline and ensure branding is implemented as an interactive, labeled element.
+
+## 2026-06-15 - Print-Friendly CSS for Dark Themes
+**Learning:** Dark-themed luxury layouts are often illegible and ink-intensive when printed. Implementing a `@media print` override that forces a high-contrast black-on-white theme, hides UI/navigation chrome, and disables reveal animations is essential for content that has offline utility (like recipes).
+**Action:** For content-heavy pages, always include a print-friendly CSS block to ensure accessibility and resource efficiency during physical reproduction.
