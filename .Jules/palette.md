@@ -9,3 +9,7 @@
 ## 2026-06-15 - Semantic Branding and Skip Links
 **Learning:** For users relying on keyboard navigation or screen readers, a "Skip to Content" link is essential for bypassing repetitive headers. Additionally, branding elements should always be semantic links (`<a>`) with descriptive `aria-label`s to ensure a consistent "Home" navigation path.
 **Action:** Include "Skip to Content" links as a standard accessibility baseline and ensure branding is implemented as an interactive, labeled element.
+
+## 2026-06-16 - Print-Friendly Utility & Focus Contrast
+**Learning:** Utility features like "Print Recipe" require robust `@media print` overrides to ensure dark-themed sites remain legible and ink-efficient on paper. This includes resetting backgrounds to white, text/pseudo-elements to black, and hiding non-content UI. For gold-themed interactive elements on dark backgrounds, a white `:focus-visible` outline provides the necessary contrast for keyboard accessibility.
+**Action:** Implement comprehensive print media queries for content-heavy pages and always verify focus indicator contrast against the brand's primary action colors.
