@@ -21,6 +21,8 @@
 </head>
 <body id="home">
     <a href="#main-content" class="skip-link">Skip to content</a>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header>
         <nav>
             <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
@@ -45,7 +47,10 @@
                 <span class="subtitle">Signature Dessert</span>
                 <h1>Classic Sticky Toffee Pudding</h1>
                 <p>A masterpiece of texture and warmth, perfected by Chef Owili.</p>
-                <a href="index.html#menu" class="back-link">← Back to Menu</a>
+                <div class="recipe-actions">
+                    <a href="index.html#menu" class="back-link">← Back to Menu</a>
+                    <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
+                </div>
             </div>
         </section>
 
@@ -129,7 +134,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <div class="footer-logo">Classic Dinner Resort</div>
+                    <a href="index.html" class="footer-logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
                     <div class="social-links">
                         <a href="#" aria-label="Follow us on Instagram">Instagram</a>
                         <a href="#" aria-label="Follow us on Facebook">Facebook</a>
