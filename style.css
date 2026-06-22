@@ -22,6 +22,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
 }
 
 body {
@@ -74,6 +75,27 @@ h3 {
     display: block;
     margin-bottom: 15px;
     font-weight: 600;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    padding: 10px 20px;
+    z-index: 2000;
+    text-decoration: none;
+    font-weight: 700;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
 }
 
 /* Header & Navigation */
@@ -890,5 +912,97 @@ footer {
     }
     .recipe-gallery {
         grid-template-columns: 1fr;
+    }
+}
+
+.recipe-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.print-button {
+    background-color: var(--primary-gold);
+    color: var(--dark-bg);
+    padding: 10px 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: var(--transition-smooth);
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.print-button:hover {
+    background-color: var(--white);
+    transform: translateY(-2px);
+}
+
+.print-button:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
+}
+
+@media print {
+    body, .container, .recipe-detail-header, #recipe-content, .ingredients {
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+
+    h1, h2, h3, h4, .subtitle, .item-name, .item-price, .instructions ol li strong, .instructions ol li::before {
+        color: #000000 !important;
+    }
+
+    .item-desc, .footer-info p, .ingredients ul li, .instructions ol li, .recipe-gallery figcaption {
+        color: #333333 !important;
+    }
+
+    header, footer, .recipe-actions, .scroll-indicator, .menu-toggle, .recipe-gallery, .cta-button, .secondary-button {
+        display: none !important;
+    }
+
+    .recipe-grid {
+        display: block !important;
+        margin-top: 0 !important;
+    }
+
+    .ingredients {
+        border: 1px solid #eee !important;
+        margin-bottom: 30px !important;
+        padding: 20px !important;
+        backdrop-filter: none !important;
+    }
+
+    .ingredients ul li {
+        border-bottom: 1px solid #eee !important;
+        color: #333 !important;
+    }
+
+    .instructions ol li {
+        color: #333 !important;
+    }
+
+    .ingredients {
+        border: 1px solid #ccc !important;
+        margin-bottom: 40px !important;
+    }
+
+    .recipe-detail-header {
+        padding: 40px 0 !important;
+    }
+
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    @page {
+        margin: 2cm;
     }
 }
