@@ -119,6 +119,10 @@ nav {
     padding: 0 40px;
 }
 
+.menu-toggle {
+    display: none;
+}
+
 .logo {
     font-family: var(--serif-font);
     font-size: 1.8rem;
