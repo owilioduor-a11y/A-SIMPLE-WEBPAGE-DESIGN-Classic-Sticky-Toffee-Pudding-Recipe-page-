@@ -964,6 +964,23 @@ footer {
 
     .recipe-grid {
         display: block !important;
+        margin-top: 0 !important;
+    }
+
+    .ingredients {
+        border: 1px solid #eee !important;
+        margin-bottom: 30px !important;
+        padding: 20px !important;
+        backdrop-filter: none !important;
+    }
+
+    .ingredients ul li {
+        border-bottom: 1px solid #eee !important;
+        color: #333 !important;
+    }
+
+    .instructions ol li {
+        color: #333 !important;
     }
 
     .ingredients {
@@ -978,5 +995,10 @@ footer {
     .reveal {
         opacity: 1 !important;
         transform: none !important;
+        transition: none !important;
+    }
+
+    @page {
+        margin: 2cm;
     }
 }
