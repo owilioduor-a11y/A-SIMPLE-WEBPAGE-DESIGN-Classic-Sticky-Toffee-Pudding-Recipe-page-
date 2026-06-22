@@ -1025,6 +1025,68 @@ footer {
     .instructions ol li strong {
         color: #000000 !important;
         font-size: 12pt !important;
+.recipe-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.print-button {
+    background-color: var(--primary-gold);
+    color: var(--dark-bg);
+    padding: 10px 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: var(--transition-smooth);
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.print-button:hover {
+    background-color: var(--white);
+    transform: translateY(-2px);
+}
+
+.print-button:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
+}
+
+@media print {
+    body, .container, .recipe-detail-header, #recipe-content, .ingredients {
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+
+    h1, h2, h3, h4, .subtitle, .item-name, .item-price, .instructions ol li strong, .instructions ol li::before {
+        color: #000000 !important;
+    }
+
+    .item-desc, .footer-info p, .ingredients ul li, .instructions ol li, .recipe-gallery figcaption {
+        color: #333333 !important;
+    }
+
+    header, footer, .recipe-actions, .scroll-indicator, .menu-toggle, .recipe-gallery, .cta-button, .secondary-button {
+        display: none !important;
+    }
+
+    .recipe-grid {
+        display: block !important;
+    }
+
+    .ingredients {
+        border: 1px solid #ccc !important;
+        margin-bottom: 40px !important;
+    }
+
+    .recipe-detail-header {
+        padding: 40px 0 !important;
     }
 
     .reveal {
@@ -1039,5 +1101,6 @@ footer {
         print-color-adjust: economy !important;
         background-color: transparent !important;
         box-shadow: none !important;
+        transform: none !important;
     }
 }

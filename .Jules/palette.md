@@ -13,3 +13,6 @@
 ## 2026-06-16 - Print-Friendly Recipe Optimization
 **Learning:** For luxury dark-themed sites, print styles must explicitly override backgrounds (#ffffff !important) and text colors (#000000 !important) on both the body and section elements to ensure legibility. Additionally, scroll-reveal animations must be forced to an active state (opacity: 1) in the print query to prevent content from being hidden in the final document.
 **Action:** Always provide a high-contrast print stylesheet for content-heavy pages like recipes and ensure animation states are normalized for print output.
+## 2026-06-16 - Print-Friendly Utility & Focus Contrast
+**Learning:** Utility features like "Print Recipe" require robust `@media print` overrides to ensure dark-themed sites remain legible and ink-efficient on paper. This includes resetting backgrounds to white, text/pseudo-elements to black, and hiding non-content UI. For gold-themed interactive elements on dark backgrounds, a white `:focus-visible` outline provides the necessary contrast for keyboard accessibility.
+**Action:** Implement comprehensive print media queries for content-heavy pages and always verify focus indicator contrast against the brand's primary action colors.
