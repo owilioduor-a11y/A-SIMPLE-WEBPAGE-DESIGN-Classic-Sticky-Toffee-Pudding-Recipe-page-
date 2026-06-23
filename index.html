@@ -26,12 +26,9 @@
 </head>
 <body id="home">
     <a href="#main-content" class="skip-link">Skip to content</a>
-<body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header>
         <nav>
             <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
-            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
             <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
                 <span></span>
                 <span></span>
@@ -316,23 +313,30 @@
 
         document.querySelectorAll('#nav-list a').forEach(link => {
             link.addEventListener('click', () => toggleMenu(true));
-        function toggleMenu() {
-            const isExpanded = mobileMenu.getAttribute('aria-expanded') === 'true';
-            mobileMenu.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.setAttribute('aria-label', isExpanded ? 'Open Menu' : 'Close Menu');
-            mobileMenu.classList.toggle('active');
-            navList.classList.toggle('active');
-        }
-
-        mobileMenu.addEventListener('click', toggleMenu);
-
-        document.querySelectorAll('#nav-list a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navList.classList.contains('active')) {
-                    toggleMenu();
-                }
-            });
         });
+
+        // Reservation Form Feedback
+        const reservationForm = document.querySelector('.reservation-form');
+        if (reservationForm) {
+            reservationForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const submitBtn = reservationForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Checking...';
+
+                setTimeout(() => {
+                    submitBtn.textContent = 'Table Reserved!';
+
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                        reservationForm.reset();
+                    }, 3000);
+                }, 1500);
+            });
+        }
     </script>
 </body>
 </html>
