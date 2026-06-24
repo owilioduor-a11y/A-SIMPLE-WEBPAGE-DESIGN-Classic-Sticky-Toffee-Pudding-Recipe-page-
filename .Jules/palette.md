@@ -23,3 +23,7 @@
 ## 2026-06-23 - Interactive Feedback & Document Hygiene
 **Learning:** Providing immediate visual feedback for simulated asynchronous actions (like form submissions) significantly improves the perceived responsiveness of static sites. Additionally, maintaining a clean document structure—by removing duplicate `<body>` tags and redundant navigation links—prevents accessibility regressions and ensures reliable behavior in automated verification environments.
 **Action:** Implement text-based state changes (e.g., "Checking...", "Reserved!") for interactive forms and audit HTML structure for redundant semantic markers.
+
+## 2026-06-24 - Interactive Checklists and iFrame Accessibility
+**Learning:** Transforming static content like ingredient lists into interactive checklists with `localStorage` persistence creates a more engaging and utility-driven experience for users. Using the CSS `:has()` selector allows for elegant visual feedback (like strikethroughs) without complex JavaScript class toggling. Additionally, always including `title` attributes on `<iframe>` elements is a critical, yet often overlooked, accessibility requirement.
+**Action:** Look for opportunities to add utility to static lists and ensure all third-party embeds are properly titled for screen readers.
