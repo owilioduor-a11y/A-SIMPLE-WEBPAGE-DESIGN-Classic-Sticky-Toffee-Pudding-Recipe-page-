@@ -23,3 +23,7 @@
 ## 2026-06-23 - Interactive Feedback & Document Hygiene
 **Learning:** Providing immediate visual feedback for simulated asynchronous actions (like form submissions) significantly improves the perceived responsiveness of static sites. Additionally, maintaining a clean document structure—by removing duplicate `<body>` tags and redundant navigation links—prevents accessibility regressions and ensures reliable behavior in automated verification environments.
 **Action:** Implement text-based state changes (e.g., "Checking...", "Reserved!") for interactive forms and audit HTML structure for redundant semantic markers.
+
+## 2026-06-25 - Interactive Ingredient Checklists & ARIA Context
+**Learning:** Adding interactive checklists to recipes significantly improves the "cooking mode" UX. Using the CSS `:has()` selector allows for clean, semantic styling of parent elements based on checkbox state without complex JS class toggling. Additionally, generic links like "View Recipe Details" require explicit `aria-label`s to provide screen reader users with necessary context about the destination.
+**Action:** Implement `localStorage` persistence for checklists to maintain user state and always audit generic navigation links for contextual accessibility.
