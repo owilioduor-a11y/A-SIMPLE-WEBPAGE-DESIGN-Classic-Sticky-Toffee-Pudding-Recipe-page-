@@ -23,3 +23,7 @@
 ## 2026-06-23 - Interactive Feedback & Document Hygiene
 **Learning:** Providing immediate visual feedback for simulated asynchronous actions (like form submissions) significantly improves the perceived responsiveness of static sites. Additionally, maintaining a clean document structure—by removing duplicate `<body>` tags and redundant navigation links—prevents accessibility regressions and ensures reliable behavior in automated verification environments.
 **Action:** Implement text-based state changes (e.g., "Checking...", "Reserved!") for interactive forms and audit HTML structure for redundant semantic markers.
+
+## 2026-06-26 - Interactive Checklist with State Persistence
+**Learning:** For multi-step tasks like following a recipe, an interactive checklist provides vital visual feedback. Using the CSS `:has()` selector allows for parent-level styling (like strikethrough) based on child checkbox states without manual class toggling in JS. Persisting this state via `localStorage` ensures a seamless user experience even after page reloads. When overriding default input styles with `appearance: none`, explicit `:focus-visible` styles are critical to maintain keyboard accessibility.
+**Action:** Utilize `:has()` for state-based styling and implement `localStorage` (with path-specific keys) to preserve minor UI interactions. Always include high-contrast focus indicators when customizing form controls.
