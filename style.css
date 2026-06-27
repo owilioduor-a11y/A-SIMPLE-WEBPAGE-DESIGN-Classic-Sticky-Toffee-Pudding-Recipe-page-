@@ -822,6 +822,27 @@ footer {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     font-size: 0.95rem;
     color: var(--text-muted);
+    transition: var(--transition-smooth);
+}
+
+.ingredients ul li:has(.ingredient-checkbox:checked) {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.ingredient-checkbox {
+    accent-color: var(--primary-gold);
+    margin-right: 12px;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+.ingredients label {
+    cursor: pointer;
+    display: block;
+    width: 100%;
 }
 
 .instructions h3 {
@@ -981,6 +1002,10 @@ footer {
     .ingredients ul li {
         border-bottom: 1px solid #eee !important;
         color: #333 !important;
+    }
+
+    .ingredient-checkbox {
+        display: none !important;
     }
 
     .instructions ol li {
