@@ -23,3 +23,7 @@
 ## 2026-06-23 - Interactive Feedback & Document Hygiene
 **Learning:** Providing immediate visual feedback for simulated asynchronous actions (like form submissions) significantly improves the perceived responsiveness of static sites. Additionally, maintaining a clean document structure—by removing duplicate `<body>` tags and redundant navigation links—prevents accessibility regressions and ensures reliable behavior in automated verification environments.
 **Action:** Implement text-based state changes (e.g., "Checking...", "Reserved!") for interactive forms and audit HTML structure for redundant semantic markers.
+
+## 2026-06-25 - Interactive Ingredient Checklists
+**Learning:** Transforming static lists into interactive checklists with persistence (via `localStorage`) provides high UX value for utility-focused pages like recipes. To prevent state leakage, `localStorage` keys must be scoped to the specific page/slug. Furthermore, when augmenting existing content via JS, using `while (li.firstChild) { label.appendChild(li.firstChild); }` is safer than `textContent` as it preserves semantic HTML and nested formatting (like `<strong>` or `<span>`) within the list items.
+**Action:** Scope browser storage keys to unique page identifiers and use non-destructive DOM manipulation techniques to preserve existing semantic structures.
