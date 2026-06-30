@@ -193,6 +193,37 @@
         document.querySelectorAll('#nav-list a').forEach(link => {
             link.addEventListener('click', () => toggleMenu(true));
         });
+
+        // Ingredient Checklist Logic
+        const ingredientsList = document.querySelectorAll('.ingredients ul li');
+        const STORAGE_KEY_PREFIX = `cdr-checklist-${window.location.pathname}-`;
+
+        ingredientsList.forEach((li, index) => {
+            const originalContent = li.innerHTML;
+            const itemText = li.textContent.trim();
+            const storageKey = `${STORAGE_KEY_PREFIX}${index}-${itemText.substring(0, 30)}`;
+
+            // Create checkbox
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'ingredient-checkbox';
+            checkbox.checked = localStorage.getItem(storageKey) === 'true';
+
+            // Create label to wrap original content
+            const label = document.createElement('label');
+            label.appendChild(checkbox);
+
+            const contentSpan = document.createElement('span');
+            contentSpan.innerHTML = originalContent;
+            label.appendChild(contentSpan);
+
+            li.innerHTML = '';
+            li.appendChild(label);
+
+            checkbox.addEventListener('change', () => {
+                localStorage.setItem(storageKey, checkbox.checked);
+            });
+        });
     </script>
 </body>
 </html>
