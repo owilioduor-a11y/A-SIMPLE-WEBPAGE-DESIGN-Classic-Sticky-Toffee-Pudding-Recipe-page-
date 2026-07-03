@@ -23,3 +23,7 @@
 ## 2026-06-23 - Interactive Feedback & Document Hygiene
 **Learning:** Providing immediate visual feedback for simulated asynchronous actions (like form submissions) significantly improves the perceived responsiveness of static sites. Additionally, maintaining a clean document structure—by removing duplicate `<body>` tags and redundant navigation links—prevents accessibility regressions and ensures reliable behavior in automated verification environments.
 **Action:** Implement text-based state changes (e.g., "Checking...", "Reserved!") for interactive forms and audit HTML structure for redundant semantic markers.
+
+## 2026-06-24 - Dynamic Checklist Injection and Persistence
+**Learning:** For static sites with repetitive content (like recipe ingredients), using JavaScript to dynamically inject interactive elements (e.g., checkboxes wrapped in labels) is a highly efficient way to stay under strict code change limits while significantly enhancing UX. Pairing this with `localStorage` persistence (keyed by trimmed text content) provides a seamless "save-as-you-go" experience for users.
+**Action:** Use JS-driven DOM enhancement for large-scale UX upgrades to maintain lean static source code and implement `localStorage` for any multi-step or tracking tasks.

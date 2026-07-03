@@ -193,6 +193,24 @@
         document.querySelectorAll('#nav-list a').forEach(link => {
             link.addEventListener('click', () => toggleMenu(true));
         });
+
+        // Interactive Checklist
+        const checklistKey = `cdr-checklist-${location.pathname}`;
+        const saved = JSON.parse(localStorage.getItem(checklistKey) || '{}');
+        document.querySelectorAll('.ingredients li').forEach(li => {
+            const text = li.textContent.trim();
+            const checked = saved[text] ? 'checked' : '';
+            li.innerHTML = `<label><input type="checkbox" class="ingredient-checkbox" ${checked}> ${li.innerHTML}</label>`;
+        });
+        document.querySelector('.ingredients').addEventListener('change', (e) => {
+            if (e.target.classList.contains('ingredient-checkbox')) {
+                const state = {};
+                document.querySelectorAll('.ingredient-checkbox').forEach(cb => {
+                    state[cb.closest('label').textContent.trim()] = cb.checked;
+                });
+                localStorage.setItem(checklistKey, JSON.stringify(state));
+            }
+        });
     </script>
 </body>
 </html>
