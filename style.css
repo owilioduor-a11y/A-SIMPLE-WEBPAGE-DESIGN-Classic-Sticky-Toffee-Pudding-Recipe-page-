@@ -822,6 +822,8 @@ footer {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     font-size: 0.95rem;
     color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
 }
 
 .instructions h3 {
@@ -840,13 +842,17 @@ footer {
     color: var(--text-muted);
     list-style: none;
     counter-increment: recipe-counter;
+    display: flex;
+    align-items: flex-start;
 }
 
 .instructions ol li::before {
     content: counter(recipe-counter) ".";
     color: var(--primary-gold);
     font-weight: 700;
-    margin-right: 10px;
+    margin-right: 15px;
+    flex-shrink: 0;
+    width: 25px;
 }
 
 .instructions ol li strong {
@@ -948,6 +954,29 @@ footer {
     outline-offset: 4px;
 }
 
+/* Interactive Checklist */
+.recipe-checklist-label {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.recipe-checklist-label:has(.ingredient-checkbox:checked) {
+    opacity: 0.5;
+    text-decoration: line-through;
+    text-decoration-color: var(--primary-gold);
+}
+
+.ingredient-checkbox {
+    accent-color: var(--primary-gold);
+    width: 18px;
+    height: 18px;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
 @media print {
     body, .container, .recipe-detail-header, #recipe-content, .ingredients {
         background: #ffffff !important;
@@ -1000,6 +1029,15 @@ footer {
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
+    }
+
+    .ingredient-checkbox {
+        display: none !important;
+    }
+
+    .recipe-checklist-label {
+        opacity: 1 !important;
+        text-decoration: none !important;
     }
 
     @page {
