@@ -193,6 +193,35 @@
         document.querySelectorAll('#nav-list a').forEach(link => {
             link.addEventListener('click', () => toggleMenu(true));
         });
+
+        // Interactive Recipe Checklist
+        const setupChecklist = () => {
+            const storageKey = `cdr-checklist-${location.pathname}`;
+            const savedState = JSON.parse(localStorage.getItem(storageKey) || '{}');
+            const listItems = document.querySelectorAll('.ingredients li, .instructions li');
+
+            listItems.forEach(li => {
+                const content = li.innerHTML;
+                const textContent = li.textContent.trim().slice(0, 50);
+                const isChecked = savedState[textContent] || false;
+
+                li.innerHTML = `
+                    <label class="checklist-wrapper">
+                        <input type="checkbox" class="ingredient-checkbox" ${isChecked ? 'checked' : ''}>
+                        <span class="checklist-content">${content}</span>
+                    </label>
+                `;
+
+                const checkbox = li.querySelector('input');
+                checkbox.addEventListener('change', () => {
+                    const currentState = JSON.parse(localStorage.getItem(storageKey) || '{}');
+                    currentState[textContent] = checkbox.checked;
+                    localStorage.setItem(storageKey, JSON.stringify(currentState));
+                });
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', setupChecklist);
     </script>
 </body>
 </html>
