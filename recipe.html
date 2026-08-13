@@ -199,6 +199,7 @@
             const storageKey = `cdr-checklist-${location.pathname}`;
             const savedState = JSON.parse(localStorage.getItem(storageKey) || '{}');
             const listItems = document.querySelectorAll('.ingredients li, .instructions li');
+            if (listItems.length === 0) return;
 
             listItems.forEach(li => {
                 const content = li.innerHTML;
@@ -219,6 +220,32 @@
                     localStorage.setItem(storageKey, JSON.stringify(currentState));
                 });
             });
+
+            const actionsContainer = document.querySelector('.recipe-actions');
+            if (actionsContainer) {
+                const resetBtn = document.createElement('button');
+                resetBtn.type = 'button';
+                resetBtn.className = 'reset-button';
+                resetBtn.textContent = 'Reset Progress';
+                resetBtn.setAttribute('aria-label', 'Reset checklist progress');
+
+                let announcer = document.getElementById('checklist-announcer');
+                if (!announcer) {
+                    announcer = document.createElement('div');
+                    announcer.id = 'checklist-announcer';
+                    announcer.setAttribute('aria-live', 'polite');
+                    announcer.style.cssText = 'position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;';
+                    document.body.appendChild(announcer);
+                }
+
+                resetBtn.addEventListener('click', () => {
+                    localStorage.removeItem(storageKey);
+                    document.querySelectorAll('.ingredient-checkbox').forEach(cb => cb.checked = false);
+                    announcer.textContent = 'Checklist progress reset.';
+                    setTimeout(() => { announcer.textContent = ''; }, 1000);
+                });
+                actionsContainer.appendChild(resetBtn);
+            }
         };
 
         document.addEventListener('DOMContentLoaded', setupChecklist);

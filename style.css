@@ -981,6 +981,31 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     outline-offset: 4px;
 }
 
+.reset-button {
+    background-color: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 24px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: var(--transition-smooth);
+    display: inline-block;
+    cursor: pointer;
+}
+
+.reset-button:hover {
+    border-color: var(--primary-gold);
+    color: var(--primary-gold);
+    background-color: rgba(212, 175, 55, 0.05);
+}
+
+.reset-button:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
+}
+
 @media print {
     body, .container, .recipe-detail-header, #recipe-content, .ingredients {
         background: #ffffff !important;
@@ -995,7 +1020,7 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
         color: #333333 !important;
     }
 
-    header, footer, .recipe-actions, .scroll-indicator, .menu-toggle, .recipe-gallery, .cta-button, .secondary-button, .ingredient-checkbox {
+    header, footer, .recipe-actions, .scroll-indicator, .menu-toggle, .recipe-gallery, .cta-button, .secondary-button, .ingredient-checkbox, .reset-button {
         display: none !important;
     }
 
