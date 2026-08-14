@@ -219,6 +219,37 @@
                     localStorage.setItem(storageKey, JSON.stringify(currentState));
                 });
             });
+
+            // Dynamically inject 'Reset Progress' button
+            const actionsContainer = document.querySelector('.recipe-actions');
+            if (actionsContainer) {
+                const resetButton = document.createElement('button');
+                resetButton.type = 'button';
+                resetButton.className = 'print-button reset-button';
+                resetButton.textContent = 'Reset Progress';
+
+                let announcement = document.getElementById('checklist-announcement');
+                if (!announcement) {
+                    announcement = document.createElement('div');
+                    announcement.id = 'checklist-announcement';
+                    announcement.setAttribute('aria-live', 'polite');
+                    announcement.style.cssText = 'position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;';
+                    document.body.appendChild(announcement);
+                }
+
+                resetButton.addEventListener('click', () => {
+                    localStorage.removeItem(storageKey);
+                    document.querySelectorAll('.ingredient-checkbox').forEach(cb => {
+                        cb.checked = false;
+                    });
+                    announcement.textContent = 'Recipe checklist progress has been reset.';
+                    setTimeout(() => {
+                        announcement.textContent = '';
+                    }, 1000);
+                });
+
+                actionsContainer.appendChild(resetButton);
+            }
         };
 
         document.addEventListener('DOMContentLoaded', setupChecklist);
