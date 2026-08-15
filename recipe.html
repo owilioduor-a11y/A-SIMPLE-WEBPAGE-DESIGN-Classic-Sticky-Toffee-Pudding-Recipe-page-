@@ -47,8 +47,10 @@
                 <p>A masterpiece of texture and warmth, perfected by Chef Owili.</p>
                 <div class="recipe-actions">
                     <a href="index.html#menu" class="back-link">← Back to Menu</a>
+                    <button type="button" class="reset-button" id="reset-checklist" style="display: none;">Reset Progress</button>
                     <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
                 </div>
+                <div id="a11y-announcer" class="sr-only" aria-live="polite"></div>
             </div>
         </section>
 
@@ -199,6 +201,14 @@
             const storageKey = `cdr-checklist-${location.pathname}`;
             const savedState = JSON.parse(localStorage.getItem(storageKey) || '{}');
             const listItems = document.querySelectorAll('.ingredients li, .instructions li');
+            const resetButton = document.getElementById('reset-checklist');
+            const announcer = document.getElementById('a11y-announcer');
+
+            const updateResetVisibility = () => {
+                const checkboxes = document.querySelectorAll('.ingredient-checkbox');
+                const hasChecked = Array.from(checkboxes).some(cb => cb.checked);
+                if (resetButton) resetButton.style.display = hasChecked ? 'inline-block' : 'none';
+            };
 
             listItems.forEach(li => {
                 const content = li.innerHTML;
@@ -217,8 +227,20 @@
                     const currentState = JSON.parse(localStorage.getItem(storageKey) || '{}');
                     currentState[textContent] = checkbox.checked;
                     localStorage.setItem(storageKey, JSON.stringify(currentState));
+                    updateResetVisibility();
                 });
             });
+
+            if (resetButton) {
+                resetButton.addEventListener('click', () => {
+                    localStorage.removeItem(storageKey);
+                    document.querySelectorAll('.ingredient-checkbox').forEach(cb => cb.checked = false);
+                    updateResetVisibility();
+                    if (announcer) announcer.textContent = 'Recipe progress reset';
+                });
+            }
+
+            updateResetVisibility();
         };
 
         document.addEventListener('DOMContentLoaded', setupChecklist);
