@@ -48,6 +48,8 @@
                 <div class="recipe-actions">
                     <a href="index.html#menu" class="back-link">← Back to Menu</a>
                     <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
+                    <button type="button" id="reset-progress" class="reset-button">Reset Progress</button>
+                    <div id="checklist-status" class="sr-only" aria-live="polite"></div>
                 </div>
             </div>
         </section>
@@ -220,35 +222,14 @@
                 });
             });
 
-            // Dynamically inject 'Reset Progress' button
-            const actionsContainer = document.querySelector('.recipe-actions');
-            if (actionsContainer) {
-                const resetButton = document.createElement('button');
-                resetButton.type = 'button';
-                resetButton.className = 'print-button reset-button';
-                resetButton.textContent = 'Reset Progress';
-
-                let announcement = document.getElementById('checklist-announcement');
-                if (!announcement) {
-                    announcement = document.createElement('div');
-                    announcement.id = 'checklist-announcement';
-                    announcement.setAttribute('aria-live', 'polite');
-                    announcement.style.cssText = 'position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;';
-                    document.body.appendChild(announcement);
-                }
-
+            const resetButton = document.getElementById('reset-progress');
+            const statusMsg = document.getElementById('checklist-status');
+            if (resetButton) {
                 resetButton.addEventListener('click', () => {
                     localStorage.removeItem(storageKey);
-                    document.querySelectorAll('.ingredient-checkbox').forEach(cb => {
-                        cb.checked = false;
-                    });
-                    announcement.textContent = 'Recipe checklist progress has been reset.';
-                    setTimeout(() => {
-                        announcement.textContent = '';
-                    }, 1000);
+                    document.querySelectorAll('.ingredient-checkbox').forEach(cb => cb.checked = false);
+                    if (statusMsg) statusMsg.textContent = 'Recipe progress reset.';
                 });
-
-                actionsContainer.appendChild(resetButton);
             }
         };
 
