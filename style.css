@@ -1007,6 +1007,31 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     outline-offset: 4px;
 }
 
+.reset-button {
+    background-color: transparent;
+    color: var(--primary-gold);
+    border: 1px solid var(--primary-gold);
+    padding: 10px 24px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: var(--transition-smooth);
+    display: inline-block;
+    cursor: pointer;
+}
+
+.reset-button:hover {
+    background-color: rgba(212, 175, 55, 0.1);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.reset-button:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
+}
+
 .sr-only {
     position: absolute;
     width: 1px;
