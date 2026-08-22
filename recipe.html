@@ -48,6 +48,8 @@
                 <div class="recipe-actions">
                     <a href="index.html#menu" class="back-link">← Back to Menu</a>
                     <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
+                    <button type="button" id="reset-progress" class="reset-button">Reset Progress</button>
+                    <div id="checklist-status" class="sr-only" aria-live="polite"></div>
                 </div>
             </div>
         </section>
@@ -219,6 +221,16 @@
                     localStorage.setItem(storageKey, JSON.stringify(currentState));
                 });
             });
+
+            const resetButton = document.getElementById('reset-progress');
+            const statusMsg = document.getElementById('checklist-status');
+            if (resetButton) {
+                resetButton.addEventListener('click', () => {
+                    localStorage.removeItem(storageKey);
+                    document.querySelectorAll('.ingredient-checkbox').forEach(cb => cb.checked = false);
+                    if (statusMsg) statusMsg.textContent = 'Recipe progress reset.';
+                });
+            }
         };
 
         document.addEventListener('DOMContentLoaded', setupChecklist);
