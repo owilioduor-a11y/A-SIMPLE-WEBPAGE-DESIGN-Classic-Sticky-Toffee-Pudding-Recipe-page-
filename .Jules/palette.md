@@ -1,3 +1,6 @@
+## 2024-05-23 - Semantic Mobile Navigation
+**Learning:** Using `div` for mobile menu toggles breaks keyboard accessibility. Refactoring to a semantic `button` with `aria-expanded` and `aria-label` provides necessary context for screen readers and ensures the element is focusable in the tab order.
+**Action:** Always use `<button type="button">` for interactive toggles and synchronize ARIA states with the UI state via JavaScript.
 ## 2026-06-15 - [Semantic and Accessible Navigation]
 **Learning:** Converting non-semantic elements (like `div`) to semantic ones (`button`, `a`) significantly improves accessibility but requires careful CSS resets (background, border, padding) to maintain visual design. ARIA attributes must be dynamically updated via JS to reflect state changes for screen readers.
 **Action:** Always prefer `<button>` for interactions and `<a>` for navigation. Include `:focus-visible` styles early to ensure keyboard accessibility. Use a centralized state management function in JS to keep ARIA attributes in sync with visual classes.

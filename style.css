@@ -575,6 +575,7 @@ footer {
 }
 
 .footer-logo {
+    display: block;
     font-family: var(--serif-font);
     font-size: 2.2rem;
     font-weight: 800;
@@ -681,6 +682,10 @@ footer {
 }
 
 /* Responsive Design */
+.menu-toggle {
+    display: none;
+}
+
 @media (max-width: 1024px) {
     .reservation-box {
         grid-template-columns: 1fr;
@@ -711,6 +716,7 @@ footer {
     nav {
         padding: 0 25px;
     }
+
 
     nav ul {
         display: none;

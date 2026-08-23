@@ -24,6 +24,7 @@
     <header>
         <nav>
             <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
+            <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list" type="button">
             <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
                 <span></span>
                 <span></span>
@@ -183,6 +184,22 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
 
+        function toggleMenu() {
+            const isExpanded = mobileMenu.getAttribute('aria-expanded') === 'true';
+            mobileMenu.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.setAttribute('aria-label', isExpanded ? 'Open Menu' : 'Close Menu');
+            mobileMenu.classList.toggle('active');
+            navList.classList.toggle('active');
+        }
+
+        mobileMenu.addEventListener('click', toggleMenu);
+
+        document.querySelectorAll('#nav-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navList.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
         function toggleMenu(forceClose = false) {
             const isActive = forceClose ? false : !mobileMenu.classList.contains('active');
             mobileMenu.classList.toggle('active', isActive);
