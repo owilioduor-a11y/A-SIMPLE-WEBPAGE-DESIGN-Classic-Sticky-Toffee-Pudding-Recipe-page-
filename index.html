@@ -25,11 +25,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
 <body>
+<body id="home">
     <a href="#main-content" class="skip-link">Skip to content</a>
     <header>
         <nav>
             <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
             <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
+            <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
+            <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list" type="button">
+            <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -248,7 +252,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <div class="footer-logo">Classic Dinner Resort</div>
+                    <a href="index.html" class="footer-logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
                     <div class="social-links">
                         <a href="#" aria-label="Follow us on Instagram">Instagram</a>
                         <a href="#" aria-label="Follow us on Facebook">Facebook</a>
@@ -274,6 +278,7 @@
             </div>
             <div class="footer-map">
                 <iframe
+                    title="Google Maps location of Classic Dinner Resort"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.123456789!2d-0.1478!3d51.5113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487605123456789%3A0x1234567890abcdef!2sMayfair%2C%20London!5e0!3m2!1sen!2suk!4v1620645678901!5m2!1sen!2suk"
                     width="100%" height="200" style="border:0; filter: grayscale(100%) invert(90%); opacity: 0.6;" allowfullscreen="" loading="lazy"></iframe>
             </div>
@@ -301,6 +306,27 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
 
+        const toggleMenu = (forceClose = false) => {
+            const isOpen = forceClose ? false : !mobileMenu.classList.contains('active');
+            mobileMenu.classList.toggle('active', isOpen);
+            navList.classList.toggle('active', isOpen);
+            mobileMenu.setAttribute('aria-expanded', isOpen);
+            mobileMenu.setAttribute('aria-label', isOpen ? 'Close Menu' : 'Open Menu');
+        };
+
+        mobileMenu.addEventListener('click', () => toggleMenu());
+
+        document.querySelectorAll('#nav-list a').forEach(link => {
+            const isActive = forceClose ? false : !mobileMenu.classList.contains('active');
+            mobileMenu.classList.toggle('active', isActive);
+            navList.classList.toggle('active', isActive);
+            mobileMenu.setAttribute('aria-expanded', isActive);
+            mobileMenu.setAttribute('aria-label', isActive ? 'Close Menu' : 'Open Menu');
+        };
+
+        mobileMenu.addEventListener('click', () => toggleMenu());
+
+        document.querySelectorAll('#nav-list a').forEach(link => {
         function toggleMenu() {
             const isExpanded = mobileMenu.getAttribute('aria-expanded') === 'true';
             mobileMenu.setAttribute('aria-expanded', !isExpanded);
@@ -317,7 +343,49 @@
                     toggleMenu();
                 }
             });
+        function toggleMenu(forceClose = false) {
+            const isActive = forceClose ? false : !mobileMenu.classList.contains('active');
+            mobileMenu.classList.toggle('active', isActive);
+            navList.classList.toggle('active', isActive);
+            mobileMenu.setAttribute('aria-expanded', isActive);
+            mobileMenu.setAttribute('aria-label', isActive ? 'Close Menu' : 'Open Menu');
+        }
+
+        mobileMenu.addEventListener('click', () => toggleMenu());
+
+        document.querySelectorAll('#nav-list a').forEach(link => {
+            link.addEventListener('click', () => toggleMenu(true));
         });
+
+        // Set minimum date for reservation date picker to today
+        const dateInput = document.getElementById('date');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        }
+
+        // Reservation Form Feedback
+        const reservationForm = document.querySelector('.reservation-form');
+        if (reservationForm) {
+            reservationForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const submitBtn = reservationForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Checking...';
+
+                setTimeout(() => {
+                    submitBtn.textContent = 'Table Reserved!';
+
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                        reservationForm.reset();
+                    }, 3000);
+                }, 1500);
+            });
+        }
     </script>
 </body>
 </html>
