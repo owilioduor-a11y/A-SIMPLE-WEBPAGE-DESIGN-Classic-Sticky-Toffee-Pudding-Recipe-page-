@@ -201,6 +201,7 @@
             const storageKey = `cdr-checklist-${location.pathname}`;
             const savedState = JSON.parse(localStorage.getItem(storageKey) || '{}');
             const listItems = document.querySelectorAll('.ingredients li, .instructions li');
+            if (listItems.length === 0) return;
 
             listItems.forEach(li => {
                 const content = li.innerHTML;
