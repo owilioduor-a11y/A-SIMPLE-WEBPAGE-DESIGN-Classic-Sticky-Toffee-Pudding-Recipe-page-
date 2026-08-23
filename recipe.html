@@ -221,9 +221,19 @@
                     const currentState = JSON.parse(localStorage.getItem(storageKey) || '{}');
                     currentState[textContent] = checkbox.checked;
                     localStorage.setItem(storageKey, JSON.stringify(currentState));
+                    updateProgress();
                 });
             });
 
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                    localStorage.removeItem(storageKey);
+                    document.querySelectorAll('.ingredient-checkbox').forEach(cb => cb.checked = false);
+                    updateProgress();
+                });
+            }
+
+            updateProgress();
             const resetButton = document.getElementById('reset-progress');
             const statusMsg = document.getElementById('checklist-status');
             if (resetButton) {
