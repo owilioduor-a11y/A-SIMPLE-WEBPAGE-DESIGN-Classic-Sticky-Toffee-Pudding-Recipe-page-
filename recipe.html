@@ -49,8 +49,9 @@
                     <a href="index.html#menu" class="back-link">← Back to Menu</a>
                     <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
                     <button type="button" id="reset-progress" class="reset-button">Reset Progress</button>
+                    <div id="checklist-status" class="sr-only" aria-live="polite"></div>
                 </div>
-                <div id="checklist-status" class="checklist-status" aria-live="polite"></div>
+                <div id="checklist-status" class="sr-only" aria-live="polite"></div>
             </div>
         </section>
 
@@ -201,17 +202,7 @@
             const storageKey = `cdr-checklist-${location.pathname}`;
             const savedState = JSON.parse(localStorage.getItem(storageKey) || '{}');
             const listItems = document.querySelectorAll('.ingredients li, .instructions li');
-            const statusEl = document.getElementById('checklist-status');
-            const resetBtn = document.getElementById('reset-progress');
-
-            const updateProgress = () => {
-                const checkboxes = document.querySelectorAll('.ingredient-checkbox');
-                const total = checkboxes.length;
-                const completed = Array.from(checkboxes).filter(cb => cb.checked).length;
-                if (statusEl && total > 0) {
-                    statusEl.textContent = `Progress: ${completed} of ${total} items completed (${Math.round((completed / total) * 100)}%)`;
-                }
-            };
+            if (listItems.length === 0) return;
 
             listItems.forEach(li => {
                 const content = li.innerHTML;
@@ -243,6 +234,15 @@
             }
 
             updateProgress();
+            const resetButton = document.getElementById('reset-progress');
+            const statusMsg = document.getElementById('checklist-status');
+            if (resetButton) {
+                resetButton.addEventListener('click', () => {
+                    localStorage.removeItem(storageKey);
+                    document.querySelectorAll('.ingredient-checkbox').forEach(cb => cb.checked = false);
+                    if (statusMsg) statusMsg.textContent = 'Recipe progress reset.';
+                });
+            }
         };
 
         document.addEventListener('DOMContentLoaded', setupChecklist);
