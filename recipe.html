@@ -48,6 +48,8 @@
                 <div class="recipe-actions">
                     <a href="index.html#menu" class="back-link">← Back to Menu</a>
                     <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
+                    <button type="button" id="reset-progress" class="reset-button">Reset Progress</button>
+                    <div id="checklist-status" class="sr-only" aria-live="polite"></div>
                 </div>
             </div>
         </section>
@@ -221,30 +223,14 @@
                 });
             });
 
-            const actionsContainer = document.querySelector('.recipe-actions');
-            if (actionsContainer) {
-                const resetBtn = document.createElement('button');
-                resetBtn.type = 'button';
-                resetBtn.className = 'reset-button';
-                resetBtn.textContent = 'Reset Progress';
-                resetBtn.setAttribute('aria-label', 'Reset checklist progress');
-
-                let announcer = document.getElementById('checklist-announcer');
-                if (!announcer) {
-                    announcer = document.createElement('div');
-                    announcer.id = 'checklist-announcer';
-                    announcer.setAttribute('aria-live', 'polite');
-                    announcer.style.cssText = 'position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;';
-                    document.body.appendChild(announcer);
-                }
-
-                resetBtn.addEventListener('click', () => {
+            const resetButton = document.getElementById('reset-progress');
+            const statusMsg = document.getElementById('checklist-status');
+            if (resetButton) {
+                resetButton.addEventListener('click', () => {
                     localStorage.removeItem(storageKey);
                     document.querySelectorAll('.ingredient-checkbox').forEach(cb => cb.checked = false);
-                    announcer.textContent = 'Checklist progress reset.';
-                    setTimeout(() => { announcer.textContent = ''; }, 1000);
+                    if (statusMsg) statusMsg.textContent = 'Recipe progress reset.';
                 });
-                actionsContainer.appendChild(resetBtn);
             }
         };
 
