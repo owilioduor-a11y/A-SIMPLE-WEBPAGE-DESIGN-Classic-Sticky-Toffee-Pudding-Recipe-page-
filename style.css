@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
+}
+
 :root {
     --primary-gold: #d4af37;
     --gold-hover: #b8860b;
@@ -77,6 +82,7 @@ h3 {
     font-weight: 600;
 }
 
+/* Skip Link */
 .menu-toggle {
     display: none;
 }

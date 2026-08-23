@@ -19,6 +19,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
+<body>
 <body id="home">
     <a href="#main-content" class="skip-link">Skip to content</a>
     <header>
@@ -186,6 +187,16 @@
         const navList = document.getElementById('nav-list');
 
         const toggleMenu = (forceClose = false) => {
+            const isOpen = forceClose ? false : !mobileMenu.classList.contains('active');
+            mobileMenu.classList.toggle('active', isOpen);
+            navList.classList.toggle('active', isOpen);
+            mobileMenu.setAttribute('aria-expanded', isOpen);
+            mobileMenu.setAttribute('aria-label', isOpen ? 'Close Menu' : 'Open Menu');
+        };
+
+        mobileMenu.addEventListener('click', () => toggleMenu());
+
+        document.querySelectorAll('#nav-list a').forEach(link => {
             const isActive = forceClose ? false : !mobileMenu.classList.contains('active');
             mobileMenu.classList.toggle('active', isActive);
             navList.classList.toggle('active', isActive);
