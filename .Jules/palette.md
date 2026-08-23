@@ -1,3 +1,8 @@
+# Palette's UX Journal
+
+## 2024-05-22 - Improving Header Navigation Accessibility
+**Learning:** Using non-semantic elements like `div` for interactive components (logo links, mobile menus) creates accessibility barriers for keyboard and screen reader users. Semantic elements like `<a>` and `<button>` provide built-in focusability and roles.
+**Action:** Always refactor static branding and toggles into semantic `<a>` and `<button>` elements with appropriate ARIA attributes for state management.
 ## 2024-05-23 - Semantic Mobile Navigation
 **Learning:** Using `div` for mobile menu toggles breaks keyboard accessibility. Refactoring to a semantic `button` with `aria-expanded` and `aria-label` provides necessary context for screen readers and ensures the element is focusable in the tab order.
 **Action:** Always use `<button type="button">` for interactive toggles and synchronize ARIA states with the UI state via JavaScript.
