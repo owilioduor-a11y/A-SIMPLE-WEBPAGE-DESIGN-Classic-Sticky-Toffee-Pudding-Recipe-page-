@@ -1032,6 +1032,8 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 600;
+}
+
 .reset-button:focus-visible {
     outline: 2px solid var(--primary-gold);
     outline-offset: 4px;
