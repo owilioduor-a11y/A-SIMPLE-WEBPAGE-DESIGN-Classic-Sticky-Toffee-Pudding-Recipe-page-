@@ -842,10 +842,60 @@ footer {
 }
 
 .ingredients ul li {
-    padding: 10px 0;
+    padding: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     font-size: 0.95rem;
     color: var(--text-muted);
+    transition: var(--transition-smooth);
+}
+
+.ingredients ul li label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    cursor: pointer;
+    width: 100%;
+}
+
+.ingredient-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--primary-gold);
+    border-radius: 3px;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    top: 3px;
+    flex-shrink: 0;
+    transition: var(--transition-smooth);
+}
+
+.ingredient-checkbox:checked {
+    background-color: var(--primary-gold);
+}
+
+.ingredient-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--dark-bg);
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.ingredient-checkbox:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
+}
+
+.ingredients ul li:has(.ingredient-checkbox:checked) {
+    text-decoration: line-through;
+    opacity: 0.6;
 }
 
 .instructions h3 {
@@ -1063,6 +1113,7 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
         color: #333333 !important;
     }
 
+    header, footer, .recipe-actions, .scroll-indicator, .menu-toggle, .recipe-gallery, .cta-button, .secondary-button, .ingredient-checkbox {
     header, footer, .recipe-actions, .scroll-indicator, .menu-toggle, .recipe-gallery, .cta-button, .secondary-button, .ingredient-checkbox, .reset-button {
         display: none !important;
     }
