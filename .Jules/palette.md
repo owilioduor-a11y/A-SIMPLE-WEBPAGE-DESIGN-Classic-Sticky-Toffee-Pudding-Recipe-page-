@@ -32,6 +32,9 @@
 **Learning:** Providing immediate visual feedback for simulated asynchronous actions (like form submissions) significantly improves the perceived responsiveness of static sites. Additionally, maintaining a clean document structure—by removing duplicate `<body>` tags and redundant navigation links—prevents accessibility regressions and ensures reliable behavior in automated verification environments.
 **Action:** Implement text-based state changes (e.g., "Checking...", "Reserved!") for interactive forms and audit HTML structure for redundant semantic markers.
 
+## 2026-06-24 - Progressive Enhancement with CSS :has()
+**Learning:** Implementing interactive checklists using the CSS `:has()` selector allows for clean, state-driven styling (like strikethroughs) without manual class management in JavaScript. For persistent states like recipe progress, `localStorage` keys based on a segment of the item's text content provide better stability than indices if the list order changes.
+**Action:** Use `:has()` for conditional parent styling based on input states and prefer text-based content keys for persisting individual item states in dynamic lists.
 ## 2026-06-30 - Dynamic Ingredient Checklists & Persistence
 **Learning:** Transforming static recipe lists into interactive checklists improves kitchen-time UX. Using `localStorage` with keys based on the page path and item index/text ensures state persistence across sessions without a backend. The `:has()` CSS selector allows for clean, declarative styling of completed states based on internal checkbox status.
 **Action:** Use unique, stable keys for `localStorage` to avoid state leakage between pages and leverage modern CSS selectors like `:has()` for state-driven UI updates.
