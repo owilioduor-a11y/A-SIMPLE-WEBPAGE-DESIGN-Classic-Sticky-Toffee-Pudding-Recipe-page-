@@ -440,6 +440,11 @@
                     const currentState = JSON.parse(localStorage.getItem(storageKey) || '{}');
                     currentState[textContent] = checkbox.checked;
                     localStorage.setItem(storageKey, JSON.stringify(currentState));
+                });
+            });
+
+            const resetButton = document.getElementById('reset-progress');
+            const statusMsg = document.getElementById('checklist-status');
                     updateResetVisibility();
                     updateProgress();
                 });
