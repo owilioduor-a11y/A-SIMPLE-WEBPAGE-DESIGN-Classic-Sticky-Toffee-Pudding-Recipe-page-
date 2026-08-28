@@ -1242,6 +1242,7 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     margin-top: 30px;
 }
 
+.print-button, .reset-button {
 .reset-button {
     background-color: transparent;
     color: var(--primary-gold);
@@ -1283,12 +1284,20 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     cursor: pointer;
 }
 
-.print-button:hover {
+.reset-button {
+    background-color: transparent;
+    color: var(--primary-gold);
+    border: 1px solid var(--primary-gold);
+}
+
+.print-button:hover, .reset-button:hover {
     background-color: var(--white);
+    color: var(--dark-bg);
+    border-color: var(--white);
     transform: translateY(-2px);
 }
 
-.print-button:focus-visible {
+.print-button:focus-visible, .reset-button:focus-visible {
     outline: 2px solid var(--white);
     outline-offset: 4px;
 }

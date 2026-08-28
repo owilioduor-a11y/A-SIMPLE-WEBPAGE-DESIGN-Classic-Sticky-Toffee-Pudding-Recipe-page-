@@ -77,6 +77,7 @@
                     <button type="button" id="reset-progress" class="reset-button">Reset Progress</button>
                     <button type="button" class="reset-button" id="reset-checklist" style="display: none;">Reset Progress</button>
                     <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
+                    <button type="button" class="reset-button" id="reset-progress">Reset Progress</button>
                     <button type="button" id="reset-progress" class="reset-button">Reset Progress</button>
                     <span id="checklist-progress" class="checklist-progress" aria-live="polite">0 of 20 completed</span>
                     <div id="checklist-status" class="sr-only" aria-live="polite"></div>
@@ -514,6 +515,7 @@
             });
 
             const resetButton = document.getElementById('reset-progress');
+            const statusRegion = document.getElementById('checklist-status');
             const statusMsg = document.getElementById('checklist-status');
                     updateResetVisibility();
                     updateProgress();
@@ -525,6 +527,12 @@
                 resetButton.addEventListener('click', () => {
                     localStorage.removeItem(storageKey);
                     document.querySelectorAll('.ingredient-checkbox').forEach(cb => cb.checked = false);
+                    if (statusRegion) {
+                        statusRegion.textContent = 'Checklist progress reset.';
+                        setTimeout(() => { statusRegion.textContent = ''; }, 3000);
+                    }
+                });
+            }
                     updateProgress();
                     const statusMsg = document.getElementById('checklist-status');
                     updateProgress(true);
