@@ -855,6 +855,9 @@ footer {
     cursor: pointer;
     font-size: 0.95rem;
     color: var(--text-muted);
+    list-style: none !important;
+}
+
     transition: var(--transition-smooth);
 }
 
@@ -871,6 +874,23 @@ footer {
     display: flex;
     align-items: flex-start;
     gap: 12px;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    width: 100%;
+}
+
+.ingredients ul li:has(input:checked) label {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.ingredients ul li input[type="checkbox"] {
+    accent-color: var(--primary-gold);
+    width: 18px;
+    height: 18px;
+    margin-top: 3px;
+    cursor: pointer;
     padding: 12px 0;
     cursor: pointer;
     width: 100%;

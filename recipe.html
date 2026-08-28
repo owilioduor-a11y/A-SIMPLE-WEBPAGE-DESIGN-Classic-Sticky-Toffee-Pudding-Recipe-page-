@@ -237,6 +237,29 @@
             link.addEventListener('click', () => toggleMenu(true));
         });
 
+        // Interactive Ingredient Checklist
+        const ingredientsList = document.querySelectorAll('.ingredients ul li');
+        const storageKey = `cdr-checklist-${location.pathname}`;
+
+        ingredientsList.forEach(li => {
+            const content = li.innerHTML;
+            const text = li.textContent.trim();
+            const itemId = text.slice(0, 50); // Use truncated text as key
+
+            const isChecked = localStorage.getItem(`${storageKey}-${itemId}`) === 'true';
+
+            li.innerHTML = `
+                <label>
+                    <input type="checkbox" class="ingredient-checkbox" ${isChecked ? 'checked' : ''}>
+                    <span>${content}</span>
+                </label>
+            `;
+
+            const checkbox = li.querySelector('input');
+            checkbox.addEventListener('change', () => {
+                localStorage.setItem(`${storageKey}-${itemId}`, checkbox.checked);
+            });
+        });
         // Interactive Checklist
         const checklistKey = `cdr-checklist-${location.pathname}`;
         const saved = JSON.parse(localStorage.getItem(checklistKey) || '{}');
