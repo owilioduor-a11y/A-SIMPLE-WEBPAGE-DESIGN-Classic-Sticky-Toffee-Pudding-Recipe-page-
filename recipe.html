@@ -23,6 +23,8 @@
     <a href="#main-content" class="skip-link">Skip to content</a>
     <header>
         <nav>
+            <a href="index.html" class="logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
+            <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list">
             <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
             <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-list">
 <body id="home">
@@ -196,6 +198,8 @@
         const navList = document.getElementById('nav-list');
 
         mobileMenu.addEventListener('click', () => {
+            const isExpanded = mobileMenu.getAttribute('aria-expanded') === 'true';
+            mobileMenu.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
             const isActive = mobileMenu.classList.toggle('active');
             navList.classList.toggle('active');
             mobileMenu.setAttribute('aria-expanded', isActive ? 'true' : 'false');

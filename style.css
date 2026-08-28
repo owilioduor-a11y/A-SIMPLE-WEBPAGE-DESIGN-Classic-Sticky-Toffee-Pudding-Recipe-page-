@@ -770,6 +770,15 @@ footer {
         flex: 1;
     }
 
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 0.7rem;
+    }
+
     .cta-button {
         padding: 10px 15px;
         font-size: 0.7rem;
