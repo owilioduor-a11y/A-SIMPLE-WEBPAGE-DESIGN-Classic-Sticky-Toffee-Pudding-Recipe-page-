@@ -19,14 +19,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
-<body>
 <body id="home">
     <a href="#main-content" class="skip-link">Skip to content</a>
     <header>
         <nav>
             <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
-            <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
-            <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list" type="button">
             <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
                 <span></span>
                 <span></span>
@@ -53,6 +50,7 @@
                     <button type="button" class="reset-button" id="reset-checklist" style="display: none;">Reset Progress</button>
                     <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
                     <button type="button" id="reset-progress" class="reset-button">Reset Progress</button>
+                    <span id="checklist-progress" class="checklist-progress" aria-live="polite">0 of 20 completed</span>
                     <div id="checklist-status" class="sr-only" aria-live="polite"></div>
                 </div>
                 <div id="a11y-announcer" class="sr-only" aria-live="polite"></div>
@@ -196,44 +194,9 @@
             mobileMenu.setAttribute('aria-label', isOpen ? 'Close Menu' : 'Open Menu');
         };
 
-        mobileMenu.addEventListener('click', () => toggleMenu());
-
-        document.querySelectorAll('#nav-list a').forEach(link => {
-            const isActive = forceClose ? false : !mobileMenu.classList.contains('active');
-            mobileMenu.classList.toggle('active', isActive);
-            navList.classList.toggle('active', isActive);
-            mobileMenu.setAttribute('aria-expanded', isActive);
-            mobileMenu.setAttribute('aria-label', isActive ? 'Close Menu' : 'Open Menu');
-        };
-
-        mobileMenu.addEventListener('click', () => toggleMenu());
-
-        document.querySelectorAll('#nav-list a').forEach(link => {
-        function toggleMenu() {
-            const isExpanded = mobileMenu.getAttribute('aria-expanded') === 'true';
-            mobileMenu.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.setAttribute('aria-label', isExpanded ? 'Open Menu' : 'Close Menu');
-            mobileMenu.classList.toggle('active');
-            navList.classList.toggle('active');
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', () => toggleMenu());
         }
-
-        mobileMenu.addEventListener('click', toggleMenu);
-
-        document.querySelectorAll('#nav-list a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navList.classList.contains('active')) {
-                    toggleMenu();
-                }
-            });
-        function toggleMenu(forceClose = false) {
-            const isActive = forceClose ? false : !mobileMenu.classList.contains('active');
-            mobileMenu.classList.toggle('active', isActive);
-            navList.classList.toggle('active', isActive);
-            mobileMenu.setAttribute('aria-expanded', isActive);
-            mobileMenu.setAttribute('aria-label', isActive ? 'Close Menu' : 'Open Menu');
-        }
-
-        mobileMenu.addEventListener('click', () => toggleMenu());
 
         document.querySelectorAll('#nav-list a').forEach(link => {
             link.addEventListener('click', () => toggleMenu(true));
@@ -367,6 +330,14 @@
             };
             if (listItems.length === 0) return;
 
+            const updateProgress = () => {
+                const total = listItems.length;
+                const checkedCount = document.querySelectorAll('.ingredient-checkbox:checked').length;
+                const text = `${checkedCount} of ${total} completed`;
+                if (progressBadge) progressBadge.textContent = text;
+                if (statusMsg) statusMsg.textContent = `Recipe progress updated: ${text}`;
+            };
+
             listItems.forEach(li => {
                 const content = li.innerHTML;
                 const textContent = li.textContent.trim().slice(0, 50);
@@ -389,24 +360,16 @@
                 });
             });
 
-            if (resetBtn) {
-                resetBtn.addEventListener('click', () => {
-                    localStorage.removeItem(storageKey);
-                    document.querySelectorAll('.ingredient-checkbox').forEach(cb => cb.checked = false);
-                    updateProgress();
-                });
-            }
-
-            updateProgress();
-            const resetButton = document.getElementById('reset-progress');
-            const statusMsg = document.getElementById('checklist-status');
             if (resetButton) {
                 resetButton.addEventListener('click', () => {
                     localStorage.removeItem(storageKey);
                     document.querySelectorAll('.ingredient-checkbox').forEach(cb => cb.checked = false);
+                    updateProgress();
                     if (statusMsg) statusMsg.textContent = 'Recipe progress reset.';
                 });
             }
+
+            updateProgress();
         };
 
         document.addEventListener('DOMContentLoaded', setupChecklist);
