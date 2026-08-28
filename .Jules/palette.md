@@ -1,3 +1,10 @@
+## 2025-05-31 - [Semantic Mobile Navigation]
+**Learning:** Refactoring static <div>-based mobile menus to semantic <button> elements improves screen reader accessibility but can break desktop-specific CSS if tag-qualified selectors (e.g., `div.menu-toggle`) or implicit display properties are relied upon.
+**Action:** Always explicitly hide mobile-only interactive components (like menu toggles) in the base CSS using `display: none` and only enable them within the appropriate media queries.
+
+## 2025-05-31 - [Skip to Content Implementation]
+**Learning:** A "Skip to content" link is a high-impact, low-effort accessibility win for keyboard users. It must be the first focusable element in the DOM and use `scroll-padding-top` on the root element to account for fixed headers.
+**Action:** Ensure `<main>` has a unique ID and the link is visually hidden but accessible on focus.
 ## 2024-05-23 - Improving Navigation Accessibility and Scroll Behavior
 **Learning:** Fixed headers can obscure content when using anchor links. Implementing `scroll-padding-top` on the `<html>` element is a clean CSS-only solution that ensures the target element is positioned below the header after navigation. Additionally, refactoring static branding and menu controls to semantic HTML elements (`<a>`, `<button>`) with appropriate ARIA attributes significantly improves keyboard and screen reader accessibility.
 **Action:** Always include `scroll-padding-top` when implementing fixed headers with anchor links. Ensure branding logos are semantic links to the homepage and that interactive toggles are `<button>` elements with `aria-expanded` and `aria-controls`.
