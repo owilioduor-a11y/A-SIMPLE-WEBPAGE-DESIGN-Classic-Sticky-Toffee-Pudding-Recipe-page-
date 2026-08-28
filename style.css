@@ -855,6 +855,8 @@ footer {
     cursor: pointer;
     font-size: 0.95rem;
     color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
     list-style: none !important;
 }
 
@@ -952,6 +954,8 @@ footer {
     color: var(--text-muted);
     list-style: none;
     counter-increment: recipe-counter;
+    display: flex;
+    align-items: flex-start;
 }
 
 .instructions ol li {
@@ -963,6 +967,9 @@ footer {
     content: counter(recipe-counter) ".";
     color: var(--primary-gold);
     font-weight: 700;
+    margin-right: 15px;
+    flex-shrink: 0;
+    width: 25px;
     margin-right: 10px;
     flex-shrink: 0;
 }
@@ -1098,6 +1105,27 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     outline-offset: 4px;
 }
 
+/* Interactive Checklist */
+.recipe-checklist-label {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.recipe-checklist-label:has(.ingredient-checkbox:checked) {
+    opacity: 0.5;
+    text-decoration: line-through;
+    text-decoration-color: var(--primary-gold);
+}
+
+.ingredient-checkbox {
+    accent-color: var(--primary-gold);
+    width: 18px;
+    height: 18px;
+    margin-top: 4px;
+    flex-shrink: 0;
 /* Ingredient Checklist */
 .ingredients li:has(:checked) { opacity: 0.6; text-decoration: line-through; }
 .ingredients li label { display: flex; gap: 12px; cursor: pointer; }
@@ -1208,6 +1236,15 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
+    }
+
+    .ingredient-checkbox {
+        display: none !important;
+    }
+
+    .recipe-checklist-label {
+        opacity: 1 !important;
+        text-decoration: none !important;
     }
 
     @page {
