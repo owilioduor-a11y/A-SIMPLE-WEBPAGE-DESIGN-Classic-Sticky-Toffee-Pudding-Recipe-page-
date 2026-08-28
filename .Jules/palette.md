@@ -1,3 +1,6 @@
+## 2024-05-15 - [Navigation & Accessibility]
+**Learning:** Fixed headers often obscure the target of internal anchor links, leading to a jarring user experience where section headings are hidden. Additionally, non-semantic mobile menu toggles (e.g., using `div`) are inaccessible to keyboard and screen reader users.
+**Action:** Implement `scroll-padding-top` on the `html` element to automatically handle header offsets for all anchor links. Always use semantic `<button>` elements for toggles, applying a CSS reset (background: none, border: none, padding: 0) to preserve custom designs while ensuring accessibility.
 ## 2024-05-23 - Improving Header Accessibility and Semantics
 **Learning:** Refactoring non-semantic `div` elements into semantic `<a>` and `<button>` tags significantly improves accessibility for keyboard and screen reader users without altering the visual design, provided appropriate CSS resets (background, border, padding) are applied. Adding a "Skip to content" link and `scroll-padding-top` further enhances the UX for sticky headers.
 **Action:** Always check for static branding `div`s and burger menu `div`s to refactor them into semantic elements with appropriate ARIA states. Add `scroll-padding-top` whenever a fixed header is used.

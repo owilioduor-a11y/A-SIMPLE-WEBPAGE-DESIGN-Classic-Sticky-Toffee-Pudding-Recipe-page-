@@ -34,6 +34,7 @@
     <a href="#main-content" class="skip-link">Skip to content</a>
     <header>
         <nav>
+            <a href="index.html" class="logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
             <div class="logo">Classic Dinner Resort</div>
             <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list">
             <a href="index.html" class="logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
@@ -165,6 +166,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
+                    <a href="index.html" class="footer-logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
                     <a href="index.html" class="footer-logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
                     <div class="social-links">
                         <a href="#" aria-label="Follow us on Instagram">Instagram</a>
@@ -228,6 +230,9 @@
         }
         const toggleMenu = (forceClose = false) => {
         mobileMenu.addEventListener('click', () => {
+            const isExpanded = mobileMenu.getAttribute('aria-expanded') === 'true';
+            mobileMenu.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.setAttribute('aria-label', isExpanded ? 'Open Menu' : 'Close Menu');
             const isActive = mobileMenu.classList.toggle('active');
             navList.classList.toggle('active');
             mobileMenu.setAttribute('aria-expanded', isActive ? 'true' : 'false');
@@ -246,6 +251,7 @@
         document.querySelectorAll('#nav-list a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-label', 'Open Menu');
                 mobileMenu.classList.remove('active');
                 navList.classList.remove('active');
                 mobileMenu.setAttribute('aria-expanded', 'false');
