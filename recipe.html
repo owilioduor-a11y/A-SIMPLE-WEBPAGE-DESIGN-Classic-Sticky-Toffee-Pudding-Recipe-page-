@@ -34,6 +34,8 @@
     <a href="#main-content" class="skip-link">Skip to content</a>
     <header>
         <nav>
+            <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
+            <button class="menu-toggle" id="mobile-menu" aria-label="Open menu" aria-expanded="false" aria-controls="nav-list" type="button">
             <a href="index.html" class="logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
             <div class="logo">Classic Dinner Resort</div>
             <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list">
@@ -237,6 +239,7 @@
             const isActive = mobileMenu.classList.toggle('active');
             navList.classList.toggle('active');
             mobileMenu.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+            mobileMenu.setAttribute('aria-label', isActive ? 'Close menu' : 'Open menu');
             const isExpanded = mobileMenu.getAttribute('aria-expanded') === 'true';
             mobileMenu.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
             const isActive = mobileMenu.classList.toggle('active');
@@ -256,6 +259,7 @@
                 mobileMenu.classList.remove('active');
                 navList.classList.remove('active');
                 mobileMenu.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-label', 'Open menu');
                 mobileMenu.setAttribute('aria-expanded', 'false');        const toggleMenu = (forceClose = false) => {
             const isOpen = forceClose ? false : !mobileMenu.classList.contains('active');
             mobileMenu.classList.toggle('active', isOpen);

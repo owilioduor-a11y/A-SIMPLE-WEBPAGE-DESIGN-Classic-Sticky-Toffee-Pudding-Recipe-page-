@@ -1257,6 +1257,16 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     }
 }
 
+/* Focus Indicators */
+:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+.cta-button:focus-visible,
+.secondary-button:focus-visible {
+    outline-offset: 6px;
 .recipe-actions {
     display: flex;
     justify-content: center;
