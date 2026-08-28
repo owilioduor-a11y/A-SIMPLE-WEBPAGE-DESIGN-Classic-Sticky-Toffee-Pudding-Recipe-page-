@@ -26,6 +26,12 @@
 </head>
 <body id="home">
     <a href="#main-content" class="skip-link">Skip to content</a>
+<body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <header>
+        <nav>
+            <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
+            <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list" type="button">
     <header>
         <nav>
             <a href="index.html" class="logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
@@ -342,6 +348,12 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
 
+        function toggleMenu() {
+            const isActive = mobileMenu.classList.toggle('active');
+            navList.classList.toggle('active');
+            mobileMenu.setAttribute('aria-expanded', isActive);
+            mobileMenu.setAttribute('aria-label', isActive ? 'Close Menu' : 'Open Menu');
+        function toggleMenu(forceClose = false) {
         const toggleMenu = (forceClose = false) => {
             const isActive = forceClose ? false : !mobileMenu.classList.contains('active');
             mobileMenu.classList.toggle('active', isActive);
@@ -384,6 +396,13 @@
 
         document.querySelectorAll('#nav-list a').forEach(link => {
             link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navList.classList.remove('active');
+                mobileMenu.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-label', 'Open Menu');
+                if (navList.classList.contains('active')) {
+                    toggleMenu();
+                }
                 mobileMenu.setAttribute('aria-expanded', 'false');
                 mobileMenu.setAttribute('aria-label', 'Open Menu');
                 mobileMenu.classList.remove('active');

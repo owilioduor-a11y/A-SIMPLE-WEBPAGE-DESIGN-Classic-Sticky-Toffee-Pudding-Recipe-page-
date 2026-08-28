@@ -24,6 +24,11 @@
     box-sizing: border-box;
 }
 
+.menu-toggle {
+    display: none;
+}
+
+/* Accessibility */
 .skip-link {
     position: absolute;
     top: -100px;
@@ -39,6 +44,8 @@
 
 .skip-link:focus {
     top: 0;
+}
+
 :focus-visible {
     outline: 2px solid var(--primary-gold);
     outline-offset: 4px;
