@@ -42,6 +42,11 @@ html {
     scroll-padding-top: 100px;
 }
 
+:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
+}
+
 body {
     font-family: var(--sans-font);
     color: var(--text-light);
@@ -160,6 +165,14 @@ nav {
     letter-spacing: -0.5px;
     color: var(--white);
     text-decoration: none;
+}
+
+.logo:hover {
+    color: var(--primary-gold);
+}
+
+.menu-toggle {
+    display: none;
     white-space: nowrap;
 }
 
