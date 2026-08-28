@@ -1269,13 +1269,14 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     transform: translateY(-2px);
 }
 
-.checklist-status {
-    margin-top: 15px;
-    font-size: 0.85rem;
+.checklist-progress {
     color: var(--primary-gold);
-    letter-spacing: 1px;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     font-weight: 600;
+}
+
 .reset-button:focus-visible {
     outline: 2px solid var(--primary-gold);
     outline-offset: 4px;
