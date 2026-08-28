@@ -1,6 +1,9 @@
 ## 2025-06-04 - Semantic Navigation in Static Sites
 **Learning:** In static frontend projects without a central layout engine, structural UX improvements (like refactoring logos to home links or mobile toggles to buttons) must be synchronized across all HTML files to ensure a consistent accessibility experience. Adding 'scroll-padding-top' to the global CSS is a critical companion fix for fixed headers to prevent anchor navigation from obscuring content.
 **Action:** Always audit both primary and secondary pages (e.g., recipe.html) when updating global navigation elements, and use high-contrast :focus-visible indicators to support keyboard users in luxury dark themes.
+## 2024-05-23 - Improving Header Accessibility and Semantics
+**Learning:** Refactoring non-semantic `div` elements into semantic `<a>` and `<button>` tags significantly improves accessibility for keyboard and screen reader users without altering the visual design, provided appropriate CSS resets (background, border, padding) are applied. Adding a "Skip to content" link and `scroll-padding-top` further enhances the UX for sticky headers.
+**Action:** Always check for static branding `div`s and burger menu `div`s to refactor them into semantic elements with appropriate ARIA states. Add `scroll-padding-top` whenever a fixed header is used.
 ## 2024-05-24 - [Accessibility & Scroll UX Overhaul]
 **Learning:** Fixed headers often obscure content when navigating via anchor links, requiring the use of `scroll-padding-top` on the root element. Additionally, refactoring non-semantic `div` toggles into `<button>` elements requires explicit CSS resets (background, border, padding) to preserve the original design while gaining critical ARIA support.
 **Action:** Always apply `scroll-padding-top` when implementing a sticky/fixed header and use semantic `<button>` tags for interactive toggles to ensure screen reader compatibility.

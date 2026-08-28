@@ -20,6 +20,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
 <body id="recipe">
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <header>
+        <nav>
+            <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
+            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list">
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <header>
         <nav>
@@ -210,6 +215,7 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
 
+        const toggleMenu = (forceClose = false) => {
         function toggleMenu(forceClose = false) {
             if (!mobileMenu || !navList) return;
             const isActive = forceClose ? false : !mobileMenu.classList.contains('active');
@@ -430,6 +436,13 @@
             };
             if (listItems.length === 0) return;
 
+            const updateProgress = () => {
+                const total = document.querySelectorAll('.ingredient-checkbox').length;
+                const checked = document.querySelectorAll('.ingredient-checkbox:checked').length;
+                const statusMsg = document.getElementById('checklist-status');
+                if (statusMsg && total > 0) {
+                    statusMsg.textContent = `${checked} of ${total} items completed.`;
+                }
             const updateProgress = (resetMessage = false) => {
                 const checkboxes = document.querySelectorAll('.ingredient-checkbox');
                 const total = checkboxes.length;
@@ -482,6 +495,8 @@
                 resetButton.addEventListener('click', () => {
                     localStorage.removeItem(storageKey);
                     document.querySelectorAll('.ingredient-checkbox').forEach(cb => cb.checked = false);
+                    updateProgress();
+                    const statusMsg = document.getElementById('checklist-status');
                     updateProgress(true);
                     updateProgress();
                     if (statusMsg) statusMsg.textContent = 'Recipe progress reset.';
