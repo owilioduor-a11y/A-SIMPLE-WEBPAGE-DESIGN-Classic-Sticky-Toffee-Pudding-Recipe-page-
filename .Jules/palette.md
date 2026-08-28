@@ -1,3 +1,6 @@
+## 2024-11-20 - [Mobile Menu Accessibility]
+**Learning:** Refactoring static <div>-based toggles to semantic <button> elements with ARIA attributes (aria-expanded, aria-controls) significantly improves the experience for screen reader users. Using 'visibility: hidden' and 'opacity: 0' ensures that hidden menu items are not reachable via keyboard navigation (Tab key) when the menu is closed, which is a common but often overlooked accessibility issue in mobile navigation implementations.
+**Action:** Always use <button> for interactive toggles and ensure hidden content is explicitly removed from the accessibility tree and tab order.
 ## 2024-05-23 - [Accessibility & Navigation Polish]
 **Learning:** Fixed headers often obscure anchor link targets (e.g., #menu) in static landing pages. Using `scroll-padding-top` on the `<html>` element is a cleaner solution than adding top margins to sections, as it maintains consistent spacing across all internal navigations.
 **Action:** Always implement `scroll-padding-top` equal to or slightly greater than the header height when using fixed navigation.

@@ -789,6 +789,14 @@ footer {
         display: none;
     }
 
+    .menu-toggle {
+        background: none;
+        border: none;
+        padding: 0;
+        color: inherit;
+        font: inherit;
+    }
+
     .hero-btns {
         flex-direction: column;
         gap: 15px;
@@ -829,10 +837,14 @@ footer {
         transition: var(--transition-smooth);
         border-left: 1px solid rgba(212, 175, 55, 0.1);
         z-index: 1000;
+        visibility: hidden;
+        opacity: 0;
     }
 
     nav ul.active {
         right: 0;
+        visibility: visible;
+        opacity: 1;
     }
 
     nav ul li {
