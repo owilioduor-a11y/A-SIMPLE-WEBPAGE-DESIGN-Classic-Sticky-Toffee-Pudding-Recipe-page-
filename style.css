@@ -1,3 +1,22 @@
+/* Skip Link */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 20px;
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    padding: 10px 20px;
+    z-index: 2000;
+    transition: top 0.3s;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 0 0 4px 4px;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -250,6 +269,16 @@ nav ul li a:hover::after {
     background-color: var(--white);
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+}
+
+/* Accessibility: Focus Indicators */
+:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
+}
+
+.menu-toggle:focus-visible {
+    outline-offset: 2px;
 }
 
 /* Animations */
@@ -762,6 +791,7 @@ footer {
     }
 
     nav {
+        padding: 0 20px;
         padding: 0 15px;
     }
 
@@ -789,6 +819,13 @@ footer {
         display: none;
     }
 
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 0.75rem;
     .menu-toggle {
         background: none;
         border: none;
