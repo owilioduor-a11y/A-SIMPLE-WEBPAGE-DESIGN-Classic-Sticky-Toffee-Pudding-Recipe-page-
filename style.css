@@ -5,6 +5,23 @@
     box-sizing: border-box;
 }
 
+:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
+}
+
+.checklist-progress {
+    font-size: 0.8rem;
+    color: var(--primary-gold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    padding: 8px 16px;
+    border-radius: 4px;
+    background: rgba(212, 175, 55, 0.05);
+}
+
 :root {
     --primary-gold: #d4af37;
     --gold-hover: #b8860b;
@@ -25,11 +42,36 @@ html {
     scroll-padding-top: 100px;
 }
 
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    padding: 10px 20px;
+    z-index: 2000;
+    text-decoration: none;
+    font-weight: 700;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
+}
+
 body {
     font-family: var(--sans-font);
     color: var(--text-light);
     line-height: 1.7;
     background-color: var(--dark-bg);
+}
+
+:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
 }
 
 .container {
@@ -72,6 +114,40 @@ h3 {
     font-weight: 600;
 }
 
+/* Skip Link */
+.menu-toggle {
+    display: none;
+}
+
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    padding: 10px 20px;
+    z-index: 2000;
+    text-decoration: none;
+    font-weight: 700;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* Header & Navigation */
 header {
     background-color: rgba(10, 10, 10, 0.9);
@@ -93,6 +169,10 @@ nav {
     padding: 0 40px;
 }
 
+.menu-toggle {
+    display: none;
+}
+
 .logo {
     font-family: var(--serif-font);
     font-size: 1.8rem;
@@ -100,6 +180,17 @@ nav {
     letter-spacing: -0.5px;
     color: var(--white);
     text-decoration: none;
+}
+
+.menu-toggle {
+    display: none;
+.logo:hover {
+    color: var(--primary-gold);
+}
+
+.menu-toggle {
+    display: none;
+    white-space: nowrap;
 }
 
 nav ul {
@@ -532,11 +623,14 @@ footer {
 }
 
 .footer-logo {
+    display: block;
     font-family: var(--serif-font);
     font-size: 2.2rem;
     font-weight: 800;
     color: var(--white);
     margin-bottom: 20px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .social-links {
@@ -636,6 +730,10 @@ footer {
 }
 
 /* Responsive Design */
+.menu-toggle {
+    display: none;
+}
+
 @media (max-width: 1024px) {
     .reservation-box {
         grid-template-columns: 1fr;
@@ -664,7 +762,12 @@ footer {
     }
 
     nav {
-        padding: 0 25px;
+        padding: 0 15px;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+        flex: 1;
     }
 
     .logo {
@@ -675,6 +778,12 @@ footer {
         padding: 10px 20px;
         font-size: 0.7rem;
     }
+
+    .cta-button {
+        padding: 10px 15px;
+        font-size: 0.7rem;
+    }
+
 
     nav ul {
         display: none;
@@ -794,10 +903,100 @@ footer {
 }
 
 .ingredients ul li {
-    padding: 10px 0;
+    list-style: none !important;
+    padding: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ingredients ul li label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    cursor: pointer;
     font-size: 0.95rem;
     color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    list-style: none !important;
+}
+
+    transition: var(--transition-smooth);
+}
+
+.ingredient-checkbox {
+    accent-color: var(--primary-gold);
+    width: 18px;
+    height: 18px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.ingredients ul li:has(.ingredient-checkbox:checked) label {
+.ingredients ul li label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    width: 100%;
+}
+
+.ingredients ul li:has(input:checked) label {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.ingredients ul li input[type="checkbox"] {
+    accent-color: var(--primary-gold);
+    width: 18px;
+    height: 18px;
+    margin-top: 3px;
+    cursor: pointer;
+    padding: 12px 0;
+    cursor: pointer;
+    width: 100%;
+}
+
+.ingredient-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--primary-gold);
+    border-radius: 3px;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    top: 3px;
+    flex-shrink: 0;
+    transition: var(--transition-smooth);
+}
+
+.ingredient-checkbox:checked {
+    background-color: var(--primary-gold);
+}
+
+.ingredient-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--dark-bg);
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.ingredient-checkbox:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
+}
+
+.ingredients ul li:has(.ingredient-checkbox:checked) {
+    text-decoration: line-through;
+    opacity: 0.6;
 }
 
 .instructions h3 {
@@ -816,13 +1015,24 @@ footer {
     color: var(--text-muted);
     list-style: none;
     counter-increment: recipe-counter;
+    display: flex;
+    align-items: flex-start;
+}
+
+.instructions ol li {
+    display: flex;
+    align-items: flex-start;
 }
 
 .instructions ol li::before {
     content: counter(recipe-counter) ".";
     color: var(--primary-gold);
     font-weight: 700;
+    margin-right: 15px;
+    flex-shrink: 0;
+    width: 25px;
     margin-right: 10px;
+    flex-shrink: 0;
 }
 
 .instructions ol li strong {
@@ -832,6 +1042,11 @@ footer {
     margin-bottom: 5px;
     color: var(--primary-gold);
 }
+
+.checklist-item { display: flex; gap: 12px; cursor: pointer; accent-color: var(--primary-gold); }
+.checklist-item:has(:checked) { text-decoration: line-through; opacity: 0.6; }
+.ingredients li, .instructions li { list-style: none !important; }
+@media print { .ingredient-checkbox { display: none !important; } }
 
 .recipe-gallery {
     display: grid;
@@ -882,11 +1097,243 @@ footer {
     color: var(--white);
 }
 
+/* Interactive Checklist Styles */
+.ingredient-checkbox {
+    accent-color: var(--primary-gold);
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    margin-right: 12px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.checklist-wrapper {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    width: 100%;
+}
+
+.checklist-content {
+    flex-grow: 1;
+}
+
+li:has(.ingredient-checkbox:checked) .checklist-content {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
 @media (max-width: 992px) {
     .recipe-grid {
         grid-template-columns: 1fr;
     }
     .recipe-gallery {
         grid-template-columns: 1fr;
+    }
+}
+
+.recipe-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.reset-button {
+    background-color: transparent;
+    color: var(--primary-gold);
+    border: 1px solid var(--primary-gold);
+    padding: 10px 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.reset-button:hover {
+    background-color: rgba(212, 175, 55, 0.1);
+    color: var(--white);
+    border-color: var(--white);
+    transform: translateY(-2px);
+}
+
+.reset-button:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
+}
+
+.print-button {
+    background-color: var(--primary-gold);
+    color: var(--dark-bg);
+    padding: 10px 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: var(--transition-smooth);
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.print-button:hover {
+    background-color: var(--white);
+    transform: translateY(-2px);
+}
+
+.print-button:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
+}
+
+/* Interactive Checklist */
+.recipe-checklist-label {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.recipe-checklist-label:has(.ingredient-checkbox:checked) {
+    opacity: 0.5;
+    text-decoration: line-through;
+    text-decoration-color: var(--primary-gold);
+}
+
+.ingredient-checkbox {
+    accent-color: var(--primary-gold);
+    width: 18px;
+    height: 18px;
+    margin-top: 4px;
+    flex-shrink: 0;
+/* Ingredient Checklist */
+.ingredients li:has(:checked) { opacity: 0.6; text-decoration: line-through; }
+.ingredients li label { display: flex; gap: 12px; cursor: pointer; }
+.ingredient-checkbox {
+    appearance: none; width: 20px; height: 20px; border: 2px solid var(--primary-gold);
+    border-radius: 4px; flex-shrink: 0; margin-top: 4px; cursor: pointer;
+}
+.ingredient-checkbox:checked { background: var(--primary-gold); position: relative; }
+.ingredient-checkbox:checked::after {
+    content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    color: var(--dark-bg); font-weight: bold;
+.reset-button {
+    background-color: transparent;
+    color: var(--primary-gold);
+    border: 1px solid var(--primary-gold);
+    padding: 10px 24px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: var(--transition-smooth);
+    display: inline-block;
+    cursor: pointer;
+}
+
+.reset-button:hover {
+    background-color: rgba(212, 175, 55, 0.1);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.checklist-status {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: var(--primary-gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+.reset-button:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media print {
+    .ingredient-checkbox { display: none !important; }
+
+    body, .container, .recipe-detail-header, #recipe-content, .ingredients {
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+
+    h1, h2, h3, h4, .subtitle, .item-name, .item-price, .instructions ol li strong, .instructions ol li::before {
+        color: #000000 !important;
+    }
+
+    .item-desc, .footer-info p, .ingredients ul li, .instructions ol li, .recipe-gallery figcaption {
+        color: #333333 !important;
+    }
+
+    header, footer, .recipe-actions, .scroll-indicator, .menu-toggle, .recipe-gallery, .cta-button, .secondary-button, .ingredient-checkbox, .reset-button {
+        display: none !important;
+    }
+
+    .recipe-grid {
+        display: block !important;
+        margin-top: 0 !important;
+    }
+
+    .ingredients {
+        border: 1px solid #eee !important;
+        margin-bottom: 30px !important;
+        padding: 20px !important;
+        backdrop-filter: none !important;
+    }
+
+    .ingredients ul li {
+        border-bottom: 1px solid #eee !important;
+        color: #333 !important;
+    }
+
+    .instructions ol li {
+        color: #333 !important;
+    }
+
+    .ingredients {
+        border: 1px solid #ccc !important;
+        margin-bottom: 40px !important;
+    }
+
+    .recipe-detail-header {
+        padding: 40px 0 !important;
+    }
+
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .ingredient-checkbox {
+        display: none !important;
+    }
+
+    .recipe-checklist-label {
+        opacity: 1 !important;
+        text-decoration: none !important;
+    }
+
+    @page {
+        margin: 2cm;
     }
 }
