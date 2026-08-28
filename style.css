@@ -842,13 +842,31 @@ footer {
 }
 
 .ingredients ul li {
+    list-style: none !important;
     padding: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ingredients ul li label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    cursor: pointer;
     font-size: 0.95rem;
     color: var(--text-muted);
     transition: var(--transition-smooth);
 }
 
+.ingredient-checkbox {
+    accent-color: var(--primary-gold);
+    width: 18px;
+    height: 18px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.ingredients ul li:has(.ingredient-checkbox:checked) label {
 .ingredients ul li label {
     display: flex;
     align-items: flex-start;
@@ -1117,6 +1135,7 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
 
 @media print {
     .ingredient-checkbox { display: none !important; }
+
     body, .container, .recipe-detail-header, #recipe-content, .ingredients {
         background: #ffffff !important;
         color: #000000 !important;
