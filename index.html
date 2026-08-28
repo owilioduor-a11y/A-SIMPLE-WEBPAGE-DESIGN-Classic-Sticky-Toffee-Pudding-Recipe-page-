@@ -332,6 +332,17 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
 
+        const toggleMenu = (forceClose = false) => {
+            const isActive = forceClose ? false : !mobileMenu.classList.contains('active');
+            mobileMenu.classList.toggle('active', isActive);
+            navList.classList.toggle('active', isActive);
+            mobileMenu.setAttribute('aria-expanded', isActive.toString());
+            mobileMenu.setAttribute('aria-label', isActive ? 'Close Menu' : 'Open Menu');
+        };
+
+        mobileMenu.addEventListener('click', () => toggleMenu());
+
+        document.querySelectorAll('#nav-list a').forEach(link => {
         mobileMenu.addEventListener('click', () => {
             const isExpanded = mobileMenu.getAttribute('aria-expanded') === 'true';
             mobileMenu.setAttribute('aria-expanded', !isExpanded);
