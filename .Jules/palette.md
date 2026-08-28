@@ -1,3 +1,6 @@
+## 2024-05-24 - Semantic and Accessible Navigation in Fixed Header Layouts
+**Learning:** Fixed headers often obscure anchor link targets, making internal navigation feel broken for users. Additionally, using `div` for interactive elements like mobile toggles or logos excludes keyboard and screen reader users.
+**Action:** Use `scroll-padding-top` on the `html` element to offset fixed headers. Always use semantic `<button>` and `<a>` tags for interactions, and synchronize ARIA states (like `aria-expanded`) in JavaScript to maintain accessibility tree integrity.
 ## 2025-06-04 - Semantic Navigation in Static Sites
 **Learning:** In static frontend projects without a central layout engine, structural UX improvements (like refactoring logos to home links or mobile toggles to buttons) must be synchronized across all HTML files to ensure a consistent accessibility experience. Adding 'scroll-padding-top' to the global CSS is a critical companion fix for fixed headers to prevent anchor navigation from obscuring content.
 **Action:** Always audit both primary and secondary pages (e.g., recipe.html) when updating global navigation elements, and use high-contrast :focus-visible indicators to support keyboard users in luxury dark themes.
