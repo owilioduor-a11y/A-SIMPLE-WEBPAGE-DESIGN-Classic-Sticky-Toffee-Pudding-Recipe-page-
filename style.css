@@ -1270,6 +1270,30 @@ footer {
     color: var(--white);
 }
 
+.recipe-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.print-button {
+    background: transparent;
+    border: 1px solid var(--primary-gold);
+    color: var(--primary-gold);
+    padding: 10px 24px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.print-button:hover {
+    background-color: var(--primary-gold);
+    color: var(--dark-bg);
 /* Interactive Checklist Styles */
 .ingredient-checkbox {
     accent-color: var(--primary-gold);
@@ -1306,6 +1330,94 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     }
 }
 
+/* Print Styles */
+@media print {
+    @page {
+        margin: 2cm;
+    }
+
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 12pt;
+    }
+
+    header,
+    footer,
+    .recipe-actions,
+    .back-link,
+    .recipe-gallery,
+    .skip-link,
+    .scroll-indicator,
+    .menu-toggle {
+        display: none !important;
+    }
+
+    .container {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    main {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    section,
+    .recipe-detail-header {
+        padding: 20px 0 !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+        height: auto !important;
+        min-height: 0 !important;
+    }
+
+    h1, h2, h3, h4, .subtitle, p, li, span, strong, div, article {
+        color: #000000 !important;
+        text-shadow: none !important;
+    }
+
+    h1 { font-size: 24pt; margin-bottom: 10pt; }
+    h2 { font-size: 18pt; margin-top: 20pt; margin-bottom: 10pt; }
+    h3 { font-size: 14pt; margin-top: 15pt; margin-bottom: 8pt; }
+
+    .recipe-grid {
+        display: block !important;
+        margin-top: 20px;
+    }
+
+    .ingredients {
+        background: #ffffff !important;
+        border: 1px solid #cccccc !important;
+        padding: 15pt !important;
+        margin-bottom: 20pt !important;
+        page-break-inside: avoid;
+    }
+
+    .ingredient-category h4 {
+        color: #000000 !important;
+        border-bottom: 1px solid #000000 !important;
+    }
+
+    .ingredients ul li {
+        color: #000000 !important;
+        border-bottom: 1px solid #eeeeee !important;
+    }
+
+    .instructions ol li {
+        color: #000000 !important;
+        margin-bottom: 15pt !important;
+        page-break-inside: avoid;
+    }
+
+    .instructions ol li strong {
+        color: #000000 !important;
+        font-size: 12pt !important;
 /* Focus Indicators */
 :focus-visible {
     outline: 2px solid var(--primary-gold);
@@ -1520,6 +1632,16 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
 
     .reveal {
         opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    * {
+        -webkit-print-color-adjust: economy !important;
+        print-color-adjust: economy !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
         transform: none !important;
         transition: none !important;
     }
