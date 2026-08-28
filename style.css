@@ -1383,7 +1383,10 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
 
 .reset-button:hover {
     background-color: rgba(212, 175, 55, 0.1);
-    color: var(--white);
+    color: var(--white);    border-color: var(--white);
+    transform: translateY(-2px);
+}
+
     transform: translateY(-2px);
 }
 

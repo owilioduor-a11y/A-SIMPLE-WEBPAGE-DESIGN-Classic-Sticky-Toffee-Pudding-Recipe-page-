@@ -76,6 +76,9 @@
                     <a href="index.html#menu" class="back-link">← Back to Menu</a>
                     <span id="checklist-progress" class="checklist-progress">0 of 0 completed</span>
                     <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
+                    <button type="button" id="reset-progress" class="reset-button" style="display: none;">Reset Progress</button>
+                </div>
+                <div id="checklist-status" class="sr-only" role="status" aria-live="polite"></div>
                     <button type="button" id="reset-progress" class="reset-button">Reset Progress</button>
                     <button type="button" class="reset-button" id="reset-checklist" style="display: none;">Reset Progress</button>
                     <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
@@ -276,6 +279,7 @@
             link.addEventListener('click', () => toggleMenu(true));
         });
 
+        // Interactive Recipe Checklist & Progress Reset
         // Ingredient Checklist Persistence
         const checkboxes = document.querySelectorAll('.ingredient-checkbox');
         const storageKey = 'cdr-checklist';
@@ -456,6 +460,14 @@
             const storageKey = `cdr-checklist-${location.pathname}`;
             const savedState = JSON.parse(localStorage.getItem(storageKey) || '{}');
             const listItems = document.querySelectorAll('.ingredients li, .instructions li');
+            const resetButton = document.getElementById('reset-progress');
+            const statusLiveRegion = document.getElementById('checklist-status');
+
+            const updateResetVisibility = () => {
+                const anyChecked = Array.from(document.querySelectorAll('.ingredient-checkbox')).some(cb => cb.checked);
+                if (resetButton) {
+                    resetButton.style.display = anyChecked ? 'inline-block' : 'none';
+                }
             const progressBadge = document.getElementById('checklist-progress');
             const statusMsg = document.getElementById('checklist-status');
             const resetButton = document.getElementById('reset-progress');
@@ -530,8 +542,11 @@
                     const currentState = JSON.parse(localStorage.getItem(storageKey) || '{}');
                     currentState[textContent] = checkbox.checked;
                     localStorage.setItem(storageKey, JSON.stringify(currentState));
+                    updateResetVisibility();
                 });
             });
+
+            updateResetVisibility();
 
             const resetButton = document.getElementById('reset-progress');
             const statusRegion = document.getElementById('checklist-status');
@@ -546,6 +561,13 @@
                 resetButton.addEventListener('click', () => {
                     localStorage.removeItem(storageKey);
                     document.querySelectorAll('.ingredient-checkbox').forEach(cb => cb.checked = false);
+                    updateResetVisibility();
+                    if (statusLiveRegion) {
+                        statusLiveRegion.textContent = 'Recipe progress has been reset.';
+                        setTimeout(() => { statusLiveRegion.textContent = ''; }, 3000);
+                    }
+                });
+            }
                     if (statusRegion) {
                         statusRegion.textContent = 'Checklist progress reset.';
                         setTimeout(() => { statusRegion.textContent = ''; }, 3000);
