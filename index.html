@@ -303,6 +303,7 @@
             </div>
             <div class="footer-map">
                 <iframe
+                    title="Google Maps showing the location of Classic Dinner Resort in Mayfair, London"
                     title="Location Map of Classic Dinner Resort"
                     title="Classic Dinner Resort Location Map"
                     title="Location map of Classic Dinner Resort in Mayfair, London"
@@ -358,7 +359,7 @@
             const isActive = forceClose ? false : !mobileMenu.classList.contains('active');
             mobileMenu.classList.toggle('active', isActive);
             navList.classList.toggle('active', isActive);
-            mobileMenu.setAttribute('aria-expanded', isActive);
+            mobileMenu.setAttribute('aria-expanded', isActive ? 'true' : 'false');
             mobileMenu.setAttribute('aria-label', isActive ? 'Close Menu' : 'Open Menu');
         }
       mobileMenu.addEventListener('click', () => {
