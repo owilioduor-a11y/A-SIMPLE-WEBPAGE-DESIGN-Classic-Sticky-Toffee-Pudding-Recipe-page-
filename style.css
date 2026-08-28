@@ -42,6 +42,26 @@ html {
     scroll-padding-top: 100px;
 }
 
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    padding: 10px 20px;
+    z-index: 2000;
+    text-decoration: none;
+    font-weight: 700;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
+}
+
 body {
     font-family: var(--sans-font);
     color: var(--text-light);
@@ -160,6 +180,16 @@ nav {
     letter-spacing: -0.5px;
     color: var(--white);
     text-decoration: none;
+}
+
+.menu-toggle {
+    display: none;
+.logo:hover {
+    color: var(--primary-gold);
+}
+
+.menu-toggle {
+    display: none;
     white-space: nowrap;
 }
 
@@ -732,12 +762,39 @@ footer {
     }
 
     nav {
-        padding: 0 25px;
+        padding: 0 15px;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+        flex: 1;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 0.7rem;
+    }
+
+    .cta-button {
+        padding: 10px 15px;
+        font-size: 0.7rem;
     }
 
 
     nav ul {
         display: none;
+    }
+
+    .menu-toggle {
+        background: none;
+        border: none;
+        padding: 0;
+        color: inherit;
+        font: inherit;
     }
 
     .hero-btns {
@@ -780,10 +837,14 @@ footer {
         transition: var(--transition-smooth);
         border-left: 1px solid rgba(212, 175, 55, 0.1);
         z-index: 1000;
+        visibility: hidden;
+        opacity: 0;
     }
 
     nav ul.active {
         right: 0;
+        visibility: visible;
+        opacity: 1;
     }
 
     nav ul li {
@@ -867,6 +928,9 @@ footer {
     cursor: pointer;
     font-size: 0.95rem;
     color: var(--text-muted);
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
     display: flex;
     align-items: flex-start;
     list-style: none !important;
@@ -888,6 +952,15 @@ footer {
     display: flex;
     align-items: flex-start;
     gap: 12px;
+    cursor: pointer;
+}
+
+.ingredient-checkbox {
+    accent-color: var(--primary-gold);
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    cursor: pointer;
     padding: 10px 0;
     cursor: pointer;
     transition: var(--transition-smooth);
@@ -947,6 +1020,7 @@ footer {
 
 .ingredients ul li:has(.ingredient-checkbox:checked) {
     text-decoration: line-through;
+    opacity: 0.5;
     opacity: 0.6;
 }
 
@@ -1261,9 +1335,8 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
         color: #333 !important;
     }
 
-    .ingredients {
-        border: 1px solid #ccc !important;
-        margin-bottom: 40px !important;
+    .ingredient-checkbox {
+        display: none !important;
     }
 
     .recipe-detail-header {

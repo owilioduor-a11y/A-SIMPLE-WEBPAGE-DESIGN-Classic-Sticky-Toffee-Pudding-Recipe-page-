@@ -24,11 +24,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <header>
+        <nav>
+            <div class="logo">Classic Dinner Resort</div>
+            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list">
+            <a href="index.html" class="logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
+            <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list">
+            <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
+            <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-list">
 <body id="home">
     <a href="#main-content" class="skip-link">Skip to content</a>
     <header>
         <nav>
+            <a href="index.html" class="logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
+            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-list">
             <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
+            <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list" type="button">
             <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
                 <span></span>
                 <span></span>
@@ -311,6 +324,26 @@
             mobileMenu.setAttribute('aria-expanded', isActive);
             mobileMenu.setAttribute('aria-label', isActive ? 'Close Menu' : 'Open Menu');
         }
+        mobileMenu.addEventListener('click', () => {
+            const isExpanded = mobileMenu.getAttribute('aria-expanded') === 'true';
+            mobileMenu.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+            const isActive = mobileMenu.classList.toggle('active');
+            navList.classList.toggle('active');
+            mobileMenu.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+            const isExpanded = mobileMenu.getAttribute('aria-expanded') === 'true';
+            mobileMenu.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('active');
+            navList.classList.toggle('active');
+            mobileMenu.setAttribute('aria-expanded', isActive);
+        });
+
+        document.querySelectorAll('#nav-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.setAttribute('aria-expanded', 'false');
+                mobileMenu.classList.remove('active');
+                navList.classList.remove('active');
+                mobileMenu.setAttribute('aria-expanded', 'false');
+            });
         const toggleMenu = (forceClose = false) => {
             const isOpen = forceClose ? false : !mobileMenu.classList.contains('active');
             mobileMenu.classList.toggle('active', isOpen);
