@@ -36,6 +36,7 @@
         <nav>
             <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
             <button class="menu-toggle" id="mobile-menu" aria-label="Open menu" aria-expanded="false" aria-controls="nav-list" type="button">
+            <a href="index.html" class="logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
             <div class="logo">Classic Dinner Resort</div>
             <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list">
             <a href="index.html" class="logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
@@ -78,6 +79,7 @@
                     <button type="button" id="reset-progress" class="reset-button">Reset Progress</button>
                     <button type="button" class="reset-button" id="reset-checklist" style="display: none;">Reset Progress</button>
                     <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
+                    <button type="button" class="reset-button" id="reset-progress">Reset Progress</button>
                     <button type="button" id="reset-progress" class="reset-button">Reset Progress</button>
                     <span id="checklist-progress" class="checklist-progress" aria-live="polite">0 of 20 completed</span>
                     <div id="checklist-status" class="sr-only" aria-live="polite"></div>
@@ -95,24 +97,24 @@
                         <div class="ingredient-category">
                             <h4>For the Pudding</h4>
                             <ul>
-                                <li>1 ¾ cups (225g) Medjool dates, pitted and chopped</li>
-                                <li>¾ cup (180ml) boiling water</li>
-                                <li>1 tsp baking soda</li>
-                                <li>¾ cup (175g) unsalted butter, softened</li>
-                                <li>¾ cup (150g) dark brown sugar</li>
-                                <li>2 large eggs</li>
-                                <li>1 tsp vanilla extract</li>
-                                <li>1 ¾ cups (225g) all-purpose flour</li>
-                                <li>1 ½ tsp baking powder</li>
+                                <li><label><input type="checkbox" class="ingredient-checkbox"> 1 ¾ cups (225g) Medjool dates, pitted and chopped</label></li>
+                                <li><label><input type="checkbox" class="ingredient-checkbox"> ¾ cup (180ml) boiling water</label></li>
+                                <li><label><input type="checkbox" class="ingredient-checkbox"> 1 tsp baking soda</label></li>
+                                <li><label><input type="checkbox" class="ingredient-checkbox"> ¾ cup (175g) unsalted butter, softened</label></li>
+                                <li><label><input type="checkbox" class="ingredient-checkbox"> ¾ cup (150g) dark brown sugar</label></li>
+                                <li><label><input type="checkbox" class="ingredient-checkbox"> 2 large eggs</label></li>
+                                <li><label><input type="checkbox" class="ingredient-checkbox"> 1 tsp vanilla extract</label></li>
+                                <li><label><input type="checkbox" class="ingredient-checkbox"> 1 ¾ cups (225g) all-purpose flour</label></li>
+                                <li><label><input type="checkbox" class="ingredient-checkbox"> 1 ½ tsp baking powder</label></li>
                             </ul>
                         </div>
                         <div class="ingredient-category">
                             <h4>For the Toffee Sauce</h4>
                             <ul>
-                                <li>1 cup (200g) dark brown sugar</li>
-                                <li>½ cup (115g) unsalted butter</li>
-                                <li>1 cup (240ml) heavy cream</li>
-                                <li>½ tsp sea salt</li>
+                                <li><label><input type="checkbox" class="ingredient-checkbox"> 1 cup (200g) dark brown sugar</label></li>
+                                <li><label><input type="checkbox" class="ingredient-checkbox"> ½ cup (115g) unsalted butter</label></li>
+                                <li><label><input type="checkbox" class="ingredient-checkbox"> 1 cup (240ml) heavy cream</label></li>
+                                <li><label><input type="checkbox" class="ingredient-checkbox"> ½ tsp sea salt</label></li>
                             </ul>
                         </div>
                     </div>
@@ -167,6 +169,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
+                    <a href="index.html" class="footer-logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
                     <a href="index.html" class="footer-logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
                     <div class="social-links">
                         <a href="#" aria-label="Follow us on Instagram">Instagram</a>
@@ -230,6 +233,9 @@
         }
         const toggleMenu = (forceClose = false) => {
         mobileMenu.addEventListener('click', () => {
+            const isExpanded = mobileMenu.getAttribute('aria-expanded') === 'true';
+            mobileMenu.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.setAttribute('aria-label', isExpanded ? 'Open Menu' : 'Close Menu');
             const isActive = mobileMenu.classList.toggle('active');
             navList.classList.toggle('active');
             mobileMenu.setAttribute('aria-expanded', isActive ? 'true' : 'false');
@@ -249,6 +255,7 @@
         document.querySelectorAll('#nav-list a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.setAttribute('aria-expanded', 'false');
+                mobileMenu.setAttribute('aria-label', 'Open Menu');
                 mobileMenu.classList.remove('active');
                 navList.classList.remove('active');
                 mobileMenu.setAttribute('aria-expanded', 'false');
@@ -269,6 +276,49 @@
             link.addEventListener('click', () => toggleMenu(true));
         });
 
+        // Ingredient Checklist Persistence
+        const checkboxes = document.querySelectorAll('.ingredient-checkbox');
+        const storageKey = 'cdr-checklist';
+
+        function loadChecklist() {
+            const savedState = JSON.parse(localStorage.getItem(storageKey)) || {};
+            checkboxes.forEach((cb) => {
+                const labelText = cb.parentElement.textContent.trim();
+                if (savedState[labelText]) {
+        const STORAGE_KEY = 'classic-dinner-resort-recipe-checklist';
+
+        function loadChecklist() {
+            const savedState = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+            checkboxes.forEach((cb, index) => {
+                if (savedState[index]) {
+                    cb.checked = true;
+                }
+            });
+        }
+
+        function saveChecklist() {
+            const state = {};
+            checkboxes.forEach((cb) => {
+                if (cb.checked) {
+                    const labelText = cb.parentElement.textContent.trim();
+                    state[labelText] = true;
+                }
+            });
+            localStorage.setItem(storageKey, JSON.stringify(state));
+            checkboxes.forEach((cb, index) => {
+                if (cb.checked) {
+                    state[index] = true;
+                }
+            });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', saveChecklist);
+        });
+
+        loadChecklist();
+        window.addEventListener('DOMContentLoaded', loadChecklist);
         // Interactive Checklist Persistence
         const recipeId = window.location.pathname.split('/').pop() || 'home';
         const STORAGE_KEY = `cdr-checklist-${recipeId}`;
@@ -484,6 +534,7 @@
             });
 
             const resetButton = document.getElementById('reset-progress');
+            const statusRegion = document.getElementById('checklist-status');
             const statusMsg = document.getElementById('checklist-status');
                     updateResetVisibility();
                     updateProgress();
@@ -495,6 +546,12 @@
                 resetButton.addEventListener('click', () => {
                     localStorage.removeItem(storageKey);
                     document.querySelectorAll('.ingredient-checkbox').forEach(cb => cb.checked = false);
+                    if (statusRegion) {
+                        statusRegion.textContent = 'Checklist progress reset.';
+                        setTimeout(() => { statusRegion.textContent = ''; }, 3000);
+                    }
+                });
+            }
                     updateProgress();
                     const statusMsg = document.getElementById('checklist-status');
                     updateProgress(true);
