@@ -227,7 +227,7 @@
             const isActive = forceClose ? false : !mobileMenu.classList.contains('active');
             mobileMenu.classList.toggle('active', isActive);
             navList.classList.toggle('active', isActive);
-            mobileMenu.setAttribute('aria-expanded', isActive);
+            mobileMenu.setAttribute('aria-expanded', isActive ? 'true' : 'false');
             mobileMenu.setAttribute('aria-label', isActive ? 'Close Menu' : 'Open Menu');
         }
 
@@ -279,6 +279,32 @@
             link.addEventListener('click', () => toggleMenu(true));
         });
 
+        // Ingredients Checklist Persistence
+        const checkboxes = document.querySelectorAll('.ingredient-checkbox');
+        const storageKey = 'classic-dinner-resort-recipe-checklist';
+
+        function saveChecklistState() {
+            const state = Array.from(checkboxes).map(cb => cb.checked);
+            localStorage.setItem(storageKey, JSON.stringify(state));
+        }
+
+        function restoreChecklistState() {
+            const savedState = localStorage.getItem(storageKey);
+            if (savedState) {
+                const state = JSON.parse(savedState);
+                checkboxes.forEach((cb, index) => {
+                    if (state[index] !== undefined) {
+                        cb.checked = state[index];
+                    }
+                });
+            }
+        }
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', saveChecklistState);
+        });
+
+        restoreChecklistState();
         // Interactive Recipe Checklist & Progress Reset
         // Ingredient Checklist Persistence
         const checkboxes = document.querySelectorAll('.ingredient-checkbox');
