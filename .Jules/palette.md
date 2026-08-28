@@ -1,3 +1,11 @@
+# Palette's UX Journal
+
+## 2024-05-22 - Improving Header Navigation Accessibility
+**Learning:** Using non-semantic elements like `div` for interactive components (logo links, mobile menus) creates accessibility barriers for keyboard and screen reader users. Semantic elements like `<a>` and `<button>` provide built-in focusability and roles.
+**Action:** Always refactor static branding and toggles into semantic `<a>` and `<button>` elements with appropriate ARIA attributes for state management.
+## 2024-05-23 - Semantic Mobile Navigation
+**Learning:** Using `div` for mobile menu toggles breaks keyboard accessibility. Refactoring to a semantic `button` with `aria-expanded` and `aria-label` provides necessary context for screen readers and ensures the element is focusable in the tab order.
+**Action:** Always use `<button type="button">` for interactive toggles and synchronize ARIA states with the UI state via JavaScript.
 ## 2026-06-15 - [Semantic and Accessible Navigation]
 **Learning:** Converting non-semantic elements (like `div`) to semantic ones (`button`, `a`) significantly improves accessibility but requires careful CSS resets (background, border, padding) to maintain visual design. ARIA attributes must be dynamically updated via JS to reflect state changes for screen readers.
 **Action:** Always prefer `<button>` for interactions and `<a>` for navigation. Include `:focus-visible` styles early to ensure keyboard accessibility. Use a centralized state management function in JS to keep ARIA attributes in sync with visual classes.
@@ -23,3 +31,17 @@
 ## 2026-06-23 - Interactive Feedback & Document Hygiene
 **Learning:** Providing immediate visual feedback for simulated asynchronous actions (like form submissions) significantly improves the perceived responsiveness of static sites. Additionally, maintaining a clean document structure—by removing duplicate `<body>` tags and redundant navigation links—prevents accessibility regressions and ensures reliable behavior in automated verification environments.
 **Action:** Implement text-based state changes (e.g., "Checking...", "Reserved!") for interactive forms and audit HTML structure for redundant semantic markers.
+
+## 2026-06-24 - Progressive Enhancement with CSS :has()
+**Learning:** Implementing interactive checklists using the CSS `:has()` selector allows for clean, state-driven styling (like strikethroughs) without manual class management in JavaScript. For persistent states like recipe progress, `localStorage` keys based on a segment of the item's text content provide better stability than indices if the list order changes.
+**Action:** Use `:has()` for conditional parent styling based on input states and prefer text-based content keys for persisting individual item states in dynamic lists.
+## 2026-06-30 - Dynamic Ingredient Checklists & Persistence
+**Learning:** Transforming static recipe lists into interactive checklists improves kitchen-time UX. Using `localStorage` with keys based on the page path and item index/text ensures state persistence across sessions without a backend. The `:has()` CSS selector allows for clean, declarative styling of completed states based on internal checkbox status.
+**Action:** Use unique, stable keys for `localStorage` to avoid state leakage between pages and leverage modern CSS selectors like `:has()` for state-driven UI updates.
+## 2026-07-08 - Interactive Recipe Checklists & Persistence
+**Learning:** Adding interactive checkboxes to recipe ingredients and instructions using JavaScript injection allows for a "checklist" experience without modifying the underlying static HTML structure. Using `localStorage` keyed by content and path ensures progress is saved across sessions. The CSS `:has()` selector simplifies visual feedback (strikethrough/opacity) for completed tasks without requiring manual class toggling in JS.
+**Action:** Implement progress-tracking checklists on instruction-heavy pages using JS injection, `localStorage` for persistence, and `:has()` for state-based styling.
+
+## 2026-08-13 - State Reset Experience & Accessible Live Regions
+**Learning:** Providing a way to reset checklists is essential for user retention and repeat cooking sessions. When clearing checklist states programmatically, dynamic feedback via an `aria-live` polite announcer is crucial to inform screen reader users that the action succeeded.
+**Action:** Accompany batch list clearing actions with a dynamic hidden screen-reader announcement to maintain sensory synchronicity for visually impaired users.
