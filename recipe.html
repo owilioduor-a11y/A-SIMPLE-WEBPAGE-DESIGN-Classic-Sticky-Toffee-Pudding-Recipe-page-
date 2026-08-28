@@ -47,11 +47,14 @@
                 <p>A masterpiece of texture and warmth, perfected by Chef Owili.</p>
                 <div class="recipe-actions">
                     <a href="index.html#menu" class="back-link">← Back to Menu</a>
+                    <button type="button" class="reset-button" id="reset-checklist" style="display: none;">Reset Progress</button>
                     <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
                     <button type="button" id="reset-progress" class="reset-button">Reset Progress</button>
                     <span id="checklist-progress" class="checklist-progress" aria-live="polite">0 of 20 completed</span>
                     <div id="checklist-status" class="sr-only" aria-live="polite"></div>
                 </div>
+                <div id="a11y-announcer" class="sr-only" aria-live="polite"></div>
+                <div id="checklist-status" class="sr-only" aria-live="polite"></div>
             </div>
         </section>
 
@@ -200,14 +203,131 @@
         });
 
         // Interactive Recipe Checklist
+        const recipeItems = document.querySelectorAll('.ingredients li, .instructions li');
+        const storageKeyPrefix = `cdr-checklist-${location.pathname}`;
+
+        recipeItems.forEach((item) => {
+            const itemText = item.innerText.trim().slice(0, 50);
+            const storageKey = `${storageKeyPrefix}-${itemText}`;
+            const isChecked = localStorage.getItem(storageKey) === 'true';
+
+            const label = document.createElement('label');
+            label.className = 'recipe-checklist-label';
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'ingredient-checkbox';
+            checkbox.checked = isChecked;
+
+            const span = document.createElement('span');
+            span.innerHTML = item.innerHTML;
+
+            item.innerHTML = '';
+            label.appendChild(checkbox);
+            label.appendChild(span);
+            item.appendChild(label);
+            item.style.listStyle = 'none';
+        // Interactive Ingredient Checklist
+        const ingredientsList = document.querySelectorAll('.ingredients ul li');
+        const storageKey = `cdr-checklist-${location.pathname}`;
+
+        ingredientsList.forEach(li => {
+            const content = li.innerHTML;
+            const text = li.textContent.trim();
+            const itemId = text.slice(0, 50); // Use truncated text as key
+
+            const isChecked = localStorage.getItem(`${storageKey}-${itemId}`) === 'true';
+
+            li.innerHTML = `
+                <label>
+                    <input type="checkbox" class="ingredient-checkbox" ${isChecked ? 'checked' : ''}>
+                    <span>${content}</span>
+                </label>
+            `;
+
+            const checkbox = li.querySelector('input');
+            checkbox.addEventListener('change', () => {
+                localStorage.setItem(`${storageKey}-${itemId}`, checkbox.checked);
+            });
+        });
+        // Interactive Checklist
+        const checklistKey = `cdr-checklist-${location.pathname}`;
+        const saved = JSON.parse(localStorage.getItem(checklistKey) || '{}');
+        document.querySelectorAll('.ingredients li').forEach(li => {
+            const text = li.textContent.trim();
+            const checked = saved[text] ? 'checked' : '';
+            li.innerHTML = `<label><input type="checkbox" class="ingredient-checkbox" ${checked}> ${li.innerHTML}</label>`;
+        });
+        document.querySelector('.ingredients').addEventListener('change', (e) => {
+            if (e.target.classList.contains('ingredient-checkbox')) {
+                const state = {};
+                document.querySelectorAll('.ingredient-checkbox').forEach(cb => {
+                    state[cb.closest('label').textContent.trim()] = cb.checked;
+                });
+                localStorage.setItem(checklistKey, JSON.stringify(state));
+            }
+        });
+        document.querySelectorAll('.ingredients li, .instructions li').forEach(li => {
+            const key = `rcp-${location.pathname}-${li.textContent.trim().slice(0, 30)}`;
+            const cb = Object.assign(document.createElement('input'), { type: 'checkbox', className: 'ingredient-checkbox', checked: localStorage.getItem(key) === 'true' });
+            const lbl = Object.assign(document.createElement('label'), { className: 'checklist-item' });
+            cb.onchange = () => localStorage.setItem(key, cb.checked);
+            while (li.firstChild) lbl.appendChild(li.firstChild);
+            lbl.prepend(cb); li.appendChild(lbl);
+        });
+        // Ingredient Checklist
+        document.querySelectorAll('.ingredients li').forEach(li => {
+            const key = `cdr-ck-${location.pathname}-${li.textContent.trim().slice(0, 30)}`;
+            const label = document.createElement('label'), cb = document.createElement('input');
+            cb.type = 'checkbox'; cb.className = 'ingredient-checkbox';
+            cb.checked = localStorage.getItem(key) === 'true';
+            cb.onclick = () => localStorage.setItem(key, cb.checked);
+            while (li.firstChild) label.appendChild(li.firstChild);
+            label.prepend(cb); li.append(label);
+        });
+        // Ingredient Checklist Logic
+        const ingredientsList = document.querySelectorAll('.ingredients ul li');
+        const STORAGE_KEY_PREFIX = `cdr-checklist-${window.location.pathname}-`;
+
+        ingredientsList.forEach((li, index) => {
+            const originalContent = li.innerHTML;
+            const itemText = li.textContent.trim();
+            const storageKey = `${STORAGE_KEY_PREFIX}${index}-${itemText.substring(0, 30)}`;
+
+            // Create checkbox
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'ingredient-checkbox';
+            checkbox.checked = localStorage.getItem(storageKey) === 'true';
+
+            // Create label to wrap original content
+            const label = document.createElement('label');
+            label.appendChild(checkbox);
+
+            const contentSpan = document.createElement('span');
+            contentSpan.innerHTML = originalContent;
+            label.appendChild(contentSpan);
+
+            li.innerHTML = '';
+            li.appendChild(label);
+
+            checkbox.addEventListener('change', () => {
+                localStorage.setItem(storageKey, checkbox.checked);
+            });
+        });
+        // Interactive Recipe Checklist
         const setupChecklist = () => {
             const storageKey = `cdr-checklist-${location.pathname}`;
             const savedState = JSON.parse(localStorage.getItem(storageKey) || '{}');
             const listItems = document.querySelectorAll('.ingredients li, .instructions li');
-            const progressBadge = document.getElementById('checklist-progress');
-            const statusMsg = document.getElementById('checklist-status');
-            const resetButton = document.getElementById('reset-progress');
+            const resetButton = document.getElementById('reset-checklist');
+            const announcer = document.getElementById('a11y-announcer');
 
+            const updateResetVisibility = () => {
+                const checkboxes = document.querySelectorAll('.ingredient-checkbox');
+                const hasChecked = Array.from(checkboxes).some(cb => cb.checked);
+                if (resetButton) resetButton.style.display = hasChecked ? 'inline-block' : 'none';
+            };
             if (listItems.length === 0) return;
 
             const updateProgress = () => {
@@ -235,6 +355,7 @@
                     const currentState = JSON.parse(localStorage.getItem(storageKey) || '{}');
                     currentState[textContent] = checkbox.checked;
                     localStorage.setItem(storageKey, JSON.stringify(currentState));
+                    updateResetVisibility();
                     updateProgress();
                 });
             });
