@@ -318,13 +318,14 @@
         const navList = document.getElementById('nav-list');
 
         function toggleMenu(forceClose = false) {
+            if (!mobileMenu || !navList) return;
             const isActive = forceClose ? false : !mobileMenu.classList.contains('active');
             mobileMenu.classList.toggle('active', isActive);
             navList.classList.toggle('active', isActive);
             mobileMenu.setAttribute('aria-expanded', isActive);
             mobileMenu.setAttribute('aria-label', isActive ? 'Close Menu' : 'Open Menu');
         }
-        mobileMenu.addEventListener('click', () => {
+      mobileMenu.addEventListener('click', () => {
             const isExpanded = mobileMenu.getAttribute('aria-expanded') === 'true';
             mobileMenu.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
             const isActive = mobileMenu.classList.toggle('active');

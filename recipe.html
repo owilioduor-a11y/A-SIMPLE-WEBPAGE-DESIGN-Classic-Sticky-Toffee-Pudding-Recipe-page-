@@ -203,6 +203,7 @@
         const navList = document.getElementById('nav-list');
 
         function toggleMenu(forceClose = false) {
+            if (!mobileMenu || !navList) return;
             const isActive = forceClose ? false : !mobileMenu.classList.contains('active');
             mobileMenu.classList.toggle('active', isActive);
             navList.classList.toggle('active', isActive);
@@ -415,6 +416,18 @@
             };
             if (listItems.length === 0) return;
 
+            const updateProgress = (resetMessage = false) => {
+                const checkboxes = document.querySelectorAll('.ingredient-checkbox');
+                const total = checkboxes.length;
+                const completed = Array.from(checkboxes).filter(cb => cb.checked).length;
+                const statusMsg = document.getElementById('checklist-status');
+                if (statusMsg) {
+                    if (resetMessage) {
+                        statusMsg.textContent = 'Recipe progress reset.';
+                    } else {
+                        statusMsg.textContent = `${completed} of ${total} items completed.`;
+                    }
+                }
             const updateProgress = () => {
                 const total = listItems.length;
                 const checkedCount = document.querySelectorAll('.ingredient-checkbox:checked').length;
@@ -450,6 +463,7 @@
                 });
             });
 
+            const resetButton = document.getElementById('reset-progress');
             if (resetButton) {
                 resetButton.addEventListener('click', () => {
                     localStorage.removeItem(storageKey);
