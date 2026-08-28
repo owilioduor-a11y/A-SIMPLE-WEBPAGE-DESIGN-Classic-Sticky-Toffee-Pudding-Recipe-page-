@@ -72,6 +72,9 @@
 **Learning:** Adding interactive checkboxes to recipe ingredients and instructions using JavaScript injection allows for a "checklist" experience without modifying the underlying static HTML structure. Using `localStorage` keyed by content and path ensures progress is saved across sessions. The CSS `:has()` selector simplifies visual feedback (strikethrough/opacity) for completed tasks without requiring manual class toggling in JS.
 **Action:** Implement progress-tracking checklists on instruction-heavy pages using JS injection, `localStorage` for persistence, and `:has()` for state-based styling.
 
+## 2026-08-14 - Progress-Reset Usability & ARIA Announcements
+**Learning:** Providing a checklist option on utility pages must be paired with an easy-to-use 'Reset' action to support repetitive task flows (e.g. baking/cooking). Because resetting a checklist removes state dynamically, visually impaired users require an explicit, off-screen `aria-live` announcement to confirm that progress has been successfully cleared without disorienting their focus.
+**Action:** Always complement state-persistent checklists with a dynamic reset option and use a visually hidden `aria-live="polite"` element to announce state-clearing actions to assistive technologies.
 ## 2026-08-13 - State Reset Experience & Accessible Live Regions
 **Learning:** Providing a way to reset checklists is essential for user retention and repeat cooking sessions. When clearing checklist states programmatically, dynamic feedback via an `aria-live` polite announcer is crucial to inform screen reader users that the action succeeded.
 **Action:** Accompany batch list clearing actions with a dynamic hidden screen-reader announcement to maintain sensory synchronicity for visually impaired users.
