@@ -1,3 +1,12 @@
+## 2024-05-15 - [Navigation & Accessibility]
+**Learning:** Fixed headers often obscure the target of internal anchor links, leading to a jarring user experience where section headings are hidden. Additionally, non-semantic mobile menu toggles (e.g., using `div`) are inaccessible to keyboard and screen reader users.
+**Action:** Implement `scroll-padding-top` on the `html` element to automatically handle header offsets for all anchor links. Always use semantic `<button>` elements for toggles, applying a CSS reset (background: none, border: none, padding: 0) to preserve custom designs while ensuring accessibility.
+## 2024-05-23 - Improving Header Accessibility and Semantics
+**Learning:** Refactoring non-semantic `div` elements into semantic `<a>` and `<button>` tags significantly improves accessibility for keyboard and screen reader users without altering the visual design, provided appropriate CSS resets (background, border, padding) are applied. Adding a "Skip to content" link and `scroll-padding-top` further enhances the UX for sticky headers.
+**Action:** Always check for static branding `div`s and burger menu `div`s to refactor them into semantic elements with appropriate ARIA states. Add `scroll-padding-top` whenever a fixed header is used.
+## 2024-05-24 - [Accessibility & Scroll UX Overhaul]
+**Learning:** Fixed headers often obscure content when navigating via anchor links, requiring the use of `scroll-padding-top` on the root element. Additionally, refactoring non-semantic `div` toggles into `<button>` elements requires explicit CSS resets (background, border, padding) to preserve the original design while gaining critical ARIA support.
+**Action:** Always apply `scroll-padding-top` when implementing a sticky/fixed header and use semantic `<button>` tags for interactive toggles to ensure screen reader compatibility.
 ## 2024-11-20 - [Mobile Menu Accessibility]
 **Learning:** Refactoring static <div>-based toggles to semantic <button> elements with ARIA attributes (aria-expanded, aria-controls) significantly improves the experience for screen reader users. Using 'visibility: hidden' and 'opacity: 0' ensures that hidden menu items are not reachable via keyboard navigation (Tab key) when the menu is closed, which is a common but often overlooked accessibility issue in mobile navigation implementations.
 **Action:** Always use <button> for interactive toggles and ensure hidden content is explicitly removed from the accessibility tree and tab order.
@@ -56,6 +65,9 @@
 **Learning:** Providing immediate visual feedback for simulated asynchronous actions (like form submissions) significantly improves the perceived responsiveness of static sites. Additionally, maintaining a clean document structure—by removing duplicate `<body>` tags and redundant navigation links—prevents accessibility regressions and ensures reliable behavior in automated verification environments.
 **Action:** Implement text-based state changes (e.g., "Checking...", "Reserved!") for interactive forms and audit HTML structure for redundant semantic markers.
 
+## 2026-06-25 - Interactive Ingredient Checklists & ARIA Context
+**Learning:** Adding interactive checklists to recipes significantly improves the "cooking mode" UX. Using the CSS `:has()` selector allows for clean, semantic styling of parent elements based on checkbox state without complex JS class toggling. Additionally, generic links like "View Recipe Details" require explicit `aria-label`s to provide screen reader users with necessary context about the destination.
+**Action:** Implement `localStorage` persistence for checklists to maintain user state and always audit generic navigation links for contextual accessibility.
 ## 2026-06-25 - Interactive Ingredient Checklists
 **Learning:** Transforming static lists into interactive checklists with persistence (via `localStorage`) provides high UX value for utility-focused pages like recipes. To prevent state leakage, `localStorage` keys must be scoped to the specific page/slug. Furthermore, when augmenting existing content via JS, using `while (li.firstChild) { label.appendChild(li.firstChild); }` is safer than `textContent` as it preserves semantic HTML and nested formatting (like `<strong>` or `<span>`) within the list items.
 **Action:** Scope browser storage keys to unique page identifiers and use non-destructive DOM manipulation techniques to preserve existing semantic structures.
