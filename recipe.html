@@ -50,10 +50,12 @@
                 <p>A masterpiece of texture and warmth, perfected by Chef Owili.</p>
                 <div class="recipe-actions">
                     <a href="index.html#menu" class="back-link">← Back to Menu</a>
+                    <button type="button" class="reset-button" id="reset-checklist" style="display: none;">Reset Progress</button>
                     <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
                     <button type="button" id="reset-progress" class="reset-button">Reset Progress</button>
                     <div id="checklist-status" class="sr-only" aria-live="polite"></div>
                 </div>
+                <div id="a11y-announcer" class="sr-only" aria-live="polite"></div>
                 <div id="checklist-status" class="sr-only" aria-live="polite"></div>
             </div>
         </section>
@@ -355,6 +357,14 @@
             const storageKey = `cdr-checklist-${location.pathname}`;
             const savedState = JSON.parse(localStorage.getItem(storageKey) || '{}');
             const listItems = document.querySelectorAll('.ingredients li, .instructions li');
+            const resetButton = document.getElementById('reset-checklist');
+            const announcer = document.getElementById('a11y-announcer');
+
+            const updateResetVisibility = () => {
+                const checkboxes = document.querySelectorAll('.ingredient-checkbox');
+                const hasChecked = Array.from(checkboxes).some(cb => cb.checked);
+                if (resetButton) resetButton.style.display = hasChecked ? 'inline-block' : 'none';
+            };
             if (listItems.length === 0) return;
 
             listItems.forEach(li => {
@@ -374,6 +384,7 @@
                     const currentState = JSON.parse(localStorage.getItem(storageKey) || '{}');
                     currentState[textContent] = checkbox.checked;
                     localStorage.setItem(storageKey, JSON.stringify(currentState));
+                    updateResetVisibility();
                     updateProgress();
                 });
             });
