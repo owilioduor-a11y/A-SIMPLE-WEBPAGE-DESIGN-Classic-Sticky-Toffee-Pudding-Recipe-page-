@@ -732,7 +732,17 @@ footer {
     }
 
     nav {
-        padding: 0 25px;
+        padding: 0 15px;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+        flex: 1;
+    }
+
+    .cta-button {
+        padding: 10px 15px;
+        font-size: 0.7rem;
     }
 
 
