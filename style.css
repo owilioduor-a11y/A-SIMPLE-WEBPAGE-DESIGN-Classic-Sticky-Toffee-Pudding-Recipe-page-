@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
+}
+
 :root {
     --primary-gold: #d4af37;
     --gold-hover: #b8860b;
@@ -77,6 +82,7 @@ h3 {
     font-weight: 600;
 }
 
+/* Skip Link */
 .menu-toggle {
     display: none;
 }
@@ -575,6 +581,7 @@ footer {
 }
 
 .footer-logo {
+    display: block;
     font-family: var(--serif-font);
     font-size: 2.2rem;
     font-weight: 800;
@@ -681,6 +688,10 @@ footer {
 }
 
 /* Responsive Design */
+.menu-toggle {
+    display: none;
+}
+
 @media (max-width: 1024px) {
     .reservation-box {
         grid-template-columns: 1fr;
@@ -711,6 +722,7 @@ footer {
     nav {
         padding: 0 25px;
     }
+
 
     nav ul {
         display: none;
@@ -830,10 +842,100 @@ footer {
 }
 
 .ingredients ul li {
-    padding: 10px 0;
+    list-style: none !important;
+    padding: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ingredients ul li label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    cursor: pointer;
     font-size: 0.95rem;
     color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+    list-style: none !important;
+}
+
+    transition: var(--transition-smooth);
+}
+
+.ingredient-checkbox {
+    accent-color: var(--primary-gold);
+    width: 18px;
+    height: 18px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.ingredients ul li:has(.ingredient-checkbox:checked) label {
+.ingredients ul li label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    width: 100%;
+}
+
+.ingredients ul li:has(input:checked) label {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.ingredients ul li input[type="checkbox"] {
+    accent-color: var(--primary-gold);
+    width: 18px;
+    height: 18px;
+    margin-top: 3px;
+    cursor: pointer;
+    padding: 12px 0;
+    cursor: pointer;
+    width: 100%;
+}
+
+.ingredient-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--primary-gold);
+    border-radius: 3px;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    top: 3px;
+    flex-shrink: 0;
+    transition: var(--transition-smooth);
+}
+
+.ingredient-checkbox:checked {
+    background-color: var(--primary-gold);
+}
+
+.ingredient-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--dark-bg);
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.ingredient-checkbox:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
+}
+
+.ingredients ul li:has(.ingredient-checkbox:checked) {
+    text-decoration: line-through;
+    opacity: 0.6;
 }
 
 .instructions h3 {
@@ -852,6 +954,8 @@ footer {
     color: var(--text-muted);
     list-style: none;
     counter-increment: recipe-counter;
+    display: flex;
+    align-items: flex-start;
 }
 
 .instructions ol li {
@@ -863,6 +967,9 @@ footer {
     content: counter(recipe-counter) ".";
     color: var(--primary-gold);
     font-weight: 700;
+    margin-right: 15px;
+    flex-shrink: 0;
+    width: 25px;
     margin-right: 10px;
     flex-shrink: 0;
 }
@@ -874,6 +981,11 @@ footer {
     margin-bottom: 5px;
     color: var(--primary-gold);
 }
+
+.checklist-item { display: flex; gap: 12px; cursor: pointer; accent-color: var(--primary-gold); }
+.checklist-item:has(:checked) { text-decoration: line-through; opacity: 0.6; }
+.ingredients li, .instructions li { list-style: none !important; }
+@media print { .ingredient-checkbox { display: none !important; } }
 
 .recipe-gallery {
     display: grid;
@@ -968,6 +1080,32 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     margin-top: 30px;
 }
 
+.reset-button {
+    background-color: transparent;
+    color: var(--primary-gold);
+    border: 1px solid var(--primary-gold);
+    padding: 10px 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.reset-button:hover {
+    background-color: rgba(212, 175, 55, 0.1);
+    color: var(--white);
+    border-color: var(--white);
+    transform: translateY(-2px);
+}
+
+.reset-button:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
+}
+
 .print-button {
     background-color: var(--primary-gold);
     color: var(--dark-bg);
@@ -993,6 +1131,38 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     outline-offset: 4px;
 }
 
+/* Interactive Checklist */
+.recipe-checklist-label {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.recipe-checklist-label:has(.ingredient-checkbox:checked) {
+    opacity: 0.5;
+    text-decoration: line-through;
+    text-decoration-color: var(--primary-gold);
+}
+
+.ingredient-checkbox {
+    accent-color: var(--primary-gold);
+    width: 18px;
+    height: 18px;
+    margin-top: 4px;
+    flex-shrink: 0;
+/* Ingredient Checklist */
+.ingredients li:has(:checked) { opacity: 0.6; text-decoration: line-through; }
+.ingredients li label { display: flex; gap: 12px; cursor: pointer; }
+.ingredient-checkbox {
+    appearance: none; width: 20px; height: 20px; border: 2px solid var(--primary-gold);
+    border-radius: 4px; flex-shrink: 0; margin-top: 4px; cursor: pointer;
+}
+.ingredient-checkbox:checked { background: var(--primary-gold); position: relative; }
+.ingredient-checkbox:checked::after {
+    content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    color: var(--dark-bg); font-weight: bold;
 .reset-button {
     background-color: transparent;
     color: var(--primary-gold);
@@ -1013,6 +1183,13 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     transform: translateY(-2px);
 }
 
+.checklist-status {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: var(--primary-gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
 .reset-button:focus-visible {
     outline: 2px solid var(--primary-gold);
     outline-offset: 4px;
@@ -1031,6 +1208,8 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
 }
 
 @media print {
+    .ingredient-checkbox { display: none !important; }
+
     body, .container, .recipe-detail-header, #recipe-content, .ingredients {
         background: #ffffff !important;
         color: #000000 !important;
@@ -1044,6 +1223,7 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
         color: #333333 !important;
     }
 
+    header, footer, .recipe-actions, .scroll-indicator, .menu-toggle, .recipe-gallery, .cta-button, .secondary-button, .ingredient-checkbox {
     header, footer, .recipe-actions, .scroll-indicator, .menu-toggle, .recipe-gallery, .cta-button, .secondary-button, .ingredient-checkbox, .reset-button {
         display: none !important;
     }
@@ -1082,6 +1262,15 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
         opacity: 1 !important;
         transform: none !important;
         transition: none !important;
+    }
+
+    .ingredient-checkbox {
+        display: none !important;
+    }
+
+    .recipe-checklist-label {
+        opacity: 1 !important;
+        text-decoration: none !important;
     }
 
     @page {
