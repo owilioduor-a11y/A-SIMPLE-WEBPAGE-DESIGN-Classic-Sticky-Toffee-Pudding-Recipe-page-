@@ -937,6 +937,11 @@ footer {
     color: var(--primary-gold);
 }
 
+.checklist-item { display: flex; gap: 12px; cursor: pointer; accent-color: var(--primary-gold); }
+.checklist-item:has(:checked) { text-decoration: line-through; opacity: 0.6; }
+.ingredients li, .instructions li { list-style: none !important; }
+@media print { .ingredient-checkbox { display: none !important; } }
+
 .recipe-gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
