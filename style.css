@@ -987,6 +987,12 @@ footer {
 
 .ingredients ul li:has(.ingredient-checkbox:checked) {
     text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.ingredient-checkbox {
+    accent-color: var(--primary-gold);
+    margin-right: 12px;
     opacity: 0.5;
     color: var(--text-muted);
 }
@@ -1414,6 +1420,10 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     .ingredients ul li {
         border-bottom: 1px solid #eee !important;
         color: #333 !important;
+    }
+
+    .ingredient-checkbox {
+        display: none !important;
     }
 
     .instructions ol li {

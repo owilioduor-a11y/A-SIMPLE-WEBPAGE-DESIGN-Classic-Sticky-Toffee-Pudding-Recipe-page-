@@ -274,6 +274,13 @@
 
         // Ingredient Checklist Persistence
         const checkboxes = document.querySelectorAll('.ingredient-checkbox');
+        const storageKey = 'cdr-checklist';
+
+        function loadChecklist() {
+            const savedState = JSON.parse(localStorage.getItem(storageKey)) || {};
+            checkboxes.forEach((cb) => {
+                const labelText = cb.parentElement.textContent.trim();
+                if (savedState[labelText]) {
         const STORAGE_KEY = 'classic-dinner-resort-recipe-checklist';
 
         function loadChecklist() {
@@ -287,6 +294,13 @@
 
         function saveChecklist() {
             const state = {};
+            checkboxes.forEach((cb) => {
+                if (cb.checked) {
+                    const labelText = cb.parentElement.textContent.trim();
+                    state[labelText] = true;
+                }
+            });
+            localStorage.setItem(storageKey, JSON.stringify(state));
             checkboxes.forEach((cb, index) => {
                 if (cb.checked) {
                     state[index] = true;
@@ -299,6 +313,7 @@
             cb.addEventListener('change', saveChecklist);
         });
 
+        loadChecklist();
         window.addEventListener('DOMContentLoaded', loadChecklist);
         // Interactive Checklist Persistence
         const recipeId = window.location.pathname.split('/').pop() || 'home';
