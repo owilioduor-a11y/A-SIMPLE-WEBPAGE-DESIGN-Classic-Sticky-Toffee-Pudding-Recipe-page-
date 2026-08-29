@@ -391,6 +391,21 @@
             li.appendChild(label);
         });
         // Interactive Recipe Checklist
+        document.addEventListener('DOMContentLoaded', () => {
+            const KEY = `cdr-checklist-${location.pathname}`;
+            let state = {};
+            try {
+                state = JSON.parse(localStorage.getItem(KEY) || '{}');
+            } catch {
+                state = {};
+            }
+            document.querySelectorAll('.ingredients li, .instructions li').forEach((li, i) => {
+                const id = `item-${i}-${li.textContent.trim().slice(0, 30).replace(/\s+/g, '-')}`, checked = state[id] || false;
+                const html = li.innerHTML;
+                li.innerHTML = `<label class="recipe-checklist-item"><input type="checkbox" ${checked ? 'checked' : ''}><span>${html}</span></label>`;
+                li.querySelector('input').onchange = (e) => { state[id] = e.target.checked; localStorage.setItem(KEY, JSON.stringify(state)); };
+            });
+        });
         const recipeItems = document.querySelectorAll('.ingredients li, .instructions li');
         const storageKeyPrefix = `cdr-checklist-${location.pathname}`;
 
