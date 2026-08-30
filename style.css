@@ -1541,7 +1541,8 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
         transition: none !important;
     }
 
-    .recipe-checklist-label {
+    .ingredients li:has(:checked),
+    li:has(.ingredient-checkbox:checked) .checklist-content {
         opacity: 1 !important;
         text-decoration: none !important;
     }
