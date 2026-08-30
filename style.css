@@ -98,6 +98,8 @@ html {
 
 .skip-link:focus {
     top: 0;
+}
+
 :focus-visible {
     outline: 2px solid var(--primary-gold);
     outline-offset: 4px;
@@ -225,13 +227,11 @@ nav {
 
 .menu-toggle {
     display: none;
-.logo:hover {
-    color: var(--primary-gold);
+    white-space: nowrap;
 }
 
-.menu-toggle {
-    display: none;
-    white-space: nowrap;
+.logo:hover {
+    color: var(--primary-gold);
 }
 
 nav ul {
@@ -573,6 +573,14 @@ nav ul li a:hover::after {
     font-style: italic;
 }
 
+.menu-footer {
+    text-align: center;
+    margin-top: 80px;
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
 .recipe-link {
     display: inline-block;
     margin-top: 15px;
@@ -598,6 +606,12 @@ nav ul li a:hover::after {
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
+}
+
+.reservation-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .reservation-box {
@@ -693,6 +707,12 @@ footer {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 80px;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .footer-logo {
@@ -847,7 +867,6 @@ footer {
     }
 
     nav {
-        padding: 0 20px;
         padding: 0 15px;
     }
 
@@ -856,32 +875,11 @@ footer {
         flex: 1;
     }
 
-    .logo {
-        font-size: 1.2rem;
-    }
-
-    .cta-button {
-        padding: 10px 20px;
-        font-size: 0.7rem;
-    }
-
     .cta-button {
         padding: 10px 15px;
         font-size: 0.7rem;
     }
 
-
-    nav ul {
-        display: none;
-    }
-
-    .logo {
-        font-size: 1.4rem;
-    }
-
-    .cta-button {
-        padding: 10px 20px;
-        font-size: 0.75rem;
     .menu-toggle {
         background: none;
         border: none;
@@ -1031,94 +1029,12 @@ footer {
     transition: var(--transition-smooth);
 }
 
-.ingredients ul li:has(.ingredient-checkbox:checked) {
-    opacity: 0.5;
-    text-decoration: line-through;
-    color: var(--primary-gold);
-}
-
-.ingredients ul li label {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: line-through;
-    opacity: 0.6;
-}
-
-.ingredient-checkbox {
-    accent-color: var(--primary-gold);
-    margin-right: 12px;
-    opacity: 0.5;
-    color: var(--text-muted);
-}
-
-.ingredient-checkbox {
-    margin-right: 12px;
-    accent-color: var(--primary-gold);
-    cursor: pointer;
-    width: 16px;
-    height: 16px;
-    vertical-align: middle;
-}
-
-.ingredients label {
-    cursor: pointer;
-    display: block;
-    width: 100%;
-    transition: opacity 0.3s ease, color 0.3s ease;
-}
-
-    display: flex;
-    align-items: flex-start;
-    list-style: none !important;
-}
-
-    transition: var(--transition-smooth);
-}
-
-.ingredient-checkbox {
-    accent-color: var(--primary-gold);
-    width: 18px;
-    height: 18px;
-    margin-top: 3px;
-    cursor: pointer;
-}
-
-.ingredients ul li:has(.ingredient-checkbox:checked) label {
+/* Ingredients Checklist */
 .ingredients ul li label {
     display: flex;
     align-items: flex-start;
     gap: 12px;
     cursor: pointer;
-}
-
-.ingredient-checkbox {
-    accent-color: var(--primary-gold);
-    width: 18px;
-    height: 18px;
-    margin-top: 2px;
-    cursor: pointer;
-    padding: 10px 0;
-    cursor: pointer;
-    transition: var(--transition-smooth);
-    width: 100%;
-}
-
-.ingredients ul li:has(input:checked) label {
-    text-decoration: line-through;
-    opacity: 0.6;
-}
-
-.ingredients ul li input[type="checkbox"] {
-    accent-color: var(--primary-gold);
-    width: 18px;
-    height: 18px;
-    margin-top: 3px;
-    cursor: pointer;
-    padding: 12px 0;
-    cursor: pointer;
-    width: 100%;
 }
 
 .ingredient-checkbox {
@@ -1128,16 +1044,11 @@ footer {
     height: 18px;
     border: 2px solid var(--primary-gold);
     border-radius: 3px;
-    cursor: pointer;
-    position: relative;
-    transition: var(--transition-smooth);
-    flex-shrink: 0;
     background: transparent;
-    cursor: pointer;
     position: relative;
     top: 3px;
     flex-shrink: 0;
-    transition: var(--transition-smooth);
+    cursor: pointer;
 }
 
 .ingredient-checkbox:checked {
@@ -1147,12 +1058,6 @@ footer {
 .ingredient-checkbox:checked::after {
     content: '✓';
     position: absolute;
-    color: var(--dark-bg);
-    font-size: 14px;
-    font-weight: 900;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -1168,16 +1073,9 @@ footer {
 
 .ingredients ul li:has(.ingredient-checkbox:checked) {
     text-decoration: line-through;
-    opacity: 0.5;
     opacity: 0.6;
+    color: var(--primary-gold);
 }
-
-.ingredients label { display: flex; align-items: center; gap: 12px; cursor: pointer; transition: var(--transition-smooth); }
-.ingredient-checkbox { appearance: none; width: 18px; height: 18px; border: 2px solid var(--primary-gold); position: relative; flex-shrink: 0; cursor: pointer; }
-.ingredient-checkbox:checked { background: var(--primary-gold); }
-.ingredient-checkbox:checked::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--dark-bg); font-size: 12px; font-weight: 900; }
-.ingredient-checkbox:focus-visible { outline: 2px solid var(--white); outline-offset: 4px; }
-.ingredients li:has(:checked) { text-decoration: line-through; opacity: 0.5; }
 
 .instructions h3 {
     margin-bottom: 30px;
@@ -1301,6 +1199,8 @@ footer {
 .print-button:hover {
     background-color: var(--primary-gold);
     color: var(--dark-bg);
+}
+
 /* Interactive Checklist Styles */
 .ingredient-checkbox {
     accent-color: var(--primary-gold);
@@ -1425,6 +1325,9 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     .instructions ol li strong {
         color: #000000 !important;
         font-size: 12pt !important;
+    }
+}
+
 /* Focus Indicators */
 :focus-visible {
     outline: 2px solid var(--primary-gold);
@@ -1435,6 +1338,8 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
 .cta-button:focus-visible,
 .secondary-button:focus-visible {
     outline-offset: 6px;
+}
+
 .recipe-actions {
     display: flex;
     justify-content: center;
@@ -1443,7 +1348,7 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     margin-top: 30px;
 }
 
-.print-button, .reset-button {
+.print-button,
 .reset-button {
     background-color: transparent;
     color: var(--primary-gold);
@@ -1524,6 +1429,8 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     height: 18px;
     margin-top: 4px;
     flex-shrink: 0;
+}
+
 /* Ingredient Checklist */
 .ingredients li:has(:checked) { opacity: 0.6; text-decoration: line-through; }
 .ingredients li label { display: flex; gap: 12px; cursor: pointer; }
@@ -1535,26 +1442,12 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
 .ingredient-checkbox:checked::after {
     content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
     color: var(--dark-bg); font-weight: bold;
-.reset-button {
-    background-color: transparent;
-    color: var(--primary-gold);
-    border: 1px solid var(--primary-gold);
-    padding: 10px 24px;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    font-weight: 700;
-    transition: var(--transition-smooth);
-    display: inline-block;
-    cursor: pointer;
 }
 
 .reset-button:hover {
     background-color: rgba(212, 175, 55, 0.1);
-    color: var(--white);    border-color: var(--white);
-    transform: translateY(-2px);
-}
-
+    color: var(--white);
+    border-color: var(--white);
     transform: translateY(-2px);
 }
 
@@ -1599,7 +1492,6 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
         color: #333333 !important;
     }
 
-    header, footer, .recipe-actions, .scroll-indicator, .menu-toggle, .recipe-gallery, .cta-button, .secondary-button, .ingredient-checkbox {
     header, footer, .recipe-actions, .scroll-indicator, .menu-toggle, .recipe-gallery, .cta-button, .secondary-button, .ingredient-checkbox, .reset-button {
         display: none !important;
     }
@@ -1629,10 +1521,6 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
         color: #333 !important;
     }
 
-    .ingredient-checkbox {
-        display: none !important;
-    }
-
     .recipe-detail-header {
         padding: 40px 0 !important;
     }
@@ -1653,10 +1541,6 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
         transition: none !important;
     }
 
-    .ingredient-checkbox {
-        display: none !important;
-    }
-
     .recipe-checklist-label {
         opacity: 1 !important;
         text-decoration: none !important;
@@ -1665,4 +1549,4 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     @page {
         margin: 2cm;
     }
-}
+    }
