@@ -117,3 +117,7 @@
 ## 2026-08-13 - State Reset Experience & Accessible Live Regions
 **Learning:** Providing a way to reset checklists is essential for user retention and repeat cooking sessions. When clearing checklist states programmatically, dynamic feedback via an `aria-live` polite announcer is crucial to inform screen reader users that the action succeeded.
 **Action:** Accompany batch list clearing actions with a dynamic hidden screen-reader announcement to maintain sensory synchronicity for visually impaired users.
+
+## 2026-08-30 - Form Status Accessibility & Live Regions
+**Learning:** For interactive forms with dynamic text updates on submit buttons (such as "Checking..." to "Table Reserved!"), screen reader users do not receive automatic notifications unless an off-screen `role="status"` element with `aria-live="polite"` is updated programmatically.
+**Action:** Always complement button text state changes with an `aria-live="polite"` status announcer element to ensure screen reader parity during asynchronous form actions.
