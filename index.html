@@ -29,26 +29,6 @@
     <header>
         <nav>
             <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
-            <button class="menu-toggle" id="mobile-menu" aria-label="Open menu" aria-expanded="false" aria-controls="nav-list" type="button">
-            <a href="index.html" class="logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
-            <div class="logo">Classic Dinner Resort</div>
-            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list">
-            <a href="index.html" class="logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
-            <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list">
-            <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
-            <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-list">
-<body id="home">
-    <a href="#main-content" class="skip-link">Skip to content</a>
-    <header>
-        <nav>
-            <a href="index.html" class="logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
-            <button class="menu-toggle" id="mobile-menu" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="nav-list">
-            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-list">
-            <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
-            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
-            <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
-            <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list" type="button">
-            <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list" type="button">
             <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
                 <span></span>
                 <span></span>
@@ -208,6 +188,7 @@
                             </div>
                         </div>
                         <button type="submit" class="cta-button full-width">Check Availability</button>
+                        <div id="reservation-status" class="sr-only" role="status" aria-live="polite"></div>
                     </form>
                 </div>
             </div>
@@ -344,23 +325,34 @@
             const today = new Date().toISOString().split('T')[0];
             dateInput.setAttribute('min', today);
         }
-      // Reservation Form Feedback
+      // Reservation Form Feedback with Accessible Live Region
         const reservationForm = document.querySelector('.reservation-form');
+        const reservationStatus = document.getElementById('reservation-status');
         if (reservationForm) {
             reservationForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const submitBtn = reservationForm.querySelector('button[type="submit"]');
+                const dateVal = document.getElementById('date')?.value || '';
+                const guestsVal = document.getElementById('guests')?.value || '';
+                const timeVal = document.getElementById('time')?.value || '';
                 const originalText = submitBtn.textContent;
 
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Checking...';
+                if (reservationStatus) {
+                    reservationStatus.textContent = 'Checking table availability...';
+                }
 
                 setTimeout(() => {
                     submitBtn.textContent = 'Table Reserved!';
+                    if (reservationStatus) {
+                        reservationStatus.textContent = `Table reserved for ${guestsVal} ${guestsVal === '1' ? 'person' : 'people'} on ${dateVal} at ${timeVal}!`;
+                    }
 
                     setTimeout(() => {
                         submitBtn.disabled = false;
                         submitBtn.textContent = originalText;
+                        if (reservationStatus) reservationStatus.textContent = '';
                         reservationForm.reset();
                     }, 3000);
                 }, 1500);
