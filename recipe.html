@@ -23,7 +23,27 @@
     <a href="#main-content" class="skip-link">Skip to content</a>
     <header>
         <nav>
+            <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
+            <button class="menu-toggle" id="mobile-menu" aria-label="Open menu" aria-expanded="false" aria-controls="nav-list" type="button">
             <a href="index.html" class="logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
+            <div class="logo">Classic Dinner Resort</div>
+            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list">
+            <a href="index.html" class="logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
+            <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list">
+            <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
+            <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-list">
+<body id="home">
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <header>
+        <nav>
+            <a href="index.html" class="logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
+            <button class="menu-toggle" id="mobile-menu" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="nav-list">
+            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-list">
+            <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
+            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
+            <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
+            <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list" type="button">
+            <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list" type="button">
             <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
                 <span></span>
                 <span></span>
@@ -47,7 +67,7 @@
                 <p>A masterpiece of texture and warmth, perfected by Chef Owili.</p>
                 <div class="recipe-actions">
                     <a href="index.html#menu" class="back-link">← Back to Menu</a>
-                    <span id="checklist-progress" class="checklist-progress">0 of 0 completed</span>
+                    <span id="checklist-progress" class="checklist-progress">0 of 20 completed</span>
                     <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
                     <button type="button" id="reset-progress" class="reset-button" style="display: none;">Reset Progress</button>
                 </div>
@@ -135,8 +155,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <a href="index.html" class="footer-logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
-                    <a href="index.html" class="recipe-link" style="display: block; margin-top: 10px;" aria-label="Back to home">Back to Home</a>
+                    <a href="index.html" class="footer-logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
+                    <a href="#home" class="recipe-link" style="display: block; margin-top: 10px;" aria-label="Back to top">Back to Top</a>
                     <div class="social-links">
                         <a href="#" aria-label="Follow us on Instagram">Instagram</a>
                         <a href="#" aria-label="Follow us on Facebook">Facebook</a>
@@ -167,10 +187,7 @@
     </footer>
     <script>
         // Scroll Reveal Animation
-        const observerOptions = {
-            threshold: 0.1
-        };
-
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -178,20 +195,19 @@
                 }
             });
         }, observerOptions);
-
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Mobile Navigation Toggle
+        // Mobile Menu Toggle
         const mobileMenu = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
 
         const toggleMenu = (forceClose = false) => {
             if (!mobileMenu || !navList) return;
-            const isOpen = forceClose ? false : !mobileMenu.classList.contains('active');
-            mobileMenu.classList.toggle('active', isOpen);
-            navList.classList.toggle('active', isOpen);
-            mobileMenu.setAttribute('aria-expanded', isOpen.toString());
-            mobileMenu.setAttribute('aria-label', isOpen ? 'Close Menu' : 'Open Menu');
+            const isActive = forceClose ? false : !mobileMenu.classList.contains('active');
+            mobileMenu.classList.toggle('active', isActive);
+            navList.classList.toggle('active', isActive);
+            mobileMenu.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+            mobileMenu.setAttribute('aria-label', isActive ? 'Close Menu' : 'Open Menu');
         };
 
         if (mobileMenu) {
@@ -202,18 +218,26 @@
             link.addEventListener('click', () => toggleMenu(true));
         });
 
-        // Interactive Recipe Checklist
+        // Interactive Recipe Checklist (injected, synced with localStorage, announced via live region)
         const setupChecklist = () => {
             const storageKey = `cdr-checklist-${location.pathname}`;
-            const savedState = JSON.parse(localStorage.getItem(storageKey) || '{}');
+            const readStoredState = () => {
+                try {
+                    const parsed = JSON.parse(localStorage.getItem(storageKey) || '{}');
+                    return (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) ? parsed : {};
+                } catch (error) {
+                    return {};
+                }
+            };
+            const savedState = readStoredState();
             const listItems = document.querySelectorAll('.ingredients li, .instructions li');
-            const resetButton = document.getElementById('reset-progress');
             const progressBadge = document.getElementById('checklist-progress');
             const statusLiveRegion = document.getElementById('checklist-status');
+            const resetButton = document.getElementById('reset-progress');
 
             if (listItems.length === 0) return;
 
-            const updateProgress = (announceReset = false) => {
+            const updateProgress = (announce = false) => {
                 const total = listItems.length;
                 const checked = document.querySelectorAll('.ingredient-checkbox:checked').length;
                 const progressText = `${checked} of ${total} completed`;
@@ -222,14 +246,17 @@
                     progressBadge.textContent = progressText;
                 }
 
-                if (resetButton) {
-                    resetButton.style.display = checked > 0 ? 'inline-block' : 'none';
-                }
-
                 if (statusLiveRegion) {
-                    statusLiveRegion.textContent = announceReset
+                    statusLiveRegion.textContent = announce
                         ? `Recipe progress reset. 0 of ${total} items completed.`
                         : `Recipe progress: ${progressText}.`;
+                }
+            };
+
+            const updateResetVisibility = () => {
+                const hasChecked = Array.from(document.querySelectorAll('.ingredient-checkbox')).some(cb => cb.checked);
+                if (resetButton) {
+                    resetButton.style.display = hasChecked ? 'inline-block' : 'none';
                 }
             };
 
@@ -247,20 +274,26 @@
 
                 const checkbox = li.querySelector('input');
                 checkbox.addEventListener('change', () => {
-                    const currentState = JSON.parse(localStorage.getItem(storageKey) || '{}');
+                    const currentState = readStoredState();
                     currentState[textContent] = checkbox.checked;
                     localStorage.setItem(storageKey, JSON.stringify(currentState));
+                    updateResetVisibility();
                     updateProgress();
                 });
             });
 
+            updateResetVisibility();
             updateProgress();
 
             if (resetButton) {
                 resetButton.addEventListener('click', () => {
                     localStorage.removeItem(storageKey);
                     document.querySelectorAll('.ingredient-checkbox').forEach(cb => cb.checked = false);
+                    updateResetVisibility();
                     updateProgress(true);
+                    if (statusLiveRegion) {
+                        setTimeout(() => { statusLiveRegion.textContent = ''; }, 3000);
+                    }
                 });
             }
         };
