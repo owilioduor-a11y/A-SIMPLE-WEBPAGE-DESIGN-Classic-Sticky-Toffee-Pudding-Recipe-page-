@@ -42,13 +42,6 @@
     <header>
         <nav>
             <a href="index.html" class="logo" aria-label="Classic Dinner Resort Home">Classic Dinner Resort</a>
-            <button class="menu-toggle" id="mobile-menu" aria-label="Toggle Navigation" aria-expanded="false" aria-controls="nav-list">
-            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-list">
-            <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
-            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
-            <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
-            <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list" type="button">
-            <button class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-list" type="button">
             <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
                 <span></span>
                 <span></span>
@@ -208,6 +201,7 @@
                             </div>
                         </div>
                         <button type="submit" class="cta-button full-width">Check Availability</button>
+                        <div id="reservation-status" class="sr-only" role="status" aria-live="polite"></div>
                     </form>
                 </div>
             </div>
@@ -297,8 +291,7 @@
                 <iframe
                     title="Google Maps showing the location of Classic Dinner Resort in Mayfair, London"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.123456789!2d-0.1478!3d51.5113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487605123456789%3A0x1234567890abcdef!2sMayfair%2C%20London!5e0!3m2!1sen!2suk!4v1620645678901!5m2!1sen!2suk"
-                    width="100%" height="200" style="border:0; filter: grayscale(100%) invert(90%); opacity: 0.6;" allowfullscreen="" loading="lazy"
-                    title="Location of Classic Dinner Resort in Mayfair, London"></iframe>
+                    width="100%" height="200" style="border:0; filter: grayscale(100%) invert(90%); opacity: 0.6;" allowfullscreen="" loading="lazy"></iframe>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 Classic Dinner Resort. All Rights Reserved.</p>
@@ -346,6 +339,8 @@
         }
       // Reservation Form Feedback
         const reservationForm = document.querySelector('.reservation-form');
+        const reservationStatus = document.getElementById('reservation-status');
+
         if (reservationForm) {
             reservationForm.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -354,13 +349,22 @@
 
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Checking...';
+                if (reservationStatus) {
+                    reservationStatus.textContent = 'Checking table availability...';
+                }
 
                 setTimeout(() => {
                     submitBtn.textContent = 'Table Reserved!';
+                    if (reservationStatus) {
+                        reservationStatus.textContent = 'Table successfully reserved! We look forward to welcoming you.';
+                    }
 
                     setTimeout(() => {
                         submitBtn.disabled = false;
                         submitBtn.textContent = originalText;
+                        if (reservationStatus) {
+                            reservationStatus.textContent = '';
+                        }
                         reservationForm.reset();
                     }, 3000);
                 }, 1500);
