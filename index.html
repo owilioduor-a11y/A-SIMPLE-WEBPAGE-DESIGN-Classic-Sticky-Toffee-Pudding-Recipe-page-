@@ -337,7 +337,7 @@
             const today = new Date().toISOString().split('T')[0];
             dateInput.setAttribute('min', today);
         }
-      // Reservation Form Feedback
+      // Reservation Form Feedback with Accessible Live Region
         const reservationForm = document.querySelector('.reservation-form');
         const reservationStatus = document.getElementById('reservation-status');
 
@@ -345,6 +345,9 @@
             reservationForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const submitBtn = reservationForm.querySelector('button[type="submit"]');
+                const dateVal = document.getElementById('date')?.value || '';
+                const guestsVal = document.getElementById('guests')?.value || '';
+                const timeVal = document.getElementById('time')?.value || '';
                 const originalText = submitBtn.textContent;
 
                 submitBtn.disabled = true;
