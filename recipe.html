@@ -49,6 +49,7 @@
                     <a href="index.html#menu" class="back-link">← Back to Menu</a>
                     <span id="checklist-progress" class="checklist-progress">0 of 20 completed</span>
                     <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
+                    <button type="button" id="copy-link" class="copy-button">Copy Link</button>
                     <button type="button" id="reset-progress" class="reset-button" style="display: none;">Reset Progress</button>
                 </div>
                 <div id="checklist-status" class="sr-only" role="status" aria-live="polite"></div>
@@ -274,6 +275,37 @@
                     if (statusLiveRegion) {
                         setTimeout(() => { statusLiveRegion.textContent = ''; }, 3000);
                     }
+                });
+            }
+
+            const copyBtn = document.getElementById('copy-link');
+            if (copyBtn) {
+                copyBtn.addEventListener('click', () => {
+                    navigator.clipboard.writeText(window.location.href).then(() => {
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = 'Copied!';
+                        if (statusLiveRegion) {
+                            statusLiveRegion.textContent = 'Recipe link copied to clipboard.';
+                        }
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText;
+                            if (statusLiveRegion) {
+                                statusLiveRegion.textContent = '';
+                            }
+                        }, 2000);
+                    }).catch(() => {
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = 'Failed';
+                        if (statusLiveRegion) {
+                            statusLiveRegion.textContent = 'Unable to copy link to clipboard.';
+                        }
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText;
+                            if (statusLiveRegion) {
+                                statusLiveRegion.textContent = '';
+                            }
+                        }, 2000);
+                    });
                 });
             }
         };
