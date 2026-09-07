@@ -798,7 +798,8 @@ footer {
     transform: translateY(-2px);
 }
 
-.reset-button {
+.reset-button,
+.copy-button {
     background-color: transparent;
     color: var(--primary-gold);
     border: 1px solid var(--primary-gold);
@@ -811,7 +812,8 @@ footer {
     transition: var(--transition-smooth);
 }
 
-.reset-button:hover {
+.reset-button:hover,
+.copy-button:hover {
     background-color: rgba(212, 175, 55, 0.1);
     color: var(--white);
     border-color: var(--white);
@@ -1295,14 +1297,31 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     cursor: pointer;
 }
 
-.reset-button:hover {
+.reset-button,
+.copy-button {
+    background-color: transparent;
+    color: var(--primary-gold);
+    border: 1px solid var(--primary-gold);
+    padding: 10px 24px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.reset-button:hover,
+.copy-button:hover {
     background-color: rgba(212, 175, 55, 0.1);
     color: var(--white);
     border-color: var(--white);
     transform: translateY(-2px);
 }
 
-.reset-button:focus-visible {
+.reset-button:focus-visible,
+.copy-button:focus-visible {
     outline: 2px solid var(--white);
     outline-offset: 4px;
 }
@@ -1322,20 +1341,14 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     cursor: pointer;
 }
 
-.reset-button {
-    background-color: transparent;
-    color: var(--primary-gold);
-    border: 1px solid var(--primary-gold);
-}
-
-.print-button:hover, .reset-button:hover {
+.print-button:hover {
     background-color: var(--white);
     color: var(--dark-bg);
     border-color: var(--white);
     transform: translateY(-2px);
 }
 
-.print-button:focus-visible, .reset-button:focus-visible {
+.print-button:focus-visible {
     outline: 2px solid var(--white);
     outline-offset: 4px;
 }
@@ -1424,8 +1437,7 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
         color: #333333 !important;
     }
 
-    header, footer, .recipe-actions, .scroll-indicator, .menu-toggle, .recipe-gallery, .cta-button, .secondary-button, .ingredient-checkbox {
-    header, footer, .recipe-actions, .scroll-indicator, .menu-toggle, .recipe-gallery, .cta-button, .secondary-button, .ingredient-checkbox, .reset-button {
+    header, footer, .recipe-actions, .scroll-indicator, .menu-toggle, .recipe-gallery, .cta-button, .secondary-button, .ingredient-checkbox, .reset-button, .copy-button {
         display: none !important;
     }
 
