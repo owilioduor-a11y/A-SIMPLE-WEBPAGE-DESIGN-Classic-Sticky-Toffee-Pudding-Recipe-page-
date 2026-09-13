@@ -48,6 +48,7 @@
                 <div class="recipe-actions">
                     <a href="index.html#menu" class="back-link">← Back to Menu</a>
                     <span id="checklist-progress" class="checklist-progress">0 of 20 completed</span>
+                    <button type="button" id="share-recipe" class="share-button">Share Recipe</button>
                     <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
                     <button type="button" id="reset-progress" class="reset-button" style="display: none;">Reset Progress</button>
                 </div>
@@ -278,7 +279,36 @@
             }
         };
 
-        document.addEventListener('DOMContentLoaded', setupChecklist);
+        // Share Recipe Button Clipboard Integration with Accessible Feedback
+        const setupShareButton = () => {
+            const shareBtn = document.getElementById('share-recipe');
+            const statusLiveRegion = document.getElementById('checklist-status');
+            if (!shareBtn) return;
+
+            shareBtn.addEventListener('click', () => {
+                const originalText = shareBtn.textContent;
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    shareBtn.textContent = 'Link Copied!';
+                    if (statusLiveRegion) statusLiveRegion.textContent = 'Recipe link copied to clipboard.';
+                    setTimeout(() => {
+                        shareBtn.textContent = originalText;
+                        if (statusLiveRegion) statusLiveRegion.textContent = '';
+                    }, 3000);
+                }).catch(() => {
+                    shareBtn.textContent = 'Failed to Copy';
+                    if (statusLiveRegion) statusLiveRegion.textContent = 'Unable to copy recipe link.';
+                    setTimeout(() => {
+                        shareBtn.textContent = originalText;
+                        if (statusLiveRegion) statusLiveRegion.textContent = '';
+                    }, 3000);
+                });
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setupChecklist();
+            setupShareButton();
+        });
     </script>
 </body>
 </html>
