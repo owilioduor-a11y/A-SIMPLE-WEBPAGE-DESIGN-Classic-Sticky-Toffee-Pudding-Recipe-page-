@@ -121,3 +121,7 @@
 ## 2026-08-30 - Form Status Accessibility & Live Regions
 **Learning:** For interactive forms with dynamic text updates on submit buttons (such as "Checking..." to "Table Reserved!"), screen reader users do not receive automatic notifications unless an off-screen `role="status"` element with `aria-live="polite"` is updated programmatically.
 **Action:** Always complement button text state changes with an `aria-live="polite"` status announcer element to ensure screen reader parity during asynchronous form actions.
+
+## 2026-09-01 - Clipboard Action Feedback & Live Region Synchronization
+**Learning:** Interactive action buttons performing asynchronous browser actions (such as `navigator.clipboard.writeText`) should implement both `.then()` success and `.catch()` error handlers to temporarily update button text and announce status feedback using an accessible `aria-live` region. Unclosed media query blocks in global CSS files can silently break element styling by scoping screen rules into print media rules.
+**Action:** Always pair clipboard actions with error handlers and `aria-live` screen reader feedback, and audit CSS files for media query block closure syntax.
