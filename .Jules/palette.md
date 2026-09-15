@@ -121,3 +121,7 @@
 ## 2026-08-30 - Form Status Accessibility & Live Regions
 **Learning:** For interactive forms with dynamic text updates on submit buttons (such as "Checking..." to "Table Reserved!"), screen reader users do not receive automatic notifications unless an off-screen `role="status"` element with `aria-live="polite"` is updated programmatically.
 **Action:** Always complement button text state changes with an `aria-live="polite"` status announcer element to ensure screen reader parity during asynchronous form actions.
+
+## 2026-09-15 - Clipboard Action Confirmation & Live Region Parity
+**Learning:** Interactive action buttons performing browser operations (such as `navigator.clipboard.writeText`) should provide immediate visual confirmational state feedback (temporarily updating button text to "Copied!") paired with an off-screen `aria-live` announcement for screen reader users, while gracefully handling error cases via `.catch()`.
+**Action:** Always complement clipboard or share button actions with temporary text state updates, polite `aria-live` status announcements, and explicit error handlers.
