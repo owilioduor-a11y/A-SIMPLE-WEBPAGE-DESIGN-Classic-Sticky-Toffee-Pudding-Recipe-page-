@@ -122,6 +122,6 @@
 **Learning:** For interactive forms with dynamic text updates on submit buttons (such as "Checking..." to "Table Reserved!"), screen reader users do not receive automatic notifications unless an off-screen `role="status"` element with `aria-live="polite"` is updated programmatically.
 **Action:** Always complement button text state changes with an `aria-live="polite"` status announcer element to ensure screen reader parity during asynchronous form actions.
 
-## 2026-09-16 - Clipboard Actions & ARIA Announcements
-**Learning:** Interactive action buttons performing asynchronous browser actions (such as `navigator.clipboard.writeText`) should implement both `.then()` success and `.catch()` error handlers to temporarily update button text and announce status feedback using an accessible `aria-live` region.
-**Action:** Pair clipboard interaction buttons with momentary button label changes and polite screen reader announcements to ensure accessible feedback across all modalities.
+## 2026-09-03 - Multi-Page Footer Anchor Consistency
+**Learning:** In multi-page static sites where distinct pages use unique body IDs (e.g., `<body id="recipe">` vs `<body id="home">`), footer links like "Back to Top" must explicitly reference the current page's element ID. Failing to update template-copied links results in broken fragment navigation where clicking "Back to Top" fails silently.
+**Action:** Audit all internal anchor link targets (`href="#..."`) across secondary pages to ensure they match existing DOM IDs on that specific document.
