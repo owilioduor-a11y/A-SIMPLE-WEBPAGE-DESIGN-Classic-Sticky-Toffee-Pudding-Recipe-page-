@@ -125,3 +125,7 @@
 ## 2026-09-16 - Clipboard Actions & ARIA Announcements
 **Learning:** Interactive action buttons performing asynchronous browser actions (such as `navigator.clipboard.writeText`) should implement both `.then()` success and `.catch()` error handlers to temporarily update button text and announce status feedback using an accessible `aria-live` region.
 **Action:** Pair clipboard interaction buttons with momentary button label changes and polite screen reader announcements to ensure accessible feedback across all modalities.
+
+## 2026-10-15 - Mobile Navigation Escape Key Dismissal & Focus Restoration
+**Learning:** For mobile drawer and modal navigation overlays, supporting the `Escape` key (`e.key === 'Escape' || e.key === 'Esc'`) is essential for keyboard accessibility. When dismissing the menu via keyboard, focus must be programmatically returned (`mobileMenu.focus()`) to the toggle button to maintain a logical and intuitive keyboard focus flow.
+**Action:** Always complement mobile menu toggles with an `Escape` key event listener that closes the active menu and explicitly restores focus to the toggle button.
