@@ -318,6 +318,13 @@
             link.addEventListener('click', () => toggleMenu(true));
         });
 
+        document.addEventListener('keydown', (e) => {
+            if ((e.key === 'Escape' || e.key === 'Esc') && mobileMenu && mobileMenu.classList.contains('active')) {
+                toggleMenu(true);
+                mobileMenu.focus();
+            }
+        });
+
         // Set minimum date for reservation date picker to today
         const dateInput = document.getElementById('date');
         if (dateInput) {
