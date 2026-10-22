@@ -199,6 +199,13 @@
             link.addEventListener('click', () => toggleMenu(true));
         });
 
+        document.addEventListener('keydown', (e) => {
+            if ((e.key === 'Escape' || e.key === 'Esc') && mobileMenu && mobileMenu.classList.contains('active')) {
+                toggleMenu(true);
+                mobileMenu.focus();
+            }
+        });
+
         // Interactive Recipe Checklist (injected, synced with localStorage, announced via live region)
         const setupChecklist = () => {
             const storageKey = `cdr-checklist-${location.pathname}`;
