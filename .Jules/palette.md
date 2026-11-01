@@ -125,3 +125,7 @@
 ## 2026-09-16 - Clipboard Actions & ARIA Announcements
 **Learning:** Interactive action buttons performing asynchronous browser actions (such as `navigator.clipboard.writeText`) should implement both `.then()` success and `.catch()` error handlers to temporarily update button text and announce status feedback using an accessible `aria-live` region.
 **Action:** Pair clipboard interaction buttons with momentary button label changes and polite screen reader announcements to ensure accessible feedback across all modalities.
+
+## 2026-10-31 - Multi-Page Fragment Targets for Scroll Navigation
+**Learning:** When templating or sharing footer layouts across multi-page static websites where different pages have custom top-level container IDs (such as `<body id="recipe">` versus `<body id="home">`), internal fragment links such as 'Back to Top' will fail silently if they reference another page's ID. Keyboard and screen reader users rely on anchor links resolving accurately to focusable/top-level elements on the current document.
+**Action:** Always verify internal fragment navigation links across individual pages to ensure their target IDs exist on the current document.
