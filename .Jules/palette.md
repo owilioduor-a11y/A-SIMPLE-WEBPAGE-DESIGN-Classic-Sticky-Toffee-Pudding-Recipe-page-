@@ -125,3 +125,7 @@
 ## 2026-09-16 - Clipboard Actions & ARIA Announcements
 **Learning:** Interactive action buttons performing asynchronous browser actions (such as `navigator.clipboard.writeText`) should implement both `.then()` success and `.catch()` error handlers to temporarily update button text and announce status feedback using an accessible `aria-live` region.
 **Action:** Pair clipboard interaction buttons with momentary button label changes and polite screen reader announcements to ensure accessible feedback across all modalities.
+
+## 2026-11-03 - Vestibular Motion Accessibility & prefers-reduced-motion
+**Learning:** Luxury landing pages often employ continuous keyframe animations (like pulsing scroll lines) and heavy scroll/hover transitions that cause discomfort or motion sickness for users with vestibular motion disorders. Respecting the `prefers-reduced-motion: reduce` media query by resetting `scroll-behavior` to `auto` and collapsing animation/transition durations to near-zero (`0.01ms`) ensures immediate rendering without breaking layout states or accessibility trees.
+**Action:** Always include a global `@media (prefers-reduced-motion: reduce)` rule that resets scroll behavior and neutralizes animation/transition durations across all elements and pseudo-elements.
