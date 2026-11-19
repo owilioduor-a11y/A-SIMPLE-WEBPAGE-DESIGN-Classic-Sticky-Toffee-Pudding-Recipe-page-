@@ -24,11 +24,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body id="home">
+    <div id="top" aria-hidden="true"></div>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <header>
         <nav>
-            <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
-            <button class="menu-toggle" id="mobile-menu" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-list">
+            <a href="index.html" class="logo" aria-label="Classic Dinner Resort - Home" aria-current="page">Classic Dinner Resort</a>
+            <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-list">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -44,7 +46,7 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         <section id="hero">
             <div class="hero-content">
                 <span class="subtitle">Exquisite Fine Dining</span>
@@ -69,9 +71,9 @@
                     <div class="story-text">
                         <span class="subtitle">Our Philosophy</span>
                         <h2>The Art of Sustainable Dining</h2>
-                        <p>At Classic Dinner Resort, we redefine <strong>modern British cuisine</strong> through a lens of <strong>farm-to-table excellence</strong>. Chef Owili, our visionary lead, has spent decades perfecting the balance of texture and taste, ensuring every plate reflects our commitment to <strong>sustainable sourcing</strong> and seasonal purity.</p>
-                        <p>As a premier destination for <strong>fine dining in London</strong>, our resort has become a sanctuary for those who appreciate the finer things in life. We partner with local artisans and ethical farmers to bring the freshest ingredients from the British countryside directly to your table.</p>
-                        <p>Our culinary philosophy is rooted in heritage and precision. Every dish tells a story of craftsmanship, from our signature aged Wagyu to our world-renowned traditional desserts, creating an unforgettable sensory journey for every guest.</p>
+                        <p>At Classic Dinner Resort, we redefine <strong>modern British cuisine</strong> through a lens of <strong>farm-to-table excellence</strong>. Chef Owili, our visionary leader, crafts every plate with precision and purpose.</p>
+                        <p>As a premier destination for <strong>fine dining in London</strong>, our resort has become a sanctuary for those who appreciate the finer things in life. We partner with local producers to curate seasonal menus rooted in integrity and taste.</p>
+                        <p>Our culinary philosophy is rooted in heritage and precision. Every dish tells a story of craftsmanship, from our signature aged Wagyu to our world-renowned traditional desserts.</p>
                         <a href="#menu" class="secondary-button story-cta">Discover Our Menu</a>
                     </div>
                 </div>
@@ -131,7 +133,7 @@
                                 <span class="item-price">$18</span>
                             </div>
                             <p class="item-desc">Our signature dark sponge cake, Medjool dates, luscious buttery toffee sauce, vanilla bean gelato.</p>
-                            <a href="recipe.html" class="recipe-link">View Recipe Details</a>
+                            <a href="recipe.html" class="recipe-link" aria-label="View recipe details for Classic Sticky Toffee Pudding">View Recipe Details</a>
                         </div>
                         <div class="menu-item">
                             <div class="menu-item-header">
@@ -187,6 +189,7 @@
                             </div>
                         </div>
                         <button type="submit" class="cta-button full-width">Check Availability</button>
+                        <div id="reservation-status" class="sr-only" role="status" aria-live="polite"></div>
                     </form>
                 </div>
             </div>
@@ -237,7 +240,7 @@
                     </div>
                 </div>
                 <div class="social-cta">
-                    <a href="#" class="secondary-button">Follow on Instagram</a>
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="secondary-button">Follow on Instagram</a>
                 </div>
             </div>
         </section>
@@ -247,10 +250,11 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <div class="footer-logo">Classic Dinner Resort</div>
+                    <a href="index.html" class="footer-logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
+                    <a href="#top" class="recipe-link" style="display: block; margin-top: 10px;" aria-label="Back to top">Back to Top</a>
                     <div class="social-links">
-                        <a href="#" aria-label="Follow us on Instagram">Instagram</a>
-                        <a href="#" aria-label="Follow us on Facebook">Facebook</a>
+                        <a href="https://www.instagram.com/" aria-label="Follow us on Instagram" target="_blank" rel="noopener noreferrer">Instagram</a>
+                        <a href="https://www.facebook.com/" aria-label="Follow us on Facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
                     </div>
                 </div>
                 <div class="footer-info">
@@ -273,8 +277,9 @@
             </div>
             <div class="footer-map">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.123456789!2d-0.1478!3d51.5113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487605123456789%3A0x1234567890abcdef!2sMayfair%2C%20London!5e0!3m2!1sen!2suk!4v1620645678901!5m2!1sen!2suk"
-                    width="100%" height="200" style="border:0; filter: grayscale(100%) invert(90%); opacity: 0.6;" allowfullscreen="" loading="lazy"></iframe>
+                    title="Google Maps showing the location of Classic Dinner Resort in Mayfair, London"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.123456789!2d-0.1478!3d51.5113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487605123456789%3A0x123456789%3A0x123456789!5e0!3m2!1sen!2suk!4v1710000000000"
+                    width="100%" height="200" style="border:0; filter: grayscale(100%) invert(90%); opacity: 0.6;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 Classic Dinner Resort. All Rights Reserved.</p>
@@ -283,10 +288,7 @@
     </footer>
     <script>
         // Scroll Reveal Animation
-        const observerOptions = {
-            threshold: 0.1
-        };
-
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -294,28 +296,76 @@
                 }
             });
         }, observerOptions);
-
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+        // Mobile Menu Toggle
         const mobileMenu = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
 
-        mobileMenu.addEventListener('click', () => {
-            const isExpanded = mobileMenu.getAttribute('aria-expanded') === 'true';
-            mobileMenu.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.setAttribute('aria-label', isExpanded ? 'Open navigation menu' : 'Close navigation menu');
-            mobileMenu.classList.toggle('active');
-            navList.classList.toggle('active');
-        });
+        const toggleMenu = (forceClose = false) => {
+            if (!mobileMenu || !navList) return;
+            const isActive = forceClose ? false : !mobileMenu.classList.contains('active');
+            mobileMenu.classList.toggle('active', isActive);
+            navList.classList.toggle('active', isActive);
+            mobileMenu.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+            mobileMenu.setAttribute('aria-label', isActive ? 'Close Menu' : 'Open Menu');
+        };
+
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', () => toggleMenu());
+        }
 
         document.querySelectorAll('#nav-list a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                navList.classList.remove('active');
-                mobileMenu.setAttribute('aria-expanded', 'false');
-                mobileMenu.setAttribute('aria-label', 'Open navigation menu');
-            });
+            link.addEventListener('click', () => toggleMenu(true));
         });
+
+        document.addEventListener('keydown', (e) => {
+            if ((e.key === 'Escape' || e.key === 'Esc') && mobileMenu && mobileMenu.classList.contains('active')) {
+                toggleMenu(true);
+                mobileMenu.focus();
+            }
+        });
+
+        // Set minimum date for reservation date picker to today
+        const dateInput = document.getElementById('date');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        }
+
+        // Reservation Form Feedback with Accessible Live Region
+        const reservationForm = document.querySelector('.reservation-form');
+        const reservationStatus = document.getElementById('reservation-status');
+
+        if (reservationForm) {
+            reservationForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const submitBtn = reservationForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Checking...';
+                if (reservationStatus) {
+                    reservationStatus.textContent = 'Checking table availability...';
+                }
+
+                setTimeout(() => {
+                    submitBtn.textContent = 'Table Reserved!';
+                    if (reservationStatus) {
+                        reservationStatus.textContent = 'Table successfully reserved! We look forward to welcoming you.';
+                    }
+
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                        if (reservationStatus) {
+                            reservationStatus.textContent = '';
+                        }
+                        reservationForm.reset();
+                    }, 3000);
+                }, 1500);
+            });
+        }
     </script>
 </body>
 </html>
