@@ -20,6 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
 <body id="recipe">
+    <div id="top" aria-hidden="true"></div>
     <a href="#main-content" class="skip-link">Skip to content</a>
     <header>
         <nav>
@@ -49,7 +50,7 @@
                     <a href="index.html#menu" class="back-link">← Back to Menu</a>
                     <span id="checklist-progress" class="checklist-progress">0 of 20 completed</span>
                     <button type="button" id="copy-link" class="print-button" aria-label="Copy recipe link to clipboard">Copy Link</button>
-                    <button type="button" class="print-button" onclick="window.print()">Print Recipe</button>
+                    <button type="button" id="print-recipe" class="print-button">Print Recipe</button>
                     <button type="button" id="reset-progress" class="reset-button" style="display: none;">Reset Progress</button>
                 </div>
                 <div id="checklist-status" class="sr-only" role="status" aria-live="polite"></div>
@@ -90,7 +91,7 @@
                         <h3>Method of Preparation</h3>
                         <ol>
                             <li>
-                                <strong>Prepare the Dates:</strong> Place the chopped dates in a bowl and pour the boiling water over them. Stir in the baking soda and let them sit for 10 minutes to soften. Mash slightly with a fork.
+                                <strong>Prepare the Dates:</strong> Place the chopped dates in a bowl and pour the boiling water over them. Stir in the baking soda and let them sit for 10 minutes [...].
                             </li>
                             <li>
                                 <strong>Cream Butter and Sugar:</strong> In a large bowl, cream the butter and dark brown sugar until light and fluffy, then beat in the eggs and vanilla.
@@ -137,10 +138,10 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <a href="index.html" class="footer-logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
-                    <a href="#home" class="recipe-link" style="display: block; margin-top: 10px;" aria-label="Back to top">Back to Top</a>
+                    <a href="#top" class="recipe-link" style="display: block; margin-top: 10px;" aria-label="Back to top">Back to Top</a>
                     <div class="social-links">
-                        <a href="#" aria-label="Follow us on Instagram">Instagram</a>
-                        <a href="#" aria-label="Follow us on Facebook">Facebook</a>
+                        <a href="https://www.instagram.com/" aria-label="Follow us on Instagram" target="_blank" rel="noopener noreferrer">Instagram</a>
+                        <a href="https://www.facebook.com/" aria-label="Follow us on Facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
                     </div>
                 </div>
                 <div class="footer-info">
@@ -205,6 +206,11 @@
                 mobileMenu.focus();
             }
         });
+
+        const printButton = document.getElementById('print-recipe');
+        if (printButton) {
+            printButton.addEventListener('click', () => window.print());
+        }
 
         // Interactive Recipe Checklist (injected, synced with localStorage, announced via live region)
         const setupChecklist = () => {
