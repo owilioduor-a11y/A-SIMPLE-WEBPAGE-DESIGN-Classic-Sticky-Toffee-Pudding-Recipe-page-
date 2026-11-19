@@ -126,6 +126,6 @@
 **Learning:** Interactive action buttons performing asynchronous browser actions (such as `navigator.clipboard.writeText`) should implement both `.then()` success and `.catch()` error handlers to temporarily update button text and announce status feedback using an accessible `aria-live` region.
 **Action:** Pair clipboard interaction buttons with momentary button label changes and polite screen reader announcements to ensure accessible feedback across all modalities.
 
-## 2026-10-31 - Multi-Page Fragment Targets for Scroll Navigation
-**Learning:** When templating or sharing footer layouts across multi-page static websites where different pages have custom top-level container IDs (such as `<body id="recipe">` versus `<body id="home">`), internal fragment links such as 'Back to Top' will fail silently if they reference another page's ID. Keyboard and screen reader users rely on anchor links resolving accurately to focusable/top-level elements on the current document.
-**Action:** Always verify internal fragment navigation links across individual pages to ensure their target IDs exist on the current document.
+## 2026-10-02 - Vestibular Motion Accessibility & Prefers-Reduced-Motion
+**Learning:** Animated luxury interfaces with continuous looping animations (e.g. scroll indicators), entrance transforms (e.g. translateY keyframes), and global smooth scrolling can trigger severe discomfort or nausea for users with vestibular disorders. A global `@media (prefers-reduced-motion: reduce)` query overriding `scroll-behavior: auto` and normalizing transition/animation durations to 0.01ms immediately eliminates motion triggers while preserving full functionality and visual design.
+**Action:** Always include a global `prefers-reduced-motion: reduce` query that resets `scroll-behavior` to `auto` and accelerates animations and transitions to near-zero duration on animation-rich sites.
