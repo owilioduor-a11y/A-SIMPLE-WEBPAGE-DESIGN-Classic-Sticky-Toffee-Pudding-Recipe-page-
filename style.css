@@ -25,6 +25,21 @@ html {
     scroll-padding-top: 100px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 .skip-link {
     position: absolute;
     top: -100px;
@@ -779,7 +794,6 @@ footer {
     background: rgba(212, 175, 55, 0.05);
 }
 
-.share-button,
 .print-button {
     background-color: var(--primary-gold);
     color: var(--dark-bg);
@@ -793,17 +807,10 @@ footer {
     transition: var(--transition-smooth);
 }
 
-.share-button:hover,
 .print-button:hover {
     background-color: var(--white);
     color: var(--dark-bg);
     transform: translateY(-2px);
-}
-
-.share-button:focus-visible,
-.print-button:focus-visible {
-    outline: 2px solid var(--white);
-    outline-offset: 4px;
 }
 
 .reset-button {
@@ -966,6 +973,7 @@ footer {
     @page {
         margin: 2cm;
     }
+}
 
 /* Ingredients Checklist */
 .ingredients ul li label {
@@ -1288,6 +1296,7 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     margin-top: 30px;
 }
 
+.share-button,
 .print-button,
 .reset-button {
     background-color: transparent;
@@ -1301,6 +1310,17 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
     font-weight: 700;
     transition: var(--transition-smooth);
     cursor: pointer;
+}
+
+.share-button:hover {
+    background-color: var(--primary-gold);
+    color: var(--dark-bg);
+    transform: translateY(-2px);
+}
+
+.share-button:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
 }
 
 .reset-button:hover {
@@ -1432,7 +1452,7 @@ li:has(.ingredient-checkbox:checked) .checklist-content {
         color: #333333 !important;
     }
 
-    header, footer, .recipe-actions, .scroll-indicator, .menu-toggle, .recipe-gallery, .cta-button, .secondary-button, .ingredient-checkbox, .reset-button, .share-button {
+    header, footer, .recipe-actions, .scroll-indicator, .menu-toggle, .recipe-gallery, .cta-button, .secondary-button, .ingredient-checkbox, .reset-button {
         display: none !important;
     }
 
