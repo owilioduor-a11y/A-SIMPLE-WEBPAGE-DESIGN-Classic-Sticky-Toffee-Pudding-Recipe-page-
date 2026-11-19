@@ -25,6 +25,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 </head>
 <body id="home">
+    <div id="top" aria-hidden="true"></div>
     <a href="#main-content" class="skip-link">Skip to content</a>
     <header>
         <nav>
@@ -70,9 +71,9 @@
                     <div class="story-text">
                         <span class="subtitle">Our Philosophy</span>
                         <h2>The Art of Sustainable Dining</h2>
-                        <p>At Classic Dinner Resort, we redefine <strong>modern British cuisine</strong> through a lens of <strong>farm-to-table excellence</strong>. Chef Owili, our visionary lead, has spent decades perfecting the balance of texture and taste, ensuring every plate reflects our commitment to <strong>sustainable sourcing</strong> and seasonal purity.</p>
-                        <p>As a premier destination for <strong>fine dining in London</strong>, our resort has become a sanctuary for those who appreciate the finer things in life. We partner with local artisans and ethical farmers to bring the freshest ingredients from the British countryside directly to your table.</p>
-                        <p>Our culinary philosophy is rooted in heritage and precision. Every dish tells a story of craftsmanship, from our signature aged Wagyu to our world-renowned traditional desserts, creating an unforgettable sensory journey for every guest.</p>
+                        <p>At Classic Dinner Resort, we redefine <strong>modern British cuisine</strong> through a lens of <strong>farm-to-table excellence</strong>. Chef Owili, our visionary leader, crafts every plate with precision and purpose.</p>
+                        <p>As a premier destination for <strong>fine dining in London</strong>, our resort has become a sanctuary for those who appreciate the finer things in life. We partner with local producers to curate seasonal menus rooted in integrity and taste.</p>
+                        <p>Our culinary philosophy is rooted in heritage and precision. Every dish tells a story of craftsmanship, from our signature aged Wagyu to our world-renowned traditional desserts.</p>
                         <a href="#menu" class="secondary-button story-cta">Discover Our Menu</a>
                     </div>
                 </div>
@@ -239,7 +240,7 @@
                     </div>
                 </div>
                 <div class="social-cta">
-                    <a href="#" class="secondary-button">Follow on Instagram</a>
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="secondary-button">Follow on Instagram</a>
                 </div>
             </div>
         </section>
@@ -250,10 +251,10 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <a href="index.html" class="footer-logo" aria-label="Classic Dinner Resort - Home">Classic Dinner Resort</a>
-                    <a href="#home" class="recipe-link" style="display: block; margin-top: 10px;" aria-label="Back to top">Back to Top</a>
+                    <a href="#top" class="recipe-link" style="display: block; margin-top: 10px;" aria-label="Back to top">Back to Top</a>
                     <div class="social-links">
-                        <a href="#" aria-label="Follow us on Instagram">Instagram</a>
-                        <a href="#" aria-label="Follow us on Facebook">Facebook</a>
+                        <a href="https://www.instagram.com/" aria-label="Follow us on Instagram" target="_blank" rel="noopener noreferrer">Instagram</a>
+                        <a href="https://www.facebook.com/" aria-label="Follow us on Facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
                     </div>
                 </div>
                 <div class="footer-info">
@@ -277,8 +278,8 @@
             <div class="footer-map">
                 <iframe
                     title="Google Maps showing the location of Classic Dinner Resort in Mayfair, London"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.123456789!2d-0.1478!3d51.5113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487605123456789%3A0x1234567890abcdef!2sMayfair%2C%20London!5e0!3m2!1sen!2suk!4v1620645678901!5m2!1sen!2suk"
-                    width="100%" height="200" style="border:0; filter: grayscale(100%) invert(90%); opacity: 0.6;" allowfullscreen="" loading="lazy"></iframe>
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.123456789!2d-0.1478!3d51.5113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487605123456789%3A0x123456789%3A0x123456789!5e0!3m2!1sen!2suk!4v1710000000000"
+                    width="100%" height="200" style="border:0; filter: grayscale(100%) invert(90%); opacity: 0.6;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 Classic Dinner Resort. All Rights Reserved.</p>
@@ -331,7 +332,8 @@
             const today = new Date().toISOString().split('T')[0];
             dateInput.setAttribute('min', today);
         }
-      // Reservation Form Feedback with Accessible Live Region
+
+        // Reservation Form Feedback with Accessible Live Region
         const reservationForm = document.querySelector('.reservation-form');
         const reservationStatus = document.getElementById('reservation-status');
 
@@ -339,9 +341,6 @@
             reservationForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 const submitBtn = reservationForm.querySelector('button[type="submit"]');
-                const dateVal = document.getElementById('date')?.value || '';
-                const guestsVal = document.getElementById('guests')?.value || '';
-                const timeVal = document.getElementById('time')?.value || '';
                 const originalText = submitBtn.textContent;
 
                 submitBtn.disabled = true;
